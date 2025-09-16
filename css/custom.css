@@ -1,0 +1,64 @@
+
+/* ===================== */
+/* 纳西达光标样式（只用 .cur 文件） */
+/* ===================== */
+
+/* 默认光标 */
+body, html {
+    cursor: url('/cursors/正常选择.cur') 0 0, auto !important;
+}
+
+
+/* 链接指针样式 */
+a, a:hover, a:focus, a:active,
+button, .btn, [role="button"],
+[onclick], [data-click], .clickable {
+    cursor: url('/cursors/链接选择.cur'), pointer !important;
+}
+
+/* 文本输入样式 */
+input[type="text"], input[type="password"], input[type="email"], input[type="url"], input[type="search"],
+input[type="number"], input[type="tel"], textarea, select,
+[contenteditable="true"], .code, pre, code {
+    cursor: url('/cursors/文本选择.cur'), text !important;
+}
+
+/* 不可用样式 */
+.disabled, [disabled], [aria-disabled="true"],
+.readonly, [readonly] {
+    cursor: url('/cursors/不可用.cur'), not-allowed !important;
+}
+
+/* ===================== */
+/* 简化版本 - 类选择器调用 */
+/* ===================== */
+
+.nahida-cursor-default {
+    cursor: url('/cursors/正常选择.cur'), auto !important;
+}
+
+.nahida-cursor-pointer {
+    cursor: url('/cursors/链接选择.cur'), pointer !important;
+}
+
+.nahida-cursor-text {
+    cursor: url('/cursors/文本选择.cur'), text !important;
+}
+
+.nahida-cursor-not-allowed {
+    cursor: url('/cursors/不可用.cur'), not-allowed !important;
+}
+
+/* ===================== */
+/* 响应式设计 - 在移动设备上禁用自定义光标 */
+/* ===================== */
+@media (hover: none) and (pointer: coarse) {
+    body, html,
+    a, button, input, textarea,
+    .nahida-cursor-default,
+    .nahida-cursor-pointer,
+    .nahida-cursor-text,
+    .nahida-cursor-not-allowed {
+        cursor: auto !important;
+    }
+}
