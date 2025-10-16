@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://cherises.github.io/Music/index.html</loc>
+    
+    <lastmod>2025-10-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://cherises.github.io/post/51874/</loc>
     
     <lastmod>2025-10-16</lastmod>
@@ -191,6 +200,15 @@
   </url>
   
   <url>
+    <loc>https://cherises.github.io/post/25843/</loc>
+    
+    <lastmod>2025-10-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://cherises.github.io/post/13350/</loc>
     
     <lastmod>2025-10-06</lastmod>
@@ -201,15 +219,6 @@
   
   <url>
     <loc>https://cherises.github.io/post/18314/</loc>
-    
-    <lastmod>2025-10-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://cherises.github.io/post/25843/</loc>
     
     <lastmod>2025-10-06</lastmod>
     
@@ -263,7 +272,7 @@
   </url>
   
   <url>
-    <loc>https://cherises.github.io/post/43567/</loc>
+    <loc>https://cherises.github.io/post/22255/</loc>
     
     <lastmod>2025-10-06</lastmod>
     
@@ -272,7 +281,7 @@
   </url>
   
   <url>
-    <loc>https://cherises.github.io/post/22255/</loc>
+    <loc>https://cherises.github.io/post/43567/</loc>
     
     <lastmod>2025-10-06</lastmod>
     
@@ -749,7 +758,7 @@
   </url>
   
   <url>
-    <loc>https://cherises.github.io/post/789/</loc>
+    <loc>https://cherises.github.io/post/23568/</loc>
     
     <lastmod>2025-10-06</lastmod>
     
@@ -758,7 +767,7 @@
   </url>
   
   <url>
-    <loc>https://cherises.github.io/post/23568/</loc>
+    <loc>https://cherises.github.io/post/789/</loc>
     
     <lastmod>2025-10-06</lastmod>
     
@@ -848,15 +857,6 @@
   </url>
   
   <url>
-    <loc>https://cherises.github.io/Music/index.html</loc>
-    
-    <lastmod>2025-09-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://cherises.github.io/google525c549b6cecbffe.html</loc>
     
     <lastmod>2025-09-17</lastmod>
@@ -911,21 +911,14 @@
 
   
   <url>
-    <loc>https://cherises.github.io/tags/Python/</loc>
-    <lastmod>2025-10-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://cherises.github.io/tags/%E8%84%9A%E6%9C%AC/</loc>
-    <lastmod>2025-10-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://cherises.github.io/tags/Ollama/</loc>
+    <lastmod>2025-10-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://cherises.github.io/tags/Python/</loc>
     <lastmod>2025-10-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -940,6 +933,13 @@
   
   <url>
     <loc>https://cherises.github.io/tags/PDF/</loc>
+    <lastmod>2025-10-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://cherises.github.io/tags/%E8%84%9A%E6%9C%AC/</loc>
     <lastmod>2025-10-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -974,14 +974,14 @@
   </url>
   
   <url>
-    <loc>https://cherises.github.io/tags/%E8%A1%8C%E4%B8%9A%E7%9F%A5%E8%AF%86/</loc>
+    <loc>https://cherises.github.io/tags/e-Book/</loc>
     <lastmod>2025-10-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://cherises.github.io/tags/e-Book/</loc>
+    <loc>https://cherises.github.io/tags/%E8%A1%8C%E4%B8%9A%E7%9F%A5%E8%AF%86/</loc>
     <lastmod>2025-10-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1142,7 +1142,7 @@
   </url>
   
   <url>
-    <loc>https://cherises.github.io/tags/%E5%B0%8F%E8%AF%B4/</loc>
+    <loc>https://cherises.github.io/tags/%E6%95%85%E4%BA%8B/</loc>
     <lastmod>2025-10-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1156,7 +1156,7 @@
   </url>
   
   <url>
-    <loc>https://cherises.github.io/tags/%E6%95%85%E4%BA%8B/</loc>
+    <loc>https://cherises.github.io/tags/%E5%B0%8F%E8%AF%B4/</loc>
     <lastmod>2025-10-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1310,20 +1310,6 @@
   </url>
   
   <url>
-    <loc>https://cherises.github.io/tags/Ubuntu24/</loc>
-    <lastmod>2025-10-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://cherises.github.io/tags/%E6%95%99%E7%A8%8B/</loc>
-    <lastmod>2025-10-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://cherises.github.io/tags/Linux/</loc>
     <lastmod>2025-10-16</lastmod>
     <changefreq>weekly</changefreq>
@@ -1367,6 +1353,20 @@
   
   <url>
     <loc>https://cherises.github.io/tags/apt/</loc>
+    <lastmod>2025-10-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://cherises.github.io/tags/Ubuntu24/</loc>
+    <lastmod>2025-10-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://cherises.github.io/tags/%E6%95%99%E7%A8%8B/</loc>
     <lastmod>2025-10-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1499,6 +1499,13 @@
   </url>
   
   <url>
+    <loc>https://cherises.github.io/tags/Docker/</loc>
+    <lastmod>2025-10-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://cherises.github.io/tags/GitHub/</loc>
     <lastmod>2025-10-16</lastmod>
     <changefreq>weekly</changefreq>
@@ -1507,13 +1514,6 @@
   
   <url>
     <loc>https://cherises.github.io/tags/%E7%9F%A5%E8%AF%86%E7%82%B9/</loc>
-    <lastmod>2025-10-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://cherises.github.io/tags/Docker/</loc>
     <lastmod>2025-10-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1569,7 +1569,7 @@
   </url>
   
   <url>
-    <loc>https://cherises.github.io/tags/%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/</loc>
+    <loc>https://cherises.github.io/tags/%E7%B4%A0%E6%9D%90/</loc>
     <lastmod>2025-10-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1583,7 +1583,7 @@
   </url>
   
   <url>
-    <loc>https://cherises.github.io/tags/%E7%B4%A0%E6%9D%90/</loc>
+    <loc>https://cherises.github.io/tags/%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/</loc>
     <lastmod>2025-10-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1786,20 +1786,6 @@
   </url>
   
   <url>
-    <loc>https://cherises.github.io/tags/RabbitMQ/</loc>
-    <lastmod>2025-10-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://cherises.github.io/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/</loc>
-    <lastmod>2025-10-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://cherises.github.io/tags/Shell/</loc>
     <lastmod>2025-10-16</lastmod>
     <changefreq>weekly</changefreq>
@@ -1808,6 +1794,20 @@
   
   <url>
     <loc>https://cherises.github.io/tags/zsh/</loc>
+    <lastmod>2025-10-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://cherises.github.io/tags/RabbitMQ/</loc>
+    <lastmod>2025-10-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://cherises.github.io/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/</loc>
     <lastmod>2025-10-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1886,14 +1886,14 @@
   </url>
   
   <url>
-    <loc>https://cherises.github.io/categories/memory/</loc>
+    <loc>https://cherises.github.io/categories/fiction/</loc>
     <lastmod>2025-10-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://cherises.github.io/categories/fiction/</loc>
+    <loc>https://cherises.github.io/categories/memory/</loc>
     <lastmod>2025-10-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
