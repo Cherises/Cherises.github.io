@@ -1,64 +1,91 @@
-
-/* ===================== */
-/* 纳西达光标样式（只用 .cur 文件） */
-/* ===================== */
-
-/* 默认光标 */
-body, html {
-    cursor: url('/cursors/正常选择.cur') 0 0, auto !important;
+/* 加宽主页文章列表布局 */
+@media screen and (min-width: 1200px) {
+  .layout {
+    max-width: 95% !important;
+  }
+}
+@media screen and (min-width: 1600px) {
+  .layout {
+    max-width: 90% !important;
+  }
 }
 
+/* ===== 蜜桃粉色主题修复 ===== */
 
-/* 链接指针样式 */
-a, a:hover, a:focus, a:active,
-button, .btn, [role="button"],
-[onclick], [data-click], .clickable {
-    cursor: url('/cursors/链接选择.cur'), pointer !important;
+/* 1. 修复 Follow me 按钮悬停颜色 */
+#aside-content .card-info .card-info-social-icons .social-icon {
+  background: #FF8FAB !important;
+  color: white !important;
+  transition: all 0.3s ease !important;
+  border-radius: 8px !important;
 }
 
-/* 文本输入样式 */
-input[type="text"], input[type="password"], input[type="email"], input[type="url"], input[type="search"],
-input[type="number"], input[type="tel"], textarea, select,
-[contenteditable="true"], .code, pre, code {
-    cursor: url('/cursors/文本选择.cur'), text !important;
+#aside-content .card-info .card-info-social-icons .social-icon:hover {
+  background: #FF6B8B !important;
+  color: white !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 107, 139, 0.3) !important;
 }
 
-/* 不可用样式 */
-.disabled, [disabled], [aria-disabled="true"],
-.readonly, [readonly] {
-    cursor: url('/cursors/不可用.cur'), not-allowed !important;
+/* 2. 修复通用按钮样式 */
+.button:hover, .btn:hover, 
+.pagination .page-number:hover,
+.pagination .extend:hover {
+  background: #FF6B8B !important;
+  color: white !important;
+  border-color: #FF6B8B !important;
 }
 
-/* ===================== */
-/* 简化版本 - 类选择器调用 */
-/* ===================== */
-
-.nahida-cursor-default {
-    cursor: url('/cursors/正常选择.cur'), auto !important;
+/* 3. 修复相关文章卡片 */
+#related-posts .relatedPosts-list > div {
+  background: rgba(255, 143, 171, 0.05) !important;
+  border: 1px solid #FFB3C6 !important;
+  border-radius: 12px !important;
+  transition: all 0.3s ease !important;
+  overflow: hidden;
 }
 
-.nahida-cursor-pointer {
-    cursor: url('/cursors/链接选择.cur'), pointer !important;
+#related-posts .relatedPosts-list > div:hover {
+  background: rgba(255, 143, 171, 0.1) !important;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(255, 143, 171, 0.15) !important;
+  border-color: #FF8FAB !important;
 }
 
-.nahida-cursor-text {
-    cursor: url('/cursors/文本选择.cur'), text !important;
+/* 移除灰色遮罩 */
+#related-posts .relatedPosts-list > div::before {
+  background: none !important;
 }
 
-.nahida-cursor-not-allowed {
-    cursor: url('/cursors/不可用.cur'), not-allowed !important;
+/* 相关文章标题 */
+#related-posts .relatedPosts-list .content .title {
+  color: #FF6B8B !important;
+  font-weight: 600 !important;
 }
 
-/* ===================== */
-/* 响应式设计 - 在移动设备上禁用自定义光标 */
-/* ===================== */
-@media (hover: none) and (pointer: coarse) {
-    body, html,
-    a, button, input, textarea,
-    .nahida-cursor-default,
-    .nahida-cursor-pointer,
-    .nahida-cursor-text,
-    .nahida-cursor-not-allowed {
-        cursor: auto !important;
-    }
+#related-posts .relatedPosts-list .content .title:hover {
+  color: #FF8FAB !important;
+}
+
+/* 相关文章描述 */
+#related-posts .relatedPosts-list .content .excerpt {
+  color: #666 !important;
+  opacity: 0.8 !important;
+}
+
+/* 4. 额外美化：确保其他元素也符合蜜桃粉主题 */
+#aside-content .card-widget {
+  border-radius: 16px !important;
+  border: 1px solid #FFB3C6 !important;
+}
+
+/* 标签云颜色修复 */
+#aside-content .card-tag-cloud a {
+  color: #FF8FAB !important;
+  border-color: #FFB3C6 !important;
+}
+
+#aside-content .card-tag-cloud a:hover {
+  background: #FF8FAB !important;
+  color: white !important;
 }
