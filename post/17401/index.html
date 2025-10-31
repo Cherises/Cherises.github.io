@@ -1,0 +1,604 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>微信聊天记录提取与模型训练 | Leo's Digital Genesis</title><meta name="author" content="Leonardo"><meta name="copyright" content="Leonardo"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#FFF0F5"><meta name="description" content="前情提要 我计划把微信聊天记录导出来，然后想训练一个模型，根据我的DellG15 5520 32G+1T RTX3060 6G的设备上能够训练那种模型呢？以及我如何拿聊天记录制作一个分析总结. 导出的JSON，CSV等格式的数据可以用来训练大语言模型，已经有网友成功利用自己的聊天记录训练chatglm3，做出一个数字化的自己.  🧩 一、我的硬件能训练什么模型？ 模型类型参数规模是否可在你电脑上">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信聊天记录提取与模型训练">
+<meta property="og:url" content="https://cherises.github.io/post/17401/index.html">
+<meta property="og:site_name" content="Leo&#39;s Digital Genesis">
+<meta property="og:description" content="前情提要 我计划把微信聊天记录导出来，然后想训练一个模型，根据我的DellG15 5520 32G+1T RTX3060 6G的设备上能够训练那种模型呢？以及我如何拿聊天记录制作一个分析总结. 导出的JSON，CSV等格式的数据可以用来训练大语言模型，已经有网友成功利用自己的聊天记录训练chatglm3，做出一个数字化的自己.  🧩 一、我的硬件能训练什么模型？ 模型类型参数规模是否可在你电脑上">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cherises.github.io/img/actor-1.jpg">
+<meta property="article:published_time" content="2025-10-12T14:38:50.000Z">
+<meta property="article:modified_time" content="2025-10-19T08:29:52.607Z">
+<meta property="article:author" content="Leonardo">
+<meta property="article:tag" content="模型训练">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cherises.github.io/img/actor-1.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "微信聊天记录提取与模型训练",
+  "url": "https://cherises.github.io/post/17401/",
+  "image": "https://cherises.github.io/img/actor-1.jpg",
+  "datePublished": "2025-10-12T14:38:50.000Z",
+  "dateModified": "2025-10-19T08:29:52.607Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Leonardo",
+      "url": "https://github.com/Cherises/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://cherises.github.io/post/17401/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#2A1A22')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#FFF0F5')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":5,"unescape":false,"languages":{"hits_empty":"No results found for: ${query}","hits_stats":"${hits} articles found"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"You have switched to Traditional Chinese","cht_to_chs":"You have switched to Simplified Chinese","day_to_night":"You have switched to Dark Mode","night_to_day":"You have switched to Light Mode","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '微信聊天记录提取与模型训练',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/admonition.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css"><meta name="generator" content="Hexo 7.3.0"></head><body><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+btf.addGlobalFn('pjaxSend', () => {
+  Pace.restart()
+}, 'pace_restart')
+
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg" style="background-image: url(https://raw.githubusercontent.com/Cherises/Blog-Resource-2/refs/heads/main/photos/banner-9.jpeg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/actor-1.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">92</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">135</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">20</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 词云</span></a></div><div class="menus_item"><a class="site-page" href="/Wujie/"><i class="fa-fw fas fa-globe"></i><span> 物界</span></a></div><div class="menus_item"><a class="site-page" href="/Music/"><i class="fa-fw fas fa-music"></i><span> 音乐馆</span></a></div><div class="menus_item"><a class="site-page" href="/About/"><i class="fa-fw fas fa-user"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://raw.githubusercontent.com/Cherises/Blog-Resource-2/refs/heads/main/photos/banner-9.jpeg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Leo's Digital Genesis</span></a><a class="nav-page-title" href="/"><span class="site-name">微信聊天记录提取与模型训练</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  Back to Home</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 词云</span></a></div><div class="menus_item"><a class="site-page" href="/Wujie/"><i class="fa-fw fas fa-globe"></i><span> 物界</span></a></div><div class="menus_item"><a class="site-page" href="/Music/"><i class="fa-fw fas fa-music"></i><span> 音乐馆</span></a></div><div class="menus_item"><a class="site-page" href="/About/"><i class="fa-fw fas fa-user"></i><span> About</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">微信聊天记录提取与模型训练</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-10-12T14:38:50.000Z" title="Created 2025-10-12 14:38:50">2025-10-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-10-19T08:29:52.607Z" title="Updated 2025-10-19 08:29:52">2025-10-19</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/study/">study</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word Count:</span><span class="word-count">2.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading Time:</span><span>9mins</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="前情提要"><a href="#前情提要" class="headerlink" title="前情提要"></a>前情提要</h2><blockquote>
+<p>我计划把微信聊天记录导出来，然后想训练一个模型，根据我的DellG15 5520 32G+1T RTX3060 6G的设备上能够训练那种模型呢？以及我如何拿聊天记录制作一个分析总结. 导出的JSON，CSV等格式的数据可以用来训练大语言模型，已经有网友成功利用自己的聊天记录训练chatglm3，做出一个数字化的自己.</p>
+</blockquote>
+<h2 id="🧩-一、我的硬件能训练什么模型？"><a href="#🧩-一、我的硬件能训练什么模型？" class="headerlink" title="🧩 一、我的硬件能训练什么模型？"></a>🧩 一、我的硬件能训练什么模型？</h2><table>
+<thead>
+<tr>
+<th>模型类型</th>
+<th>参数规模</th>
+<th>是否可在你电脑上训练</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Embedding &#x2F; 分类模型</strong></td>
+<td>&lt;100M</td>
+<td>✅ 轻松</td>
+<td>可用于情感分析、关键词提取、话题分类</td>
+</tr>
+<tr>
+<td><strong>微调 LoRA 小型语言模型</strong></td>
+<td>1B～7B</td>
+<td>⚠️ 可行（推荐 3B～6B）</td>
+<td>通过LoRA、QLoRA、PEFT等低显存微调技术</td>
+</tr>
+<tr>
+<td><strong>全参数训练（from scratch）</strong></td>
+<td>&gt;1B</td>
+<td>❌ 不现实</td>
+<td>训练成本太高，显存不足</td>
+</tr>
+<tr>
+<td><strong>ChatGLM3-6B &#x2F; Qwen1.5-4B &#x2F; Gemma-2B 等微调</strong></td>
+<td>2B～6B</td>
+<td>✅ 适合</td>
+<td>可以基于你微信聊天数据微调，做“数字化自己”</td>
+</tr>
+<tr>
+<td><strong>Embedding + RAG 检索增强生成（不训练）</strong></td>
+<td>—</td>
+<td>✅ 推荐</td>
+<td>不用训练，只需向量化和知识检索，也能表现得像你</td>
+</tr>
+</tbody></table>
+<p>👉 <strong>结论：</strong><br>我的RTX3060（6GB显存）足够支撑：</p>
+<ul>
+<li><strong>LoRA &#x2F; QLoRA 微调 ChatGLM3-6B、Qwen1.5-4B、Gemma-2B</strong></li>
+<li>或使用 <strong>RAG 知识库增强方案（更轻量）</strong></li>
+</ul>
+<h2 id="💬-二、微信聊天记录的准备"><a href="#💬-二、微信聊天记录的准备" class="headerlink" title="💬 二、微信聊天记录的准备"></a>💬 二、微信聊天记录的准备</h2><h3 id="1️⃣-数据导出"><a href="#1️⃣-数据导出" class="headerlink" title="1️⃣ 数据导出"></a>1️⃣ 数据导出</h3><p>可以通过以下方式导出微信聊天记录：</p>
+<ul>
+<li><strong>微信电脑版 + WeChatExporter 工具</strong><br>可导出为 <code>.json</code> 或 <code>.csv</code></li>
+<li>或使用 <strong>iOS&#x2F;iTunes 备份提取工具</strong><br>导出数据库后转为 CSV&#x2F;JSON。</li>
+</ul>
+<p>建议最终整理成以下结构：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">[</span></span><br><span class="line">  <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;timestamp&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2024-08-10 22:34:01&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;sender&quot;</span><span class="punctuation">:</span> <span class="string">&quot;我&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;message&quot;</span><span class="punctuation">:</span> <span class="string">&quot;今晚去吃火锅吗？&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;timestamp&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2024-08-10 22:34:10&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;sender&quot;</span><span class="punctuation">:</span> <span class="string">&quot;朋友A&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;message&quot;</span><span class="punctuation">:</span> <span class="string">&quot;好啊，约哪？&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">]</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="🔍-三、聊天记录可做的分析项目"><a href="#🔍-三、聊天记录可做的分析项目" class="headerlink" title="🔍 三、聊天记录可做的分析项目"></a>🔍 三、聊天记录可做的分析项目</h2><p>你可以先从 <strong>数据分析与总结</strong> 入手，再决定是否训练模型。</p>
+<h3 id="📊-1-数据分析方向"><a href="#📊-1-数据分析方向" class="headerlink" title="📊 1. 数据分析方向"></a>📊 1. 数据分析方向</h3><table>
+<thead>
+<tr>
+<th>目标</th>
+<th>方法</th>
+<th>工具</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>聊天情绪分析</td>
+<td>使用情感分类模型（如Hugging Face的 <code>distilbert-base-uncased-finetuned-sst-2-english</code> 或中文 <code>uer/roberta-base-finetuned-jd-binary-chinese</code>）</td>
+<td>Python + Transformers</td>
+</tr>
+<tr>
+<td>常见话题聚类</td>
+<td>文本向量化 + KMeans 聚类</td>
+<td>sklearn</td>
+</tr>
+<tr>
+<td>关键词提取</td>
+<td>TF-IDF &#x2F; TextRank</td>
+<td>jieba, sklearn</td>
+</tr>
+<tr>
+<td>沟通风格分析</td>
+<td>统计“我”、“你”、“我们”出现频率等</td>
+<td>Python</td>
+</tr>
+<tr>
+<td>每日聊天趋势</td>
+<td>时间序列可视化</td>
+<td>pandas + matplotlib</td>
+</tr>
+</tbody></table>
+<h2 id="🧠-四、想要“数字化自己”的两种路径"><a href="#🧠-四、想要“数字化自己”的两种路径" class="headerlink" title="🧠 四、想要“数字化自己”的两种路径"></a>🧠 四、想要“数字化自己”的两种路径</h2><p>下面是两种可行方案，根据你的目标和资源选择：</p>
+<h3 id="🚀-方案A：RAG（Retrieval-Augmented-Generation）知识增强型人格模型【推荐】"><a href="#🚀-方案A：RAG（Retrieval-Augmented-Generation）知识增强型人格模型【推荐】" class="headerlink" title="🚀 方案A：RAG（Retrieval-Augmented Generation）知识增强型人格模型【推荐】"></a>🚀 方案A：RAG（Retrieval-Augmented Generation）知识增强型人格模型【推荐】</h3><p><strong>特点：</strong> 不需要训练模型，只需把你的聊天记录向量化，存入数据库。<br>当你提问时，它会自动检索你过去类似的语句回答，像你一样聊天。</p>
+<h4 id="步骤："><a href="#步骤：" class="headerlink" title="步骤："></a>步骤：</h4><ol>
+<li><p><strong>数据清洗：</strong></p>
+<ul>
+<li>去除系统消息、图片提示、语音提示等</li>
+<li>保留纯文本</li>
+</ul>
+</li>
+<li><p><strong>向量化处理：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sentence_transformers <span class="keyword">import</span> SentenceTransformer</span><br><span class="line">model = SentenceTransformer(<span class="string">&quot;BAAI/bge-large-zh-v1.5&quot;</span>)</span><br><span class="line">embeddings = model.encode([<span class="string">&quot;今晚去吃火锅吗？&quot;</span>, <span class="string">&quot;好啊，约哪？&quot;</span>])</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>存入向量数据库：</strong><br>使用 FAISS 或 Chroma：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> faiss</span><br><span class="line">index = faiss.IndexFlatL2(embeddings.shape[<span class="number">1</span>])</span><br><span class="line">index.add(embeddings)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>问答阶段：</strong></p>
+<ul>
+<li>用户提问 → 检索相似聊天片段 → 拼接进Prompt → 交给大模型回答。</li>
+<li>类似 LangChain 的工作流程。</li>
+</ul>
+</li>
+<li><p><strong>运行环境建议：</strong></p>
+<ul>
+<li><code>python 3.10+</code></li>
+<li>安装：<code>pip install langchain chromadb sentence-transformers faiss-cpu</code></li>
+</ul>
+</li>
+</ol>
+<p>✅ <strong>优点：</strong> 不训练，速度快，占用小<br>❌ <strong>缺点：</strong> 无法完全模仿语言风格，只能“参考”你说过的话。</p>
+<h3 id="🧬-方案B：LoRA-微调你自己的“人格语言模型”"><a href="#🧬-方案B：LoRA-微调你自己的“人格语言模型”" class="headerlink" title="🧬 方案B：LoRA 微调你自己的“人格语言模型”"></a>🧬 方案B：LoRA 微调你自己的“人格语言模型”</h3><p><strong>目标：</strong> 让模型学会你的表达方式、语气与常用句式。</p>
+<h4 id="步骤概要："><a href="#步骤概要：" class="headerlink" title="步骤概要："></a>步骤概要：</h4><ol>
+<li><p><strong>准备数据</strong></p>
+<ul>
+<li>按以下格式整理成 Alpaca 或 ChatGLM 格式：</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;instruction&quot;</span><span class="punctuation">:</span> <span class="string">&quot;和朋友说今晚吃火锅&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;input&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;output&quot;</span><span class="punctuation">:</span> <span class="string">&quot;好啊，去吃吧！要不要叫上他们？&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>选择微调基底模型</strong></p>
+<ul>
+<li>ChatGLM3-6B</li>
+<li>Qwen1.5-4B</li>
+<li>Gemma-2B</li>
+</ul>
+</li>
+<li><p><strong>使用 QLoRA 训练（低显存方案）</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install transformers peft bitsandbytes datasets accelerate</span><br></pre></td></tr></table></figure>
+
+<p>然后用 Hugging Face 提供的 <code>run_clm_lora.py</code> 脚本进行训练。</p>
+</li>
+<li><p><strong>导出与推理</strong></p>
+<ul>
+<li><p>将微调权重合并后推理运行：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> transformers <span class="keyword">import</span> AutoModelForCausalLM, AutoTokenizer</span><br><span class="line">model = AutoModelForCausalLM.from_pretrained(<span class="string">&quot;你的模型路径&quot;</span>, device_map=<span class="string">&quot;auto&quot;</span>)</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+<p>✅ <strong>优点：</strong> 模型更像“你”，个性化明显<br>❌ <strong>缺点：</strong> 显存吃紧，需控制 batch size &amp; seq_len（如 batch&#x3D;1, seq&#x3D;512）</p>
+<h2 id="🧰-五、你的环境配置建议"><a href="#🧰-五、你的环境配置建议" class="headerlink" title="🧰 五、你的环境配置建议"></a>🧰 五、你的环境配置建议</h2><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>推荐配置</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>操作系统</td>
+<td>Ubuntu 24.04</td>
+</tr>
+<tr>
+<td>CUDA</td>
+<td>12.1+</td>
+</tr>
+<tr>
+<td>Python</td>
+<td>3.10+</td>
+</tr>
+<tr>
+<td>驱动</td>
+<td>NVIDIA 550+</td>
+</tr>
+<tr>
+<td>虚拟环境</td>
+<td><code>conda</code> 或 <code>venv</code></td>
+</tr>
+<tr>
+<td>依赖</td>
+<td><code>transformers</code>, <code>datasets</code>, <code>peft</code>, <code>bitsandbytes</code>, <code>faiss</code>, <code>langchain</code></td>
+</tr>
+</tbody></table>
+<h2 id="📘-六、进阶目标（逐步实现）"><a href="#📘-六、进阶目标（逐步实现）" class="headerlink" title="📘 六、进阶目标（逐步实现）"></a>📘 六、进阶目标（逐步实现）</h2><table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>目标</th>
+<th>实现方向</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>🔹 初级</td>
+<td>聊天记录情感与话题分析</td>
+<td>pandas + huggingface</td>
+</tr>
+<tr>
+<td>🔹 中级</td>
+<td>构建RAG人格对话系统</td>
+<td>LangChain + Chroma</td>
+</tr>
+<tr>
+<td>🔹 高级</td>
+<td>LoRA 微调你的专属语言模型</td>
+<td>ChatGLM3&#x2F;Qwen 微调</td>
+</tr>
+<tr>
+<td>🔹 终极</td>
+<td>部署到网页端，作为AI“数字分身”</td>
+<td>FastAPI + Vue&#x2F;React + WebSocket语音对话</td>
+</tr>
+</tbody></table>
+<p>选择更具挑战和成就感的方向：<strong>LoRA 微调你自己的专属人格模型</strong>。<br>这条路线能让模型真正<strong>学会你的语气、说话方式、思维逻辑</strong>，逐渐变成“数字化的你”。<br>下面（基于 Dell G15 5520：i7-12700H &#x2F; 32GB RAM &#x2F; RTX3060 6GB &#x2F; Ubuntu 24.04）制定一份 <strong>从0开始的完整 LoRA 微调路线图</strong>，包括：</p>
+<h1 id="🧠-ChatGLM3-Qwen-Gemma-LoRA-微调你的微信人格模型指南"><a href="#🧠-ChatGLM3-Qwen-Gemma-LoRA-微调你的微信人格模型指南" class="headerlink" title="🧠 ChatGLM3 &#x2F; Qwen &#x2F; Gemma LoRA 微调你的微信人格模型指南"></a>🧠 ChatGLM3 &#x2F; Qwen &#x2F; Gemma LoRA 微调你的微信人格模型指南</h1><h2 id="一、项目总览"><a href="#一、项目总览" class="headerlink" title="一、项目总览"></a>一、项目总览</h2><table>
+<thead>
+<tr>
+<th>项目阶段</th>
+<th>目标</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>① 数据准备</td>
+<td>从微信导出、清洗、转格式</td>
+<td>转为模型可读的 jsonl 数据集</td>
+</tr>
+<tr>
+<td>② 环境准备</td>
+<td>安装 CUDA + PyTorch + 依赖</td>
+<td>确保 transformers 能调用GPU</td>
+</tr>
+<tr>
+<td>③ 模型选择</td>
+<td>ChatGLM3-6B &#x2F; Qwen1.5-4B &#x2F; Gemma-2B</td>
+<td>根据显存与语料风格选择</td>
+</tr>
+<tr>
+<td>④ LoRA 微调</td>
+<td>训练人格语言模型</td>
+<td>使用 QLoRA 技术节省显存</td>
+</tr>
+<tr>
+<td>⑤ 模型合并与测试</td>
+<td>生成“数字你”模型</td>
+<td>与原模型合并并在本地聊天</td>
+</tr>
+<tr>
+<td>⑥ 部署</td>
+<td>Web端或终端对话</td>
+<td>可扩展为 AI 分身系统</td>
+</tr>
+</tbody></table>
+<h2 id="二、阶段①：数据准备"><a href="#二、阶段①：数据准备" class="headerlink" title="二、阶段①：数据准备"></a>二、阶段①：数据准备</h2><h3 id="1️⃣-微信导出"><a href="#1️⃣-微信导出" class="headerlink" title="1️⃣ 微信导出"></a>1️⃣ 微信导出</h3><p>使用 “WeChat Exporter” 导出为 <code>.json</code> 或 <code>.csv</code> 文件（推荐 <code>.json</code>）。</p>
+<p>示例原始数据：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">[</span></span><br><span class="line">  <span class="punctuation">&#123;</span><span class="attr">&quot;sender&quot;</span><span class="punctuation">:</span> <span class="string">&quot;我&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;message&quot;</span><span class="punctuation">:</span> <span class="string">&quot;今晚去吃火锅吗？&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;timestamp&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2024-10-01 20:32&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="punctuation">&#123;</span><span class="attr">&quot;sender&quot;</span><span class="punctuation">:</span> <span class="string">&quot;朋友A&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;message&quot;</span><span class="punctuation">:</span> <span class="string">&quot;好啊，哪家？&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="punctuation">&#123;</span><span class="attr">&quot;sender&quot;</span><span class="punctuation">:</span> <span class="string">&quot;我&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;message&quot;</span><span class="punctuation">:</span> <span class="string">&quot;就老地方。&quot;</span><span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">]</span></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="2️⃣-数据清洗脚本（Python）"><a href="#2️⃣-数据清洗脚本（Python）" class="headerlink" title="2️⃣ 数据清洗脚本（Python）"></a>2️⃣ 数据清洗脚本（Python）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">build_dataset</span>(<span class="params">input_file, output_file</span>):</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(input_file, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        data = json.load(f)</span><br><span class="line"></span><br><span class="line">    dialogues = []</span><br><span class="line">    history = []</span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> data:</span><br><span class="line">        <span class="keyword">if</span> item[<span class="string">&quot;sender&quot;</span>] == <span class="string">&quot;我&quot;</span>:</span><br><span class="line">            <span class="keyword">if</span> history:</span><br><span class="line">                dialogues.append(&#123;</span><br><span class="line">                    <span class="string">&quot;instruction&quot;</span>: <span class="string">&quot;朋友说：&quot;</span> + history[-<span class="number">1</span>],</span><br><span class="line">                    <span class="string">&quot;input&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">                    <span class="string">&quot;output&quot;</span>: item[<span class="string">&quot;message&quot;</span>]</span><br><span class="line">                &#125;)</span><br><span class="line">            history.append(item[<span class="string">&quot;message&quot;</span>])</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            history.append(item[<span class="string">&quot;message&quot;</span>])</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(output_file, <span class="string">&#x27;w&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        <span class="keyword">for</span> d <span class="keyword">in</span> dialogues:</span><br><span class="line">            f.write(json.dumps(d, ensure_ascii=<span class="literal">False</span>) + <span class="string">&quot;\n&quot;</span>)</span><br><span class="line"></span><br><span class="line">build_dataset(<span class="string">&quot;wechat.json&quot;</span>, <span class="string">&quot;wechat_lora_dataset.jsonl&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>输出的 <code>wechat_lora_dataset.jsonl</code> 就是 <strong>Alpaca格式数据集</strong>，可直接用于LoRA训练。</p>
+<h2 id="三、阶段②：环境准备"><a href="#三、阶段②：环境准备" class="headerlink" title="三、阶段②：环境准备"></a>三、阶段②：环境准备</h2><h3 id="✅-1-安装基础依赖"><a href="#✅-1-安装基础依赖" class="headerlink" title="✅ 1. 安装基础依赖"></a>✅ 1. 安装基础依赖</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">conda create -n wechat-lora python=3.10 -y</span><br><span class="line">conda activate wechat-lora</span><br><span class="line"></span><br><span class="line">pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121</span><br><span class="line">pip install transformers datasets peft bitsandbytes accelerate</span><br></pre></td></tr></table></figure>
+
+<h3 id="✅-2-检查CUDA是否可用"><a href="#✅-2-检查CUDA是否可用" class="headerlink" title="✅ 2. 检查CUDA是否可用"></a>✅ 2. 检查CUDA是否可用</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -c <span class="string">&quot;import torch; print(torch.cuda.is_available(), torch.cuda.get_device_name(0))&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>输出应类似：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">True RTX 3060 Laptop GPU</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="四、阶段③：模型选择建议"><a href="#四、阶段③：模型选择建议" class="headerlink" title="四、阶段③：模型选择建议"></a>四、阶段③：模型选择建议</h2><table>
+<thead>
+<tr>
+<th>模型</th>
+<th>参数量</th>
+<th>中文能力</th>
+<th>显存需求（LoRA）</th>
+<th>优点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>ChatGLM3-6B</strong></td>
+<td>6B</td>
+<td>很强</td>
+<td>5.5GB↑</td>
+<td>自带指令对齐、开放LoRA接口</td>
+</tr>
+<tr>
+<td><strong>Qwen1.5-4B</strong></td>
+<td>4B</td>
+<td>很强</td>
+<td>5GB↑</td>
+<td>性能高，推理快</td>
+</tr>
+<tr>
+<td><strong>Gemma-2B</strong></td>
+<td>2B</td>
+<td>中等</td>
+<td>3.5GB↑</td>
+<td>轻量、适合初次训练</td>
+</tr>
+</tbody></table>
+<p>👉 建议选 <strong>ChatGLM3-6B（最成熟、中文好）</strong>。</p>
+<h2 id="五、阶段④：LoRA-微调配置"><a href="#五、阶段④：LoRA-微调配置" class="headerlink" title="五、阶段④：LoRA 微调配置"></a>五、阶段④：LoRA 微调配置</h2><p>假设数据集路径为 <code>./dataset/wechat_lora_dataset.jsonl</code></p>
+<h3 id="🧩-训练脚本（QLoRA-版）"><a href="#🧩-训练脚本（QLoRA-版）" class="headerlink" title="🧩 训练脚本（QLoRA 版）"></a>🧩 训练脚本（QLoRA 版）</h3><p>创建文件 <code>train_lora.py</code>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> transformers <span class="keyword">import</span> AutoModelForCausalLM, AutoTokenizer, TrainingArguments, Trainer</span><br><span class="line"><span class="keyword">from</span> datasets <span class="keyword">import</span> load_dataset</span><br><span class="line"><span class="keyword">from</span> peft <span class="keyword">import</span> LoraConfig, get_peft_model</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"></span><br><span class="line">MODEL_NAME = <span class="string">&quot;THUDM/chatglm3-6b&quot;</span></span><br><span class="line">DATA_PATH = <span class="string">&quot;./dataset/wechat_lora_dataset.jsonl&quot;</span></span><br><span class="line">OUTPUT_DIR = <span class="string">&quot;./output/wechat-glm3-lora&quot;</span></span><br><span class="line"></span><br><span class="line">tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, trust_remote_code=<span class="literal">True</span>)</span><br><span class="line">model = AutoModelForCausalLM.from_pretrained(</span><br><span class="line">    MODEL_NAME, torch_dtype=torch.float16, device_map=<span class="string">&quot;auto&quot;</span>, trust_remote_code=<span class="literal">True</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">dataset = load_dataset(<span class="string">&quot;json&quot;</span>, data_files=DATA_PATH, split=<span class="string">&quot;train&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">tokenize</span>(<span class="params">batch</span>):</span><br><span class="line">    text = [<span class="string">f&quot;指令：<span class="subst">&#123;i[<span class="string">&#x27;instruction&#x27;</span>]&#125;</span>\n回复：<span class="subst">&#123;i[<span class="string">&#x27;output&#x27;</span>]&#125;</span>&quot;</span> <span class="keyword">for</span> i <span class="keyword">in</span> batch]</span><br><span class="line">    <span class="keyword">return</span> tokenizer(text, truncation=<span class="literal">True</span>, max_length=<span class="number">512</span>)</span><br><span class="line">    </span><br><span class="line">tokenized = dataset.<span class="built_in">map</span>(<span class="keyword">lambda</span> x: tokenize(x[<span class="string">&quot;text&quot;</span>]), batched=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">lora_config = LoraConfig(</span><br><span class="line">    r=<span class="number">8</span>, lora_alpha=<span class="number">16</span>, target_modules=[<span class="string">&quot;query_key_value&quot;</span>],</span><br><span class="line">    lora_dropout=<span class="number">0.05</span>, bias=<span class="string">&quot;none&quot;</span>, task_type=<span class="string">&quot;CAUSAL_LM&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">model = get_peft_model(model, lora_config)</span><br><span class="line"></span><br><span class="line">args = TrainingArguments(</span><br><span class="line">    per_device_train_batch_size=<span class="number">1</span>,</span><br><span class="line">    gradient_accumulation_steps=<span class="number">4</span>,</span><br><span class="line">    warmup_steps=<span class="number">50</span>,</span><br><span class="line">    num_train_epochs=<span class="number">3</span>,</span><br><span class="line">    learning_rate=<span class="number">2e-4</span>,</span><br><span class="line">    fp16=<span class="literal">True</span>,</span><br><span class="line">    logging_steps=<span class="number">10</span>,</span><br><span class="line">    output_dir=OUTPUT_DIR,</span><br><span class="line">    save_total_limit=<span class="number">2</span>,</span><br><span class="line">    save_strategy=<span class="string">&quot;epoch&quot;</span>,</span><br><span class="line">    optim=<span class="string">&quot;adamw_torch&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">trainer = Trainer(model=model, args=args, train_dataset=tokenized)</span><br><span class="line">trainer.train()</span><br><span class="line"></span><br><span class="line">model.save_pretrained(OUTPUT_DIR)</span><br></pre></td></tr></table></figure>
+
+<p>运行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python train_lora.py</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>🚀 训练完成后会生成一个 <code>adapter_model.bin</code>，这是“人格权重文件”。</p>
+</blockquote>
+<h2 id="六、阶段⑤：合并与测试"><a href="#六、阶段⑤：合并与测试" class="headerlink" title="六、阶段⑤：合并与测试"></a>六、阶段⑤：合并与测试</h2><h3 id="合并LoRA权重并推理："><a href="#合并LoRA权重并推理：" class="headerlink" title="合并LoRA权重并推理："></a>合并LoRA权重并推理：</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> transformers <span class="keyword">import</span> AutoModelForCausalLM, AutoTokenizer</span><br><span class="line"><span class="keyword">from</span> peft <span class="keyword">import</span> PeftModel</span><br><span class="line"></span><br><span class="line">base_model = <span class="string">&quot;THUDM/chatglm3-6b&quot;</span></span><br><span class="line">adapter_model = <span class="string">&quot;./output/wechat-glm3-lora&quot;</span></span><br><span class="line"></span><br><span class="line">tokenizer = AutoTokenizer.from_pretrained(base_model, trust_remote_code=<span class="literal">True</span>)</span><br><span class="line">model = AutoModelForCausalLM.from_pretrained(base_model, device_map=<span class="string">&quot;auto&quot;</span>, trust_remote_code=<span class="literal">True</span>)</span><br><span class="line">model = PeftModel.from_pretrained(model, adapter_model)</span><br><span class="line"></span><br><span class="line">model.<span class="built_in">eval</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    query = <span class="built_in">input</span>(<span class="string">&quot;你: &quot;</span>)</span><br><span class="line">    response, _ = model.chat(tokenizer, query, history=[])</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;数字你:&quot;</span>, response)</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="七、阶段⑥：可视化-部署"><a href="#七、阶段⑥：可视化-部署" class="headerlink" title="七、阶段⑥：可视化 &amp; 部署"></a>七、阶段⑥：可视化 &amp; 部署</h2><table>
+<thead>
+<tr>
+<th>模式</th>
+<th>工具</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>命令行聊天</td>
+<td>上述脚本</td>
+<td>最轻量</td>
+</tr>
+<tr>
+<td>Web 聊天</td>
+<td><code>Gradio</code></td>
+<td><code>pip install gradio</code></td>
+</tr>
+<tr>
+<td>桌面端</td>
+<td>PyQt5 &#x2F; Electron</td>
+<td>可嵌语音识别</td>
+</tr>
+<tr>
+<td>网页端部署</td>
+<td>FastAPI + Vue&#x2F;React</td>
+<td>未来扩展方向</td>
+</tr>
+</tbody></table>
+<h2 id="八、进一步升级方向"><a href="#八、进一步升级方向" class="headerlink" title="八、进一步升级方向"></a>八、进一步升级方向</h2><table>
+<thead>
+<tr>
+<th>目标</th>
+<th>方案</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>语音输入输出</td>
+<td>加入 <code>SpeechRecognition</code> + <code>Edge-TTS</code></td>
+</tr>
+<tr>
+<td>长期记忆系统</td>
+<td>SQLite 记录上下文与情绪</td>
+</tr>
+<tr>
+<td>知识增强</td>
+<td>加入 FAISS 检索你历史消息（Hybrid模式）</td>
+</tr>
+<tr>
+<td>多人格</td>
+<td>不同语料训练多LoRA人格文件，自由切换</td>
+</tr>
+</tbody></table>
+<h2 id="✅-最终结果"><a href="#✅-最终结果" class="headerlink" title="✅ 最终结果"></a>✅ 最终结果</h2><blockquote>
+<p>得到一个能像你自己说话的 <strong>ChatGLM3 微调模型</strong>，<br>语气、用词、表达都来自你真实的微信聊天记录。<br>它能成为“数字人格分身”，在本地完全运行，无需联网，安全私密。</p>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://github.com/Cherises/">Leonardo</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://cherises.github.io/post/17401/">https://cherises.github.io/post/17401/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://github.com/Cherises/">Leonardo</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/">模型训练</a></div><div class="post-share"><div class="social-share" data-image="/img/actor-1.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/post/6116/" title="常用浏览器对比"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">Previous</div><div class="info-item-2">常用浏览器对比</div></div><div class="info-2"><div class="info-item-1">常见浏览器比较报告 — Chrome &#x2F; Brave &#x2F; Firefox &#x2F; Tor Browser（详尽对比：安全、隐私、易用性、目标用户等）下面把四款常见浏览器按关键维度做系统性对比——并给出适用人群与实用建议。结论基于官方说明与近期权威综述（引用见文末）。我先给一个快速概览表，再逐项拆解重点与实操建议。    维度 &#x2F; 浏览器 Google Chrome Brave Mozilla Firefox Tor Browser    默认安全性（沙箱、网站隔离、恶意检测） ★★★★★（强）。沙箱、站点隔离、钓鱼&#x2F;恶意检测等官方强化。(safety.google) ★★★★☆（良好） — 基于Chromium，继承许多安全特性，同时默认屏蔽追踪。(Brave) ★★★★☆（良好） — 主动推送安全功能（HTTPS-only、DoH 等）；更新频繁。(Mozilla 支持) ★★★☆☆（专注匿名） — 安全性强，但为匿名路由流量可能牺牲某些浏览器层面的性能&#x2F;功能。(privacytools.io)   隐私保护（默认追踪阻断...</div></div></div></a><a class="pagination-related" href="/post/288/" title="第一章-白月光与汉堡包"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">Next</div><div class="info-item-2">第一章-白月光与汉堡包</div></div><div class="info-2"><div class="info-item-1">第一章 白月光与汉堡包1九月的沈城，空气里还残留着夏日最后的溽热，但早晚已透出初秋的清爽。林晚星坐在驶向沈阳工业大学的动车上，窗外的景物飞速向后掠去，如同她此刻难以捕捉的心绪。她刚刚结束了专升本的漫长征程，如愿考入了这所理想的大学，开启人生的新篇章。本该是纯粹的喜悦与期待，可心底某个角落，总有一丝若有若无的惘然，像窗玻璃上呵出的白气，清晰片刻，又迅速模糊。 她低头，打开随身携带的帆布包，里面除了一本村上春树的《挪威的森林》，还有一个用干净手帕仔细包好的汉堡。这习惯是什么时候开始的？好像就是从那个暑假，和他——陈序——正式在一起之后。他总笑她，说是“汉堡爱好者晚期”，她却理直气壮：“汉堡多好啊，层次丰富，一口下去，面包的软、肉排的香、蔬菜的脆，全都有了，是很有幸福感的东西。” 想到陈序，林晚星的嘴角不自觉微微上扬。那个高高瘦瘦，眉眼干净，带着几分少年特有的清冽和笨拙的男孩。他们的重逢，始于高中毕业两年后一次极其普通的同学群里的寒暄，然后顺理成章地加了微信，从“老同学，最近怎么样？”开始，到分享日常的琐碎，再到某个深夜，隔着屏幕，谁先捅破了那层暧昧的窗户纸……一切都自然得像是早已写好...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/actor-1.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Leonardo</div><div class="author-info-description">Focus on thinking, imagination, reasoning, truth-seeking, and pragmatism</div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">92</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">135</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">20</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Cherises/"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="mailto:zhaozhinet@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E6%83%85%E6%8F%90%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">前情提要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%A7%A9-%E4%B8%80%E3%80%81%E6%88%91%E7%9A%84%E7%A1%AC%E4%BB%B6%E8%83%BD%E8%AE%AD%E7%BB%83%E4%BB%80%E4%B9%88%E6%A8%A1%E5%9E%8B%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">🧩 一、我的硬件能训练什么模型？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%92%AC-%E4%BA%8C%E3%80%81%E5%BE%AE%E4%BF%A1%E8%81%8A%E5%A4%A9%E8%AE%B0%E5%BD%95%E7%9A%84%E5%87%86%E5%A4%87"><span class="toc-number">3.</span> <span class="toc-text">💬 二、微信聊天记录的准备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%EF%B8%8F%E2%83%A3-%E6%95%B0%E6%8D%AE%E5%AF%BC%E5%87%BA"><span class="toc-number">3.1.</span> <span class="toc-text">1️⃣ 数据导出</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%8D-%E4%B8%89%E3%80%81%E8%81%8A%E5%A4%A9%E8%AE%B0%E5%BD%95%E5%8F%AF%E5%81%9A%E7%9A%84%E5%88%86%E6%9E%90%E9%A1%B9%E7%9B%AE"><span class="toc-number">4.</span> <span class="toc-text">🔍 三、聊天记录可做的分析项目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%93%8A-1-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%96%B9%E5%90%91"><span class="toc-number">4.1.</span> <span class="toc-text">📊 1. 数据分析方向</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%A7%A0-%E5%9B%9B%E3%80%81%E6%83%B3%E8%A6%81%E2%80%9C%E6%95%B0%E5%AD%97%E5%8C%96%E8%87%AA%E5%B7%B1%E2%80%9D%E7%9A%84%E4%B8%A4%E7%A7%8D%E8%B7%AF%E5%BE%84"><span class="toc-number">5.</span> <span class="toc-text">🧠 四、想要“数字化自己”的两种路径</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%9A%80-%E6%96%B9%E6%A1%88A%EF%BC%9ARAG%EF%BC%88Retrieval-Augmented-Generation%EF%BC%89%E7%9F%A5%E8%AF%86%E5%A2%9E%E5%BC%BA%E5%9E%8B%E4%BA%BA%E6%A0%BC%E6%A8%A1%E5%9E%8B%E3%80%90%E6%8E%A8%E8%8D%90%E3%80%91"><span class="toc-number">5.1.</span> <span class="toc-text">🚀 方案A：RAG（Retrieval-Augmented Generation）知识增强型人格模型【推荐】</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4%EF%BC%9A"><span class="toc-number">5.1.1.</span> <span class="toc-text">步骤：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%A7%AC-%E6%96%B9%E6%A1%88B%EF%BC%9ALoRA-%E5%BE%AE%E8%B0%83%E4%BD%A0%E8%87%AA%E5%B7%B1%E7%9A%84%E2%80%9C%E4%BA%BA%E6%A0%BC%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E2%80%9D"><span class="toc-number">5.2.</span> <span class="toc-text">🧬 方案B：LoRA 微调你自己的“人格语言模型”</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4%E6%A6%82%E8%A6%81%EF%BC%9A"><span class="toc-number">5.2.1.</span> <span class="toc-text">步骤概要：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%A7%B0-%E4%BA%94%E3%80%81%E4%BD%A0%E7%9A%84%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E5%BB%BA%E8%AE%AE"><span class="toc-number">6.</span> <span class="toc-text">🧰 五、你的环境配置建议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%98-%E5%85%AD%E3%80%81%E8%BF%9B%E9%98%B6%E7%9B%AE%E6%A0%87%EF%BC%88%E9%80%90%E6%AD%A5%E5%AE%9E%E7%8E%B0%EF%BC%89"><span class="toc-number">7.</span> <span class="toc-text">📘 六、进阶目标（逐步实现）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%F0%9F%A7%A0-ChatGLM3-Qwen-Gemma-LoRA-%E5%BE%AE%E8%B0%83%E4%BD%A0%E7%9A%84%E5%BE%AE%E4%BF%A1%E4%BA%BA%E6%A0%BC%E6%A8%A1%E5%9E%8B%E6%8C%87%E5%8D%97"><span class="toc-number"></span> <span class="toc-text">🧠 ChatGLM3 &#x2F; Qwen &#x2F; Gemma LoRA 微调你的微信人格模型指南</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E9%A1%B9%E7%9B%AE%E6%80%BB%E8%A7%88"><span class="toc-number">1.</span> <span class="toc-text">一、项目总览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E9%98%B6%E6%AE%B5%E2%91%A0%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%87%86%E5%A4%87"><span class="toc-number">2.</span> <span class="toc-text">二、阶段①：数据准备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%EF%B8%8F%E2%83%A3-%E5%BE%AE%E4%BF%A1%E5%AF%BC%E5%87%BA"><span class="toc-number">2.1.</span> <span class="toc-text">1️⃣ 微信导出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%EF%B8%8F%E2%83%A3-%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97%E8%84%9A%E6%9C%AC%EF%BC%88Python%EF%BC%89"><span class="toc-number">2.2.</span> <span class="toc-text">2️⃣ 数据清洗脚本（Python）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E9%98%B6%E6%AE%B5%E2%91%A1%EF%BC%9A%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="toc-number">3.</span> <span class="toc-text">三、阶段②：环境准备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%9C%85-1-%E5%AE%89%E8%A3%85%E5%9F%BA%E7%A1%80%E4%BE%9D%E8%B5%96"><span class="toc-number">3.1.</span> <span class="toc-text">✅ 1. 安装基础依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%9C%85-2-%E6%A3%80%E6%9F%A5CUDA%E6%98%AF%E5%90%A6%E5%8F%AF%E7%94%A8"><span class="toc-number">3.2.</span> <span class="toc-text">✅ 2. 检查CUDA是否可用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E9%98%B6%E6%AE%B5%E2%91%A2%EF%BC%9A%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9%E5%BB%BA%E8%AE%AE"><span class="toc-number">4.</span> <span class="toc-text">四、阶段③：模型选择建议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E9%98%B6%E6%AE%B5%E2%91%A3%EF%BC%9ALoRA-%E5%BE%AE%E8%B0%83%E9%85%8D%E7%BD%AE"><span class="toc-number">5.</span> <span class="toc-text">五、阶段④：LoRA 微调配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%A7%A9-%E8%AE%AD%E7%BB%83%E8%84%9A%E6%9C%AC%EF%BC%88QLoRA-%E7%89%88%EF%BC%89"><span class="toc-number">5.1.</span> <span class="toc-text">🧩 训练脚本（QLoRA 版）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E9%98%B6%E6%AE%B5%E2%91%A4%EF%BC%9A%E5%90%88%E5%B9%B6%E4%B8%8E%E6%B5%8B%E8%AF%95"><span class="toc-number">6.</span> <span class="toc-text">六、阶段⑤：合并与测试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%88%E5%B9%B6LoRA%E6%9D%83%E9%87%8D%E5%B9%B6%E6%8E%A8%E7%90%86%EF%BC%9A"><span class="toc-number">6.1.</span> <span class="toc-text">合并LoRA权重并推理：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E9%98%B6%E6%AE%B5%E2%91%A5%EF%BC%9A%E5%8F%AF%E8%A7%86%E5%8C%96-%E9%83%A8%E7%BD%B2"><span class="toc-number">7.</span> <span class="toc-text">七、阶段⑥：可视化 &amp; 部署</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E8%BF%9B%E4%B8%80%E6%AD%A5%E5%8D%87%E7%BA%A7%E6%96%B9%E5%90%91"><span class="toc-number">8.</span> <span class="toc-text">八、进一步升级方向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%9C%85-%E6%9C%80%E7%BB%88%E7%BB%93%E6%9E%9C"><span class="toc-number">9.</span> <span class="toc-text">✅ 最终结果</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/34565/" title="育能科技试岗学习日志">育能科技试岗学习日志</a><time datetime="2025-10-31T21:27:58.000Z" title="Created 2025-10-31 21:27:58">2025-10-31</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/50471/" title="2025年10月20日-日记">2025年10月20日-日记</a><time datetime="2025-10-20T14:06:58.000Z" title="Created 2025-10-20 14:06:58">2025-10-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/58335/" title="中英起名">中英起名</a><time datetime="2025-10-18T14:38:28.000Z" title="Created 2025-10-18 14:38:28">2025-10-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/51874/" title="Ubuntu24可以做的事情">Ubuntu24可以做的事情</a><time datetime="2025-10-16T14:33:48.000Z" title="Created 2025-10-16 14:33:48">2025-10-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/54524/" title="UML类图存储与转换分析报告">UML类图存储与转换分析报告</a><time datetime="2025-10-13T14:41:52.000Z" title="Created 2025-10-13 14:41:52">2025-10-13</time></div></div></div></div></div></div></main><footer id="footer" style="background: transparent;"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2021 - 2025 By Leonardo</span><span class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"></div><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
+      }
+    }
+  }
+
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
+
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      const usePjax = true
+      false
+        ? (usePjax ? pjax.loadUrl('/404.html') : window.location.href = '/404.html')
+        : window.location.href = e.request.responseURL
+    }
+  })
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章🔍" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><!-- hexo injector body_end start --><script data-pjax src="https://unpkg.com/oh-my-live2d"></script><script>const oml2d = OML2D.loadOml2d({menus:{items:[]},libraryUrls:{"complete":"https://registry.npmmirror.com/oh-my-live2d/latest/files/lib/complete.js","cubism2":"https://registry.npmmirror.com/oh-my-live2d/latest/files/lib/cubism2.js","cubism5":"https://cdn.jsdelivr.net/npm/live2dcubismcore@5.1.0/live2dcubismcore.min.js"},mobileDisplay:false,models:[{"path":"/models/bilibili-22/index.json","mobilePosition":[-10,23],"mobileScale":0.1,"mobileStageStyle":{"width":180,"height":166},"motionPreloadStrategy":"IDLE","position":[-10,100],"scale":0.15,"stageStyle":{"width":300,"height":280}}],parentElement:document.body,primaryColor:"var(--btn-bg)",sayHello:false,tips:{style: {"width":230,"height":120,"left":"calc(50% - 20px)","top":"-80px"},mobileStyle: {"width":180,"height":50,"left":"calc(50% - 30px)","top":"-100px"},idleTips:{interval:15000,message:["你好呀~😊","欢迎来到我的博客~o(*￣▽￣*)ブ","今天过得怎么样呀？(●'◡'●)","发现一个认真阅读的小可爱！","要一起学习吗？(✧ω✧)","今天也是充满希望的一天！☀️","今天有什么计划吗？🎉","嘿嘿，被我发现了哦~😏","代码写累了？休息一下吧~💻","你知道吗？你笑起来很好看！😄","要不要听个笑话？😜","悄悄告诉你个秘密...🤫","哇！你翻到这里了，好厉害！👏","今天有遇到什么有趣的事吗？🎈","保持好奇心是很棒的事情呢！🔍","阅读让世界更美好~📚","嘿！别戳我啦，好痒~>_<~","天气转凉了，记得添件衣服哦~🍂","周末宅家还是出门玩呢？🏠🌳","发现一枚小可爱！(ฅ>ω<*ฅ)","要喝杯水休息一下吗？💧","你的支持是我最大的动力！💪","嘿嘿，我又看到你了哦~👀","今天学习/工作辛苦了！✨","保持微笑，生活会更美好~😊","你知道吗？猫有230根骨头哦！🐱","周末就是要放松一下呢~🛋️","嘿！朋友，最近怎么样？🤗","坚持阅读的人超有魅力！📖","要不要和我一起发呆？(～￣▽￣)～","雨天最适合窝在家里了~☔","你专注的样子真好看！❤️","新的一天，新的开始！🌄","偶尔放松一下也没关系哦~🎵","嘿嘿，猜猜我在想什么？🤔","保持好心情最重要啦！💖","周末有空常来玩呀~🎊","你今天的表现很棒哦！⭐","感谢你的到来和陪伴！🙏","哇，你又来看我啦！(*^▽^*)","今天有什么新鲜事分享吗？🌟","要记得按时吃饭哦~🍚","嘿嘿，偷偷告诉你个小秘密...🤐","你真是我最忠实的读者呢！❤️","窗外阳光真好，要不要出去走走？☀️","深夜党注意休息时间啦~🌙","新技能get了吗？📚","今天也要保持好心情哦！💕","猜猜我今天换了什么发型？💇","周末打算去哪里玩呢？🎡","嘿嘿，我又学会了一个新动作！💃","保持好奇心是很好的品质呢！🔍","要喝杯咖啡提神吗？☕","你真是越来越厉害了呢！👑","雨天最适合在家看书了~📖","今天遇到什么开心的事了吗？🎉","保持微笑，好运自然来~😊","要不要听我唱首歌？🎵","冬天来了，记得多穿点~❄️","发现一枚认真学习的学霸！🏆","周末宅家也是一种享受呢~🏠","你今天看起来特别精神！✨","要适当让眼睛休息一下哦~👀","嘿嘿，我又发现你了！🔎","今天学到了什么新知识？🧠","保持积极心态很重要呢！💪","要不要一起看星星？⭐","春天来了，花儿都开了呢~🌷","你真是我的超级粉丝！🥰","深夜写作灵感爆发期？📝","今天也要努力加油哦！🔥","周末愉快，放松一下~🎶","嘿嘿，我又长高了一点！📏","保持阅读习惯很棒呢！📚","要记得经常活动一下身体~🏃","你今天特别好看哦！💖","夏天到了，注意防暑~🍉","发现一个专注的小可爱！🐰","今天有什么目标要完成？🎯","保持热情，追逐梦想~🌈","要不要一起喝茶聊天？🍵","秋天收获的季节到了~🍂","你真是我最喜欢的访客！🤗","清晨是最佳学习时间哦~🌅","今天也要保持微笑！😄","周末计划去哪里探险？🗺️","嘿嘿，我又变聪明了一点！🧠","保持学习态度很优秀呢！🎓","要记得多补充水分哦~💦","你今天格外有魅力！💫","冬天暖洋洋的被窝最舒服~🛏️","发现一个坚持不懈的战士！⚔️","今天有什么新发现？🔭","保持耐心，好事会发生~🕰️","要不要一起做运动？🏀","春天播种希望的季节~🌱","你真是我的灵感源泉！💡","午后小憩一会儿也不错~😴","今天也要充满活力！⚡","周末享受慢生活时光~🐌","嘿嘿，我又学会新技能！🎨","保持思考习惯很厉害呢！🤔","要记得保护眼睛健康~👓","你今天气场全开！👑","夏天海边吹风最惬意~🌊","发现一个创造力爆棚的天才！🎭","今天有什么奇思妙想？💭","保持乐观，困难会过去~🌤️","要不要一起看场电影？🎬","秋天登高望远好时节~🏔️","你真是我的幸运星！🍀","傍晚散步放松心情~🌇","今天也要相信自己！🌟","周末家庭团聚时光~👨‍👩‍👧‍👦","嘿嘿，我又进步了一点！📈","保持求知欲很棒呢！🔬","要记得保持正确坐姿~💺","你今天闪闪发光！✨","冬天热腾腾的火锅最棒~🍲","发现一个勇于挑战的勇者！🛡️","今天有什么新突破？🚀","保持善良，世界更美好~🌍","要不要一起做美食？🍳","春天野餐郊游正当时~🧺","你真是我的能量来源！🔋","午夜灵感最丰富时刻~🌌","今天也要勇往直前！🏃‍♂️","周末朋友聚会欢乐多~🎊","嘿嘿，我又成长了一些！🌱","保持探索精神很赞呢！🗺️","要记得深呼吸放松~🌬️","你今天魅力无限！💫","夏天冰镇西瓜最解暑~🍉","发现一个善于思考的智者！📚","今天有什么新创意？🎨","保持真诚，友谊长久~🤝","要不要一起看日落？🌅","秋天收获成果的时刻~🍎","你真是我的开心果！😄"]}}});</script><!-- hexo injector body_end end --></body></html>
