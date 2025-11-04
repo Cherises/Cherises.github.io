@@ -89,3 +89,116 @@
   background: #FF8FAB !important;
   color: white !important;
 }
+
+
+
+
+
+
+
+
+/* 毛玻璃通用样式 */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.35); /* 白色透明底 */
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  box-shadow: 0 8px 32px 0 rgba(255, 143, 171, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  transition: all 0.3s ease;
+}
+
+/* 整体模糊降低 + 更柔和的透明度 */
+#recent-posts .recent-post-item,
+#post,
+.post-block,
+#aside-content .card-widget,
+#page {
+  background: rgba(255, 240, 245, 0.6); /* 淡粉透明 */
+  backdrop-filter: blur(8px) saturate(140%);
+  -webkit-backdrop-filter: blur(8px) saturate(140%);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 20px rgba(255, 143, 171, 0.15);
+  transition: all 0.3s ease;
+}
+
+/* 右侧卡片单独轻一点 */
+#aside-content .card-widget {
+  background: rgba(255, 240, 245, 0.5);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+/* 页面容器 (hexo new page 的页面) */
+#page {
+  background: rgba(255, 240, 245, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 18px;
+  box-shadow: 0 6px 24px rgba(255, 107, 139, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+/* ===== 顶部导航栏：蜜桃粉玻璃风格 ===== */
+/* 让导航栏容器（page-header）透明显示 */
+#page-header {
+  background: rgba(255, 240, 245, 0.6) !important;
+  backdrop-filter: blur(8px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(8px) saturate(160%) !important;
+  box-shadow: 0 4px 20px rgba(255, 143, 171, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  transition: all 0.3s ease;
+  z-index: 50;
+}
+
+/* 导航栏本体样式（增强粉色调） */
+#nav {
+  background: transparent !important; /* 防止重复层 */
+  box-shadow: none !important;
+}
+
+/* 导航菜单样式 */
+#nav .menu-item a {
+  color: #FF6B8B !important;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+#nav .menu-item a:hover {
+  color: #FF8FAB !important;
+}
+
+#nav .menu-item.active a {
+  color: #FF4D73 !important;
+  border-bottom: 2px solid #FF8FAB !important;
+}
+
+/* 站点标题或 Logo */
+#site-name, #site-title {
+  color: #FF6B8B !important;
+  font-weight: 700;
+}
+
+/* 移动端菜单按钮 */
+#nav-toggle {
+  background: rgba(255, 240, 245, 0.5);
+  border-radius: 8px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* 滚动时稍微加深一点 */
+#page-header.fixed {
+  background: rgba(255, 240, 245, 0.8) !important;
+  box-shadow: 0 4px 16px rgba(255, 143, 171, 0.15);
+}
+
+
+
+
+/* 页脚轻度模糊 */
+#footer {
+  background: rgba(255, 240, 245, 0.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
