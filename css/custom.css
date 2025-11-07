@@ -90,69 +90,71 @@
   color: white !important;
 }
 
+/* ===== 性能优化版本：保持透明但降低GPU压力 ===== */
 
-
-
-
-
-
-
-/* 毛玻璃通用样式 */
-.glass-effect {
-  background: rgba(255, 255, 255, 0.35); /* 白色透明底 */
-  backdrop-filter: blur(12px) saturate(160%);
-  -webkit-backdrop-filter: blur(12px) saturate(160%);
-  box-shadow: 0 8px 32px 0 rgba(255, 143, 171, 0.25);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  transition: all 0.3s ease;
-}
-
-/* 整体模糊降低 + 更柔和的透明度 */
+/* 主内容区域：轻微模糊保持透明感 */
 #recent-posts .recent-post-item,
 #post,
 .post-block,
-#aside-content .card-widget,
 #page {
-  background: rgba(255, 240, 245, 0.6); /* 淡粉透明 */
-  backdrop-filter: blur(8px) saturate(140%);
-  -webkit-backdrop-filter: blur(8px) saturate(140%);
+  background: rgba(255, 240, 245, 0.4) !important; /* 保持透明 */
+  backdrop-filter: blur(4px) saturate(140%); /* 大幅降低模糊强度 */
+  -webkit-backdrop-filter: blur(4px) saturate(140%);
   border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 4px 20px rgba(255, 143, 171, 0.15);
-  transition: all 0.3s ease;
-}
-
-/* 右侧卡片单独轻一点 */
-#aside-content .card-widget {
-  background: rgba(255, 240, 245, 0.5);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-}
-
-/* 页面容器 (hexo new page 的页面) */
-#page {
-  background: rgba(255, 240, 245, 0.65);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border-radius: 18px;
-  box-shadow: 0 6px 24px rgba(255, 107, 139, 0.12);
   border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 
+    0 4px 16px rgba(255, 143, 171, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
 }
-/* ===== 顶部导航栏：蜜桃粉玻璃风格 ===== */
-/* 让导航栏容器（page-header）透明显示 */
+
+/* 添加微妙的渐变 overlay 增强质感 */
+#recent-posts .recent-post-item::after,
+#post::after,
+.post-block::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.2) 0%,
+    rgba(255, 240, 245, 0.1) 50%,
+    rgba(255, 182, 193, 0.05) 100%
+  );
+  pointer-events: none;
+  z-index: -1;
+  border-radius: 16px;
+}
+
+/* 右侧卡片：更轻微的模糊 */
+#aside-content .card-widget {
+  background: rgba(255, 240, 245, 0.35) !important;
+  backdrop-filter: blur(3px); /* 进一步降低 */
+  -webkit-backdrop-filter: blur(3px);
+  border-radius: 16px !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  box-shadow: 0 4px 12px rgba(255, 143, 171, 0.08);
+}
+
+/* 顶部导航栏：优化版本 */
 #page-header {
-  background: rgba(255, 240, 245, 0.6) !important;
-  backdrop-filter: blur(8px) saturate(160%) !important;
-  -webkit-backdrop-filter: blur(8px) saturate(160%) !important;
-  box-shadow: 0 4px 20px rgba(255, 143, 171, 0.1);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 240, 245, 0.45) !important; /* 保持透明 */
+  backdrop-filter: blur(3px) saturate(160%) !important; /* 降低模糊 */
+  -webkit-backdrop-filter: blur(3px) saturate(160%) !important;
+  box-shadow: 0 2px 10px rgba(255, 143, 171, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   transition: all 0.3s ease;
   z-index: 50;
 }
 
-/* 导航栏本体样式（增强粉色调） */
+/* 导航栏本体样式 */
 #nav {
-  background: transparent !important; /* 防止重复层 */
+  background: transparent !important;
   box-shadow: none !important;
 }
 
@@ -180,25 +182,92 @@
 
 /* 移动端菜单按钮 */
 #nav-toggle {
-  background: rgba(255, 240, 245, 0.5);
+  background: rgba(255, 240, 245, 0.6);
   border-radius: 8px;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+/* 页面容器 */
+#page {
+  background: rgba(255, 240, 245, 0.35) !important;
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
+  border-radius: 18px;
+  box-shadow: 0 4px 20px rgba(255, 107, 139, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-/* 滚动时稍微加深一点 */
-#page-header.fixed {
-  background: rgba(255, 240, 245, 0.8) !important;
-  box-shadow: 0 4px 16px rgba(255, 143, 171, 0.15);
-}
-
-
-
-
-/* 页脚轻度模糊 */
+/* 页脚：轻度透明 */
 #footer {
-  background: rgba(255, 240, 245, 0.45);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  /* background: rgba(255, 240, 245, 0.3) !important; */
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* ===== 性能优化技巧 ===== */
+
+/* 启用硬件加速 */
+#recent-posts .recent-post-item,
+#aside-content .card-widget,
+#post,
+.post-block,
+#page-header {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* 优化悬停效果 */
+#recent-posts .recent-post-item:hover,
+#aside-content .card-widget:hover {
+  transform: translateY(-2px) translateZ(0);
+  box-shadow: 
+    0 6px 20px rgba(255, 143, 171, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  background: rgba(255, 240, 245, 0.5) !important;
+  transition: 
+    transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+}
+
+/* 减少动画性能消耗 */
+#recent-posts .recent-post-item,
+#aside-content .card-widget {
+  transition: 
+    transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+}
+
+/* 移动端进一步降低效果 */
+@media (max-width: 768px) {
+  #recent-posts .recent-post-item,
+  #post,
+  .post-block,
+  #page,
+  #aside-content .card-widget,
+  #page-header {
+    backdrop-filter: blur(2px) !important;
+    -webkit-backdrop-filter: blur(2px) !important;
+  }
+  
+  /* 移动端禁用部分悬停效果 */
+  #recent-posts .recent-post-item:hover,
+  #aside-content .card-widget:hover {
+    transform: none;
+  }
+}
+
+/* 为极端性能优化提供开关 */
+.no-blur-effect #recent-posts .recent-post-item,
+.no-blur-effect #post,
+.no-blur-effect .post-block,
+.no-blur-effect #page,
+.no-blur-effect #aside-content .card-widget,
+.no-blur-effect #page-header {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  background: rgba(255, 240, 245, 0.9) !important; /* 降级为半透明 */
 }

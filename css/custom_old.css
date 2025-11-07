@@ -1,0 +1,204 @@
+/* 加宽主页文章列表布局 */
+@media screen and (min-width: 1200px) {
+  .layout {
+    max-width: 95% !important;
+  }
+}
+@media screen and (min-width: 1600px) {
+  .layout {
+    max-width: 90% !important;
+  }
+}
+
+/* ===== 蜜桃粉色主题修复 ===== */
+
+/* 1. 修复 Follow me 按钮悬停颜色 */
+#aside-content .card-info .card-info-social-icons .social-icon {
+  background: #FF8FAB !important;
+  color: white !important;
+  transition: all 0.3s ease !important;
+  border-radius: 8px !important;
+}
+
+#aside-content .card-info .card-info-social-icons .social-icon:hover {
+  background: #FF6B8B !important;
+  color: white !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 107, 139, 0.3) !important;
+}
+
+/* 2. 修复通用按钮样式 */
+.button:hover, .btn:hover, 
+.pagination .page-number:hover,
+.pagination .extend:hover {
+  background: #FF6B8B !important;
+  color: white !important;
+  border-color: #FF6B8B !important;
+}
+
+/* 3. 修复相关文章卡片 */
+#related-posts .relatedPosts-list > div {
+  background: rgba(255, 143, 171, 0.05) !important;
+  border: 1px solid #FFB3C6 !important;
+  border-radius: 12px !important;
+  transition: all 0.3s ease !important;
+  overflow: hidden;
+}
+
+#related-posts .relatedPosts-list > div:hover {
+  background: rgba(255, 143, 171, 0.1) !important;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(255, 143, 171, 0.15) !important;
+  border-color: #FF8FAB !important;
+}
+
+/* 移除灰色遮罩 */
+#related-posts .relatedPosts-list > div::before {
+  background: none !important;
+}
+
+/* 相关文章标题 */
+#related-posts .relatedPosts-list .content .title {
+  color: #FF6B8B !important;
+  font-weight: 600 !important;
+}
+
+#related-posts .relatedPosts-list .content .title:hover {
+  color: #FF8FAB !important;
+}
+
+/* 相关文章描述 */
+#related-posts .relatedPosts-list .content .excerpt {
+  color: #666 !important;
+  opacity: 0.8 !important;
+}
+
+/* 4. 额外美化：确保其他元素也符合蜜桃粉主题 */
+#aside-content .card-widget {
+  border-radius: 16px !important;
+  border: 1px solid #FFB3C6 !important;
+}
+
+/* 标签云颜色修复 */
+#aside-content .card-tag-cloud a {
+  color: #FF8FAB !important;
+  border-color: #FFB3C6 !important;
+}
+
+#aside-content .card-tag-cloud a:hover {
+  background: #FF8FAB !important;
+  color: white !important;
+}
+
+
+
+
+
+
+
+
+/* 毛玻璃通用样式 */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.35); /* 白色透明底 */
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  box-shadow: 0 8px 32px 0 rgba(255, 143, 171, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  transition: all 0.3s ease;
+}
+
+/* 整体模糊降低 + 更柔和的透明度 */
+#recent-posts .recent-post-item,
+#post,
+.post-block,
+#aside-content .card-widget,
+#page {
+  background: rgba(255, 240, 245, 0.6); /* 淡粉透明 */
+  backdrop-filter: blur(8px) saturate(140%);
+  -webkit-backdrop-filter: blur(8px) saturate(140%);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 20px rgba(255, 143, 171, 0.15);
+  transition: all 0.3s ease;
+}
+
+/* 右侧卡片单独轻一点 */
+#aside-content .card-widget {
+  background: rgba(255, 240, 245, 0.5);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+/* 页面容器 (hexo new page 的页面) */
+#page {
+  background: rgba(255, 240, 245, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 18px;
+  box-shadow: 0 6px 24px rgba(255, 107, 139, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+/* ===== 顶部导航栏：蜜桃粉玻璃风格 ===== */
+/* 让导航栏容器（page-header）透明显示 */
+#page-header {
+  background: rgba(255, 240, 245, 0.6) !important;
+  backdrop-filter: blur(8px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(8px) saturate(160%) !important;
+  box-shadow: 0 4px 20px rgba(255, 143, 171, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  transition: all 0.3s ease;
+  z-index: 50;
+}
+
+/* 导航栏本体样式（增强粉色调） */
+#nav {
+  background: transparent !important; /* 防止重复层 */
+  box-shadow: none !important;
+}
+
+/* 导航菜单样式 */
+#nav .menu-item a {
+  color: #FF6B8B !important;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+#nav .menu-item a:hover {
+  color: #FF8FAB !important;
+}
+
+#nav .menu-item.active a {
+  color: #FF4D73 !important;
+  border-bottom: 2px solid #FF8FAB !important;
+}
+
+/* 站点标题或 Logo */
+#site-name, #site-title {
+  color: #FF6B8B !important;
+  font-weight: 700;
+}
+
+/* 移动端菜单按钮 */
+#nav-toggle {
+  background: rgba(255, 240, 245, 0.5);
+  border-radius: 8px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* 滚动时稍微加深一点 */
+#page-header.fixed {
+  background: rgba(255, 240, 245, 0.8) !important;
+  box-shadow: 0 4px 16px rgba(255, 143, 171, 0.15);
+}
+
+
+
+
+/* 页脚轻度模糊 */
+#footer {
+  background: rgba(255, 240, 245, 0.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
