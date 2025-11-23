@@ -1,0 +1,472 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>KUbuntu24睡眠后掉帧的问题分析 | Leo's Digital Genesis</title><meta name="author" content="Leonardo"><meta name="copyright" content="Leonardo"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="前情提要 我的Kubuntu24在使用一段时间后165hz的刷新率会掉帧到很低，就是明显的感觉到页面动画卡顿，除了我经常使用sleep休眠以外，没有关过机以外，没什么其他的操作，反而是我重启后掉帧就消失了，所以我来分析一下原因。  🧩 一、问题特征总结 描述的情况：   * 165Hz 高刷屏幕  * 使用 Kubuntu 24（基于 KDE Plasma 6）  * RTX 3060（NVID">
+<meta property="og:type" content="article">
+<meta property="og:title" content="KUbuntu24睡眠后掉帧的问题分析">
+<meta property="og:url" content="https://cherises.github.io/post/45530/index.html">
+<meta property="og:site_name" content="Leo&#39;s Digital Genesis">
+<meta property="og:description" content="前情提要 我的Kubuntu24在使用一段时间后165hz的刷新率会掉帧到很低，就是明显的感觉到页面动画卡顿，除了我经常使用sleep休眠以外，没有关过机以外，没什么其他的操作，反而是我重启后掉帧就消失了，所以我来分析一下原因。  🧩 一、问题特征总结 描述的情况：   * 165Hz 高刷屏幕  * 使用 Kubuntu 24（基于 KDE Plasma 6）  * RTX 3060（NVID">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/Cherises/Blog-Resource-2/refs/heads/main/photos/genshin/emoj/331.png">
+<meta property="article:published_time" content="2025-10-13T08:18:12.000Z">
+<meta property="article:modified_time" content="2025-10-19T08:29:52.589Z">
+<meta property="article:author" content="Leonardo">
+<meta property="article:tag" content="KUbuntu">
+<meta property="article:tag" content="Sleep">
+<meta property="article:tag" content="掉帧">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Cherises/Blog-Resource-2/refs/heads/main/photos/genshin/emoj/331.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "KUbuntu24睡眠后掉帧的问题分析",
+  "url": "https://cherises.github.io/post/45530/",
+  "image": "https://raw.githubusercontent.com/Cherises/Blog-Resource-2/refs/heads/main/photos/genshin/emoj/331.png",
+  "datePublished": "2025-10-13T08:18:12.000Z",
+  "dateModified": "2025-10-19T08:29:52.589Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Leonardo",
+      "url": "https://github.com/Cherises/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://cherises.github.io/post/45530/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":5,"unescape":false,"languages":{"hits_empty":"No results found for: ${query}","hits_stats":"${hits} articles found"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"You have switched to Traditional Chinese","cht_to_chs":"You have switched to Simplified Chinese","day_to_night":"You have switched to Dark Mode","night_to_day":"You have switched to Light Mode","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'KUbuntu24睡眠后掉帧的问题分析',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/admonition.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css"><meta name="generator" content="Hexo 7.3.0"></head><body><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+btf.addGlobalFn('pjaxSend', () => {
+  Pace.restart()
+}, 'pace_restart')
+
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg" style="background-image: url(/img/b1.webp);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/actor-1.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">104</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">143</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">23</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/Wujie/"><i class="fa-fw fas fa-globe"></i><span> WuJie</span></a></div><div class="menus_item"><a class="site-page" href="/Music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></div><div class="menus_item"><a class="site-page" href="/About/"><i class="fa-fw fas fa-user"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Leo's Digital Genesis</span></a><a class="nav-page-title" href="/"><span class="site-name">KUbuntu24睡眠后掉帧的问题分析</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  Back to Home</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/Wujie/"><i class="fa-fw fas fa-globe"></i><span> WuJie</span></a></div><div class="menus_item"><a class="site-page" href="/Music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></div><div class="menus_item"><a class="site-page" href="/About/"><i class="fa-fw fas fa-user"></i><span> About</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">KUbuntu24睡眠后掉帧的问题分析</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-10-13T08:18:12.000Z" title="Created 2025-10-13 08:18:12">2025-10-13</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-10-19T08:29:52.589Z" title="Updated 2025-10-19 08:29:52">2025-10-19</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/study/">study</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word Count:</span><span class="word-count">2.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading Time:</span><span>8mins</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="container post-content" id="article-container"><h2 id="前情提要"><a href="#前情提要" class="headerlink" title="前情提要"></a>前情提要</h2><blockquote>
+<p>我的Kubuntu24在使用一段时间后165hz的刷新率会掉帧到很低，就是明显的感觉到页面动画卡顿，除了我经常使用sleep休眠以外，没有关过机以外，没什么其他的操作，反而是我重启后掉帧就消失了，所以我来分析一下原因。</p>
+</blockquote>
+<h2 id="🧩-一、问题特征总结"><a href="#🧩-一、问题特征总结" class="headerlink" title="🧩 一、问题特征总结"></a>🧩 一、问题特征总结</h2><blockquote>
+<p>描述的情况：</p>
+</blockquote>
+<ul>
+<li>165Hz 高刷屏幕</li>
+<li>使用 Kubuntu 24（基于 KDE Plasma 6）</li>
+<li>RTX 3060（NVIDIA）独显</li>
+<li>经常使用 <strong>Sleep&#x2F;休眠</strong>，几乎不关机</li>
+<li>一段时间后页面动画掉帧、系统卡顿明显</li>
+<li><strong>重启后恢复正常</strong></li>
+</ul>
+<p>这说明：<br>✅ 并非 CPU 或内存泄漏问题（重启能恢复）<br>❌ 很可能是 <strong>GPU 驱动或桌面合成器（KWin）状态异常</strong>。</p>
+<h2 id="⚙️-二、可能的原因（从高到低概率）"><a href="#⚙️-二、可能的原因（从高到低概率）" class="headerlink" title="⚙️ 二、可能的原因（从高到低概率）"></a>⚙️ 二、可能的原因（从高到低概率）</h2><h3 id="1️⃣-NVIDIA-驱动的功耗管理-Bug（最常见）"><a href="#1️⃣-NVIDIA-驱动的功耗管理-Bug（最常见）" class="headerlink" title="1️⃣ NVIDIA 驱动的功耗管理 Bug（最常见）"></a>1️⃣ <strong>NVIDIA 驱动的功耗管理 Bug（最常见）</strong></h3><blockquote>
+<p>NVIDIA 的 Linux 驱动在高刷显示器和动态功耗切换（PowerMizer）时，常出现 GPU 频率锁定过低的问题。</p>
+</blockquote>
+<p>症状：</p>
+<ul>
+<li>正常时 GPU core clock 能上 1000MHz+，掉帧时锁定在 210MHz 或 405MHz。</li>
+<li>这通常在休眠恢复后最容易出现。</li>
+</ul>
+<h3 id="2️⃣-KWin（KDE合成器）刷新率或-VSync-失效"><a href="#2️⃣-KWin（KDE合成器）刷新率或-VSync-失效" class="headerlink" title="2️⃣ KWin（KDE合成器）刷新率或 VSync 失效"></a>2️⃣ <strong>KWin（KDE合成器）刷新率或 VSync 失效</strong></h3><p>有时 KDE Plasma 的合成器在休眠后会错误地恢复到 60Hz 合成速率，虽然显示器仍是 165Hz，但动画掉帧。</p>
+<p>🔍 <strong>验证方法：</strong><br>打开：</p>
+<blockquote>
+<p>系统设置 → 显示与监控 → 显示配置<br>看刷新率是否仍为 165Hz。</p>
+</blockquote>
+<p>如果显示 165Hz 但动画明显卡，可能是合成器 bug。</p>
+<p>✅ <strong>修复方法：</strong><br>重启 kwin：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kwin_x11 --replace &amp;</span><br></pre></td></tr></table></figure>
+
+<p>（或在 Wayland 下：<code>kwin_wayland --replace &amp;</code>）</p>
+<p><strong>或者</strong>关闭再重新开启合成器：<br>快捷键：<code>Alt + Shift + F12</code></p>
+<h2 id="🧰-三、推荐解决方案汇总（按优先级）"><a href="#🧰-三、推荐解决方案汇总（按优先级）" class="headerlink" title="🧰 三、推荐解决方案汇总（按优先级）"></a>🧰 三、推荐解决方案汇总（按优先级）</h2><table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>操作</th>
+<th>目的</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>①</td>
+<td>更新 NVIDIA 驱动到最新稳定版（如 <code>550.90.07</code>）</td>
+<td>避免已知 PowerMizer bug</td>
+</tr>
+<tr>
+<td>②</td>
+<td>在 <code>/etc/modprobe.d/nvidia.conf</code> 中添加 <code>OverrideMaxPerf=0x1</code></td>
+<td>强制保持高性能</td>
+</tr>
+<tr>
+<td>③</td>
+<td>休眠恢复后自动执行 <code>kwin_x11 --replace &amp;</code></td>
+<td>修复合成器刷新率问题</td>
+</tr>
+<tr>
+<td>④</td>
+<td>考虑改用 <strong>Plasma (X11)</strong> 会话</td>
+<td>Wayland 下 NVIDIA 仍不完美</td>
+</tr>
+<tr>
+<td>⑤</td>
+<td>若仍无效，设置 GPU 固定频率：<code>sudo nvidia-smi -lgc 900,1800</code></td>
+<td>避免频率掉到 210MHz</td>
+</tr>
+<tr>
+<td>⑥</td>
+<td>检查 KDE “性能模式” 与系统电源状态</td>
+<td>确保系统未降频</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🧩-一、关键线索：kwin-x11-replace-后刷新率恢复正常"><a href="#🧩-一、关键线索：kwin-x11-replace-后刷新率恢复正常" class="headerlink" title="🧩 一、关键线索：kwin_x11 --replace &amp; 后刷新率恢复正常"></a>🧩 一、关键线索：<code>kwin_x11 --replace &amp;</code> 后刷新率恢复正常</h2><p>执行 <code>kwin_x11 --replace &amp;</code> 会让 KDE 的<strong>窗口合成器 KWin</strong> 重启。<br>这个操作相当于让 KDE 的“画面渲染引擎”重新加载 OpenGL 设备。</p>
+<p>运行后：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">OpenGL vendor string: Intel</span><br><span class="line">OpenGL renderer string: Mesa Intel(R) Iris(R) Xe Graphics (ADL GT2)</span><br></pre></td></tr></table></figure>
+
+<p>👉 表示 <strong>KWin 合成器（桌面渲染）当时绑定的是 Intel 集显</strong>。<br>也就是说——<br>你的 <strong>系统在休眠或长时间运行后，KWin 误绑定了集显 (Intel)</strong> 来进行桌面合成，而不是 RTX 3060。</p>
+<h2 id="⚙️-二、掉帧的真正原因"><a href="#⚙️-二、掉帧的真正原因" class="headerlink" title="⚙️ 二、掉帧的真正原因"></a>⚙️ 二、掉帧的真正原因</h2><blockquote>
+<p>根因：KDE 桌面（KWin）在某次 Sleep &#x2F; Wake 后，OpenGL 渲染设备从 NVIDIA 切换到了 Intel 集显。</p>
+</blockquote>
+<ul>
+<li>NVIDIA GPU 仍然存在（你在 <code>nvidia-smi</code> 看到频率、功耗都正常）；</li>
+<li>但桌面环境使用 Intel 集显在进行图形合成；</li>
+<li>Intel 集显性能不足以流畅驱动 165Hz 桌面，出现卡顿、掉帧；</li>
+<li>一旦重启或重启 KWin，重新绑定到 NVIDIA，就恢复流畅。</li>
+</ul>
+<p>这就是为什么执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kwin_x11 --replace &amp;</span><br></pre></td></tr></table></figure>
+
+<p>后立即恢复流畅 —— 因为 KWin 重新初始化了合成器并正确绑定到 NVIDIA。</p>
+<h2 id="🔍-三、为什么会自动切到-Intel？"><a href="#🔍-三、为什么会自动切到-Intel？" class="headerlink" title="🔍 三、为什么会自动切到 Intel？"></a>🔍 三、为什么会自动切到 Intel？</h2><p>这是 <strong>混合显卡架构（Intel + NVIDIA）</strong> 在 Linux 下的常见问题。<br>当你使用 <strong>Sleep、Hibernate 或唤醒</strong> 时：</p>
+<ul>
+<li><code>kwin</code> 合成器的 OpenGL 上下文会丢失；</li>
+<li>唤醒后它可能优先用 Mesa（即 Intel 集显驱动）重新建立；</li>
+<li>NVIDIA 驱动处于休眠后延迟加载状态，因此 KDE 就用错了 GPU。</li>
+</ul>
+<h2 id="💡-四、解决方案（长期修复）"><a href="#💡-四、解决方案（长期修复）" class="headerlink" title="💡 四、解决方案（长期修复）"></a>💡 四、解决方案（长期修复）</h2><h3 id="✅-方法-1：强制-KDE-始终使用-NVIDIA-渲染"><a href="#✅-方法-1：强制-KDE-始终使用-NVIDIA-渲染" class="headerlink" title="✅ 方法 1：强制 KDE 始终使用 NVIDIA 渲染"></a>✅ 方法 1：强制 KDE 始终使用 NVIDIA 渲染</h3><p>编辑或创建：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> nano /etc/environment</span><br></pre></td></tr></table></figure>
+
+<p>添加：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">__GLX_VENDOR_LIBRARY_NAME=nvidia</span><br><span class="line">__NV_PRIME_RENDER_OFFLOAD=1</span><br><span class="line">__NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0</span><br></pre></td></tr></table></figure>
+
+<p>然后：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> reboot</span><br></pre></td></tr></table></figure>
+
+<p>这会告诉所有 OpenGL 程序（包括 kwin）：</p>
+<blockquote>
+<p>“优先使用 NVIDIA 的 OpenGL 渲染器，不要自动切 Intel。”</p>
+</blockquote>
+<h3 id="✅-方法-2：使用-prime-run-启动-KDE-会话（可选）"><a href="#✅-方法-2：使用-prime-run-启动-KDE-会话（可选）" class="headerlink" title="✅ 方法 2：使用 prime-run 启动 KDE 会话（可选）"></a>✅ 方法 2：使用 <code>prime-run</code> 启动 KDE 会话（可选）</h3><p>在登录时（显示管理器 SDDM）手动执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">prime-run startplasma-x11</span><br></pre></td></tr></table></figure>
+
+<p>或者修改 <code>/usr/share/xsessions/plasma.desktop</code>：</p>
+<p>找到这一行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Exec=startplasma-x11</span><br></pre></td></tr></table></figure>
+
+<p>改成：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Exec=prime-run startplasma-x11</span><br></pre></td></tr></table></figure>
+
+<p>这样每次进入 KDE 桌面时都会强制走 NVIDIA GPU 渲染。</p>
+<h3 id="✅-方法-3：在休眠恢复后自动修复"><a href="#✅-方法-3：在休眠恢复后自动修复" class="headerlink" title="✅ 方法 3：在休眠恢复后自动修复"></a>✅ 方法 3：在休眠恢复后自动修复</h3><p>你可以用 systemd 的 “wake hook” 自动重新绑定合成器：</p>
+<p>创建：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> nano /lib/systemd/system-sleep/fix-kwin.sh</span><br></pre></td></tr></table></figure>
+
+<p>内容：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$1</span>&quot;</span> = <span class="string">&quot;post&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">export</span> DISPLAY=:0</span><br><span class="line">  <span class="built_in">export</span> XAUTHORITY=/home/你的用户名/.Xauthority</span><br><span class="line">  kwin_x11 --replace &amp;</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<p>保存后执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">chmod</span> +x /lib/systemd/system-sleep/fix-kwin.sh</span><br></pre></td></tr></table></figure>
+
+<p>这样每次唤醒后，系统会自动重启 KWin，使其重新绑定 NVIDIA。</p>
+<h3 id="✅-方法-4：如果你用的是-Wayland（可考虑切换）"><a href="#✅-方法-4：如果你用的是-Wayland（可考虑切换）" class="headerlink" title="✅ 方法 4：如果你用的是 Wayland（可考虑切换）"></a>✅ 方法 4：如果你用的是 Wayland（可考虑切换）</h3><p>在 Kubuntu 24 上，Wayland + NVIDIA 仍不太稳定。<br>你可以在登录界面选择 <strong>“Plasma (X11)”</strong> 模式登录。<br>X11 模式下的 kwin_x11 更稳定且支持 <code>kwin_x11 --replace &amp;</code> 动态修复。</p>
+<h2 id="🧠-五、总结一句话"><a href="#🧠-五、总结一句话" class="headerlink" title="🧠 五、总结一句话"></a>🧠 五、总结一句话</h2><blockquote>
+<p>掉帧的真正原因是：<br><strong>休眠或长时间运行后，KWin 桌面合成器自动切换到了 Intel 集显渲染，导致 165Hz 无法流畅输出。</strong></p>
+<p>执行 <code>kwin_x11 --replace &amp;</code> 重新绑定到 NVIDIA，因此刷新率瞬间恢复正常。</p>
+</blockquote>
+<h1 id="命令检测脚本"><a href="#命令检测脚本" class="headerlink" title="命令检测脚本"></a>命令检测脚本</h1><p>做一个<strong>自动检测+自动修复脚本</strong>，用于在 Kubuntu 24 上检测 KDE 是否错误使用 Intel 集显渲染，并自动重启 KWin 绑定回 NVIDIA。</p>
+<h2 id="🧩-功能说明"><a href="#🧩-功能说明" class="headerlink" title="🧩 功能说明"></a>🧩 功能说明</h2><p>这个脚本会自动执行以下逻辑：</p>
+<ol>
+<li>检测当前 KDE 桌面合成器（KWin）使用的 OpenGL 渲染器；</li>
+<li>如果检测到 <code>&quot;Intel&quot;</code> 或 <code>&quot;Mesa&quot;</code>，说明桌面正在使用集显；</li>
+<li>自动执行 <code>kwin_x11 --replace &amp;</code> 修复为 NVIDIA 渲染；</li>
+<li>在日志文件中记录修复时间；</li>
+<li>可通过 systemd 定时检测（每 10 分钟或每次唤醒后自动运行）。</li>
+</ol>
+<h2 id="🧠-一、脚本内容"><a href="#🧠-一、脚本内容" class="headerlink" title="🧠 一、脚本内容"></a>🧠 一、脚本内容</h2><p>保存为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> nano /usr/local/bin/check-kwin-gpu.sh</span><br></pre></td></tr></table></figure>
+
+<p>写入以下内容 👇</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment"># 自动检测并修复 KDE KWin 使用 Intel 集显的问题</span></span><br><span class="line"><span class="comment"># 作者: ChatGPT (for Kubuntu 24 + NVIDIA)</span></span><br><span class="line"></span><br><span class="line">LOGFILE=<span class="string">&quot;/var/log/kwin_gpu_fix.log&quot;</span></span><br><span class="line">DATE=$(<span class="built_in">date</span> <span class="string">&#x27;+%Y-%m-%d %H:%M:%S&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检测当前 OpenGL 渲染器</span></span><br><span class="line">RENDERER=$(glxinfo | grep <span class="string">&quot;OpenGL renderer string&quot;</span> | awk -F<span class="string">&#x27;: &#x27;</span> <span class="string">&#x27;&#123;print $2&#125;&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查是否错误使用 Intel/Mesa</span></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$RENDERER</span>&quot;</span> | grep -qiE <span class="string">&quot;intel|mesa&quot;</span>; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;[<span class="variable">$DATE</span>] 检测到错误的GPU渲染器：<span class="variable">$RENDERER</span>，正在重启KWin...&quot;</span> | <span class="built_in">tee</span> -a <span class="string">&quot;<span class="variable">$LOGFILE</span>&quot;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># 设置必要的环境变量（注意替换用户名）</span></span><br><span class="line">  <span class="built_in">export</span> DISPLAY=:0</span><br><span class="line">  <span class="built_in">export</span> XAUTHORITY=/home/你的用户名/.Xauthority</span><br><span class="line"></span><br><span class="line">  <span class="comment"># 重新启动KWin</span></span><br><span class="line">  kwin_x11 --replace &amp;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">sleep</span> 3</span><br><span class="line">  NEW_RENDERER=$(glxinfo | grep <span class="string">&quot;OpenGL renderer string&quot;</span> | awk -F<span class="string">&#x27;: &#x27;</span> <span class="string">&#x27;&#123;print $2&#125;&#x27;</span>)</span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;[<span class="variable">$DATE</span>] 已重新绑定GPU渲染器：<span class="variable">$NEW_RENDERER</span>&quot;</span> | <span class="built_in">tee</span> -a <span class="string">&quot;<span class="variable">$LOGFILE</span>&quot;</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;[<span class="variable">$DATE</span>] GPU渲染器正常：<span class="variable">$RENDERER</span>&quot;</span> | <span class="built_in">tee</span> -a <span class="string">&quot;<span class="variable">$LOGFILE</span>&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>⚠️ 请记得把脚本中的：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/home/你的用户名/.Xauthority</span><br></pre></td></tr></table></figure>
+
+<p>改成你真实的用户名路径，比如：<br><code>/home/furina/.Xauthority</code></p>
+</blockquote>
+<p>保存后执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">chmod</span> +x /usr/local/bin/check-kwin-gpu.sh</span><br></pre></td></tr></table></figure>
+
+<h2 id="🧰-二、手动测试"><a href="#🧰-二、手动测试" class="headerlink" title="🧰 二、手动测试"></a>🧰 二、手动测试</h2><p>运行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/bin/check-kwin-gpu.sh</span><br></pre></td></tr></table></figure>
+
+<p>输出应类似：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[2025-10-13 08:30:15] GPU渲染器正常：NVIDIA GeForce RTX 3060/PCIe/SSE2</span><br></pre></td></tr></table></figure>
+
+<p>或：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[2025-10-13 08:30:15] 检测到错误的GPU渲染器：Mesa Intel(R) Iris(R) Xe Graphics (ADL GT2)，正在重启KWin...</span><br><span class="line">[2025-10-13 08:30:18] 已重新绑定GPU渲染器：NVIDIA GeForce RTX 3060/PCIe/SSE2</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="🔄-三、让脚本自动运行"><a href="#🔄-三、让脚本自动运行" class="headerlink" title="🔄 三、让脚本自动运行"></a>🔄 三、让脚本自动运行</h2><h3 id="✅-方式-1：开机自动检测"><a href="#✅-方式-1：开机自动检测" class="headerlink" title="✅ 方式 1：开机自动检测"></a>✅ 方式 1：开机自动检测</h3><p>创建 systemd 服务：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> nano /etc/systemd/system/check-kwin-gpu.service</span><br></pre></td></tr></table></figure>
+
+<p>内容：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[Unit]</span></span><br><span class="line"><span class="attr">Description</span>=检测并修复KWin GPU绑定错误</span><br><span class="line"><span class="attr">After</span>=graphical.target</span><br><span class="line"></span><br><span class="line"><span class="section">[Service]</span></span><br><span class="line"><span class="attr">ExecStart</span>=/usr/local/bin/check-kwin-gpu.sh</span><br><span class="line"><span class="attr">Type</span>=<span class="literal">on</span>eshot</span><br><span class="line"><span class="attr">User</span>=你的用户名</span><br><span class="line"><span class="attr">Environment</span>=DISPLAY=:<span class="number">0</span></span><br><span class="line"><span class="attr">Environment</span>=XAUTHORITY=/home/你的用户名/.Xauthority</span><br><span class="line"></span><br><span class="line"><span class="section">[Install]</span></span><br><span class="line"><span class="attr">WantedBy</span>=graphical.target</span><br></pre></td></tr></table></figure>
+
+<p>保存后执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> systemctl <span class="built_in">enable</span> check-kwin-gpu.service</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="✅-方式-2：周期自动检测（推荐）"><a href="#✅-方式-2：周期自动检测（推荐）" class="headerlink" title="✅ 方式 2：周期自动检测（推荐）"></a>✅ 方式 2：周期自动检测（推荐）</h3><p>创建定时任务，每 10 分钟检测一次。</p>
+<p>创建：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> nano /etc/systemd/system/check-kwin-gpu.timer</span><br></pre></td></tr></table></figure>
+
+<p>内容：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[Unit]</span></span><br><span class="line"><span class="attr">Description</span>=每<span class="number">10</span>分钟检测一次KWin GPU绑定</span><br><span class="line"></span><br><span class="line"><span class="section">[Timer]</span></span><br><span class="line"><span class="attr">OnBootSec</span>=<span class="number">2</span>min</span><br><span class="line"><span class="attr">OnUnitActiveSec</span>=<span class="number">10</span>min</span><br><span class="line"><span class="attr">Persistent</span>=<span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="section">[Install]</span></span><br><span class="line"><span class="attr">WantedBy</span>=timers.target</span><br></pre></td></tr></table></figure>
+
+<p>关联并启用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> systemctl <span class="built_in">enable</span> --now check-kwin-gpu.timer</span><br></pre></td></tr></table></figure>
+
+<p>查看运行状态：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl list-timers | grep kwin</span><br></pre></td></tr></table></figure>
+
+<h2 id="🧾-四、查看运行日志"><a href="#🧾-四、查看运行日志" class="headerlink" title="🧾 四、查看运行日志"></a>🧾 四、查看运行日志</h2><p>日志保存于：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/var/log/kwin_gpu_fix.log</span><br></pre></td></tr></table></figure>
+
+<p>查看：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">tail</span> -f /var/log/kwin_gpu_fix.log</span><br></pre></td></tr></table></figure>
+
+<h2 id="✅-五、总结"><a href="#✅-五、总结" class="headerlink" title="✅ 五、总结"></a>✅ 五、总结</h2><p>你现在得到一个能<strong>自动检测+自动修复 KDE 切错 GPU 的守护系统</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>自动检测 KWin 使用 Intel 渲染时</td>
+<td>✅ 检测到即修复</td>
+</tr>
+<tr>
+<td>自动重启 kwin 并恢复 NVIDIA 渲染</td>
+<td>✅ 动画流畅恢复</td>
+</tr>
+<tr>
+<td>支持 systemd 定时执行</td>
+<td>✅ 每 10 分钟自动检测</td>
+</tr>
+<tr>
+<td>支持手动运行调试</td>
+<td>✅ <code>/usr/local/bin/check-kwin-gpu.sh</code></td>
+</tr>
+<tr>
+<td>自动记录修复日志</td>
+<td>✅ <code>/var/log/kwin_gpu_fix.log</code></td>
+</tr>
+</tbody></table>
+<hr>
+<blockquote>
+<p><strong>我在运行命令(kwin_x11 –replace &amp;)的时候确实刷新率回来了，但是终端会卡在日志输出的界面，当我Ctrl+C结束的时候，整个桌面应用都卡住了，我只能操作任务栏，最后只能登出重新登录，所以可能这个脚本不稳定，可以考虑重新登录登出来解决掉帧的问题，或者用脚本，不过我还没时间测试和使用脚本</strong></p>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://github.com/Cherises/">Leonardo</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://cherises.github.io/post/45530/">https://cherises.github.io/post/45530/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://github.com/Cherises/">Leonardo</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/KUbuntu/">KUbuntu</a><a class="post-meta__tags" href="/tags/Sleep/">Sleep</a><a class="post-meta__tags" href="/tags/%E6%8E%89%E5%B8%A7/">掉帧</a></div><div class="post-share"><div class="social-share" data-image="https://raw.githubusercontent.com/Cherises/Blog-Resource-2/refs/heads/main/photos/genshin/emoj/331.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/actor-1.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Leonardo</div><div class="author-info-description">Focus on thinking, imagination, reasoning, truth-seeking, and pragmatism</div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">104</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">143</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">23</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Cherises/"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E6%83%85%E6%8F%90%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">前情提要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%A7%A9-%E4%B8%80%E3%80%81%E9%97%AE%E9%A2%98%E7%89%B9%E5%BE%81%E6%80%BB%E7%BB%93"><span class="toc-number">2.</span> <span class="toc-text">🧩 一、问题特征总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%9A%99%EF%B8%8F-%E4%BA%8C%E3%80%81%E5%8F%AF%E8%83%BD%E7%9A%84%E5%8E%9F%E5%9B%A0%EF%BC%88%E4%BB%8E%E9%AB%98%E5%88%B0%E4%BD%8E%E6%A6%82%E7%8E%87%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">⚙️ 二、可能的原因（从高到低概率）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%EF%B8%8F%E2%83%A3-NVIDIA-%E9%A9%B1%E5%8A%A8%E7%9A%84%E5%8A%9F%E8%80%97%E7%AE%A1%E7%90%86-Bug%EF%BC%88%E6%9C%80%E5%B8%B8%E8%A7%81%EF%BC%89"><span class="toc-number">3.1.</span> <span class="toc-text">1️⃣ NVIDIA 驱动的功耗管理 Bug（最常见）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%EF%B8%8F%E2%83%A3-KWin%EF%BC%88KDE%E5%90%88%E6%88%90%E5%99%A8%EF%BC%89%E5%88%B7%E6%96%B0%E7%8E%87%E6%88%96-VSync-%E5%A4%B1%E6%95%88"><span class="toc-number">3.2.</span> <span class="toc-text">2️⃣ KWin（KDE合成器）刷新率或 VSync 失效</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%A7%B0-%E4%B8%89%E3%80%81%E6%8E%A8%E8%8D%90%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E6%B1%87%E6%80%BB%EF%BC%88%E6%8C%89%E4%BC%98%E5%85%88%E7%BA%A7%EF%BC%89"><span class="toc-number">4.</span> <span class="toc-text">🧰 三、推荐解决方案汇总（按优先级）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%A7%A9-%E4%B8%80%E3%80%81%E5%85%B3%E9%94%AE%E7%BA%BF%E7%B4%A2%EF%BC%9Akwin-x11-replace-%E5%90%8E%E5%88%B7%E6%96%B0%E7%8E%87%E6%81%A2%E5%A4%8D%E6%AD%A3%E5%B8%B8"><span class="toc-number">5.</span> <span class="toc-text">🧩 一、关键线索：kwin_x11 --replace &amp; 后刷新率恢复正常</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%9A%99%EF%B8%8F-%E4%BA%8C%E3%80%81%E6%8E%89%E5%B8%A7%E7%9A%84%E7%9C%9F%E6%AD%A3%E5%8E%9F%E5%9B%A0"><span class="toc-number">6.</span> <span class="toc-text">⚙️ 二、掉帧的真正原因</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%8D-%E4%B8%89%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E8%87%AA%E5%8A%A8%E5%88%87%E5%88%B0-Intel%EF%BC%9F"><span class="toc-number">7.</span> <span class="toc-text">🔍 三、为什么会自动切到 Intel？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%92%A1-%E5%9B%9B%E3%80%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%88%E9%95%BF%E6%9C%9F%E4%BF%AE%E5%A4%8D%EF%BC%89"><span class="toc-number">8.</span> <span class="toc-text">💡 四、解决方案（长期修复）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%9C%85-%E6%96%B9%E6%B3%95-1%EF%BC%9A%E5%BC%BA%E5%88%B6-KDE-%E5%A7%8B%E7%BB%88%E4%BD%BF%E7%94%A8-NVIDIA-%E6%B8%B2%E6%9F%93"><span class="toc-number">8.1.</span> <span class="toc-text">✅ 方法 1：强制 KDE 始终使用 NVIDIA 渲染</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%9C%85-%E6%96%B9%E6%B3%95-2%EF%BC%9A%E4%BD%BF%E7%94%A8-prime-run-%E5%90%AF%E5%8A%A8-KDE-%E4%BC%9A%E8%AF%9D%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89"><span class="toc-number">8.2.</span> <span class="toc-text">✅ 方法 2：使用 prime-run 启动 KDE 会话（可选）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%9C%85-%E6%96%B9%E6%B3%95-3%EF%BC%9A%E5%9C%A8%E4%BC%91%E7%9C%A0%E6%81%A2%E5%A4%8D%E5%90%8E%E8%87%AA%E5%8A%A8%E4%BF%AE%E5%A4%8D"><span class="toc-number">8.3.</span> <span class="toc-text">✅ 方法 3：在休眠恢复后自动修复</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%9C%85-%E6%96%B9%E6%B3%95-4%EF%BC%9A%E5%A6%82%E6%9E%9C%E4%BD%A0%E7%94%A8%E7%9A%84%E6%98%AF-Wayland%EF%BC%88%E5%8F%AF%E8%80%83%E8%99%91%E5%88%87%E6%8D%A2%EF%BC%89"><span class="toc-number">8.4.</span> <span class="toc-text">✅ 方法 4：如果你用的是 Wayland（可考虑切换）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%A7%A0-%E4%BA%94%E3%80%81%E6%80%BB%E7%BB%93%E4%B8%80%E5%8F%A5%E8%AF%9D"><span class="toc-number">9.</span> <span class="toc-text">🧠 五、总结一句话</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E6%A3%80%E6%B5%8B%E8%84%9A%E6%9C%AC"><span class="toc-number"></span> <span class="toc-text">命令检测脚本</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%A7%A9-%E5%8A%9F%E8%83%BD%E8%AF%B4%E6%98%8E"><span class="toc-number">1.</span> <span class="toc-text">🧩 功能说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%A7%A0-%E4%B8%80%E3%80%81%E8%84%9A%E6%9C%AC%E5%86%85%E5%AE%B9"><span class="toc-number">2.</span> <span class="toc-text">🧠 一、脚本内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%A7%B0-%E4%BA%8C%E3%80%81%E6%89%8B%E5%8A%A8%E6%B5%8B%E8%AF%95"><span class="toc-number">3.</span> <span class="toc-text">🧰 二、手动测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%84-%E4%B8%89%E3%80%81%E8%AE%A9%E8%84%9A%E6%9C%AC%E8%87%AA%E5%8A%A8%E8%BF%90%E8%A1%8C"><span class="toc-number">4.</span> <span class="toc-text">🔄 三、让脚本自动运行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%9C%85-%E6%96%B9%E5%BC%8F-1%EF%BC%9A%E5%BC%80%E6%9C%BA%E8%87%AA%E5%8A%A8%E6%A3%80%E6%B5%8B"><span class="toc-number">4.1.</span> <span class="toc-text">✅ 方式 1：开机自动检测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%9C%85-%E6%96%B9%E5%BC%8F-2%EF%BC%9A%E5%91%A8%E6%9C%9F%E8%87%AA%E5%8A%A8%E6%A3%80%E6%B5%8B%EF%BC%88%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="toc-number">4.2.</span> <span class="toc-text">✅ 方式 2：周期自动检测（推荐）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%A7%BE-%E5%9B%9B%E3%80%81%E6%9F%A5%E7%9C%8B%E8%BF%90%E8%A1%8C%E6%97%A5%E5%BF%97"><span class="toc-number">5.</span> <span class="toc-text">🧾 四、查看运行日志</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%9C%85-%E4%BA%94%E3%80%81%E6%80%BB%E7%BB%93"><span class="toc-number">6.</span> <span class="toc-text">✅ 五、总结</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/37181/" title="获取新闻列表并调用大模型总结"><img src="https://raw.githubusercontent.com/Cherises/Blog-Resource-2/refs/heads/main/photos/genshin/emoj/195.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="获取新闻列表并调用大模型总结"/></a><div class="content"><a class="title" href="/post/37181/" title="获取新闻列表并调用大模型总结">获取新闻列表并调用大模型总结</a><time datetime="2025-11-16T17:20:17.000Z" title="Created 2025-11-16 17:20:17">2025-11-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/42087/" title="2025年11月16日网易新闻总结"><img src="https://raw.githubusercontent.com/Cherises/Blog-Resource-2/refs/heads/main/photos/genshin/emoj/596.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2025年11月16日网易新闻总结"/></a><div class="content"><a class="title" href="/post/42087/" title="2025年11月16日网易新闻总结">2025年11月16日网易新闻总结</a><time datetime="2025-11-16T12:00:35.000Z" title="Created 2025-11-16 12:00:35">2025-11-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/61362/" title="2025年11月14日"><img src="https://raw.githubusercontent.com/Cherises/Blog-Resource-2/refs/heads/main/photos/genshin/emoj/51.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2025年11月14日"/></a><div class="content"><a class="title" href="/post/61362/" title="2025年11月14日">2025年11月14日</a><time datetime="2025-11-14T17:51:59.000Z" title="Created 2025-11-14 17:51:59">2025-11-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/2522/" title="第一个微调训练模型"><img src="https://raw.githubusercontent.com/Cherises/Blog-Resource-2/refs/heads/main/photos/genshin/emoj/168.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第一个微调训练模型"/></a><div class="content"><a class="title" href="/post/2522/" title="第一个微调训练模型">第一个微调训练模型</a><time datetime="2025-11-12T20:15:08.000Z" title="Created 2025-11-12 20:15:08">2025-11-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/26464/" title="关于搭建本地知识库的可行性分析"><img src="https://raw.githubusercontent.com/Cherises/Blog-Resource-2/refs/heads/main/photos/genshin/emoj/709.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="关于搭建本地知识库的可行性分析"/></a><div class="content"><a class="title" href="/post/26464/" title="关于搭建本地知识库的可行性分析">关于搭建本地知识库的可行性分析</a><time datetime="2025-11-12T10:24:12.000Z" title="Created 2025-11-12 10:24:12">2025-11-12</time></div></div></div></div></div></div></main><footer id="footer" style="background: transparent;"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2021 - 2025 By Leonardo</span><span class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"></div><script src="/js/scroll-disable-blur.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
+      }
+    }
+  }
+
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
+
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      const usePjax = true
+      false
+        ? (usePjax ? pjax.loadUrl('/404.html') : window.location.href = '/404.html')
+        : window.location.href = e.request.responseURL
+    }
+  })
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章🔍" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>原神表情包</title>
+    <style>
+        /* CSS Reset and Body Setup */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            /* 2. 禁用选中：防止拖拽时出现蓝色选中框 */
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            min-height: 100vh;
+            background-color: black;
+            /* background-image: url(https://raw.githubusercontent.com/Cherises/Blog-Resource-2/refs/heads/main/photos/banner-10.png);
+            background-size: 100%;
+            background-repeat: no-repeat; */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden; 
+            cursor: grab; 
+        }
+        
+        body.grabbing {
+            cursor: grabbing;
+        }
+
+        .container {
+            text-align: center;
+            color: white;
+            z-index: 10;
+            position: relative;
+        }
+        
+        /* 标题和描述 */
+        .header {
+            position: absolute;
+            top: 5vh;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            z-index: 20;
+            pointer-events: none; 
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+        
+        .description {
+            max-width: 700px;
+            margin: 10px auto 0;
+            line-height: 1.6;
+            font-size: 1.2rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* 3D 场景和球体 */
+        .scene {
+            width: 800px; 
+            height: 800px; 
+            perspective: 2500px; 
+            margin: 0 auto;
+            transition: transform 0.5s ease-out; 
+            perspective-origin: 50% 50%; 
+        }
+        
+        .sphere {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateX(-15deg) rotateY(0deg); 
+        }
+        
+        /* 图片面 */
+        .face {
+            position: absolute;
+            width: 100px; 
+            height: 100px;
+            top: 50%;
+            left: 50%;
+            margin-top: -50px; 
+            margin-left: -50px;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 4px; 
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+            overflow: hidden;
+            background-color: rgba(255, 255, 255, 0.1);
+            cursor: pointer; 
+            
+            transform-origin: 50% 50%;
+            backface-visibility: hidden; 
+        }
+        
+        .face img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        /* 覆盖层：用于显示编号和暗角效果 */
+        .face::before {
+            content: attr(data-index); 
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4); 
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 1px 1px 2px black;
+            opacity: 1; 
+            transition: opacity 0.3s;
+        }
+
+        /* 鼠标悬停时隐藏编号 */
+        .face:hover::before {
+            opacity: 0; 
+        }
+
+        /* 固定控制按钮样式 */
+        .fixed-controls {
+            position: fixed;
+            top: 50%;
+            right: 30px; 
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            z-index: 100; 
+        }
+        
+        button {
+            padding: 12px 25px; 
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid white;
+            color: white;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1.1rem; 
+            transition: all 0.3s;
+            backdrop-filter: blur(5px);
+            min-width: 120px; 
+        }
+        
+        button:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        }
+        
+        /* 图片放大模态框样式 */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: none; 
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            box-shadow: 0 0 50px rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            background: black;
+        }
+
+        .modal-content img {
+            display: block;
+            width: auto;
+            max-width: 100%;
+            max-height: 100vh;
+            border-radius: 8px;
+            object-fit: contain;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            text-shadow: 0 0 10px black;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .modal-close:hover {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+
+    <div class="container">
+        <div class="scene">
+            <div class="sphere" id="sphere"></div>
+        </div>
+        
+        <div class="fixed-controls">
+            <button id="resetBtn">重置位置</button>
+            <button id="autoRotateBtn">开始自动旋转</button>
+        </div>
+        
+    </div>
+
+    <div id="imageModal" class="modal">
+        <span class="modal-close" id="closeModal">&times;</span>
+        <div class="modal-content">
+            <img id="modalImage" src="" alt="放大的图片">
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sphere = document.getElementById('sphere');
+            const scene = document.querySelector('.scene');
+            const body = document.body;
+            const resetBtn = document.getElementById('resetBtn');
+            const autoRotateBtn = document.getElementById('autoRotateBtn');
+            const imageModal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            const closeModalBtn = document.getElementById('closeModal');
+            
+            // --- 配置参数 ---
+            const numFaces = 600; 
+            const radius = 900;  
+
+            // 图片URL数组
+            const imageUrls = [];
+            // for (let i = 1; i <= numFaces; i++) {
+            //     imageUrls.push(`https://picsum.photos/1000/1000?random=${i}`);
+            // }
+            for(let i = 1 ; i <= numFaces ; i++){
+                imageUrls.push(`https://raw.githubusercontent.com/Cherises/Blog-Resource-2/refs/heads/main/photos/genshin/emoj/${i}.png`)
+            }
+            // 计算面所需的旋转和平移 (Fibonacci Sphere 算法)
+            const positions = [];
+            for (let i = 0; i < numFaces; i++) {
+                const goldenRatio = (1 + Math.sqrt(5)) / 2;
+                const theta = 2 * Math.PI * i / goldenRatio; 
+                const phi = Math.acos(1 - 2 * (i + 0.5) / numFaces); 
+
+                const rotY = theta * (180 / Math.PI);
+                const rotX = 90 - (phi * (180 / Math.PI)); 
+
+                positions.push({
+                    rotX: rotX,
+                    rotY: rotY,
+                    url: imageUrls[i % imageUrls.length] 
+                });
+            }
+
+            // 创建多面体的面
+            positions.forEach((pos, index) => {
+                const face = document.createElement('div');
+                face.className = 'face';
+                
+                const img = document.createElement('img');
+                img.src = `${pos.url.replace('1000/1000', '100/100')}`; 
+                face.appendChild(img);
+                
+                // face.setAttribute('data-index', `${index + 1}`); 
+                face.dataset.fullUrl = pos.url; 
+                
+                face.style.transform = `
+                    rotateY(${pos.rotY}deg)
+                    rotateX(${pos.rotX}deg)
+                    translateZ(${radius}px) 
+                `;
+
+                // 点击图片放大事件
+                face.addEventListener('click', function(e) {
+                    e.stopPropagation(); 
+                    e.preventDefault(); 
+
+                    modalImage.src = this.dataset.fullUrl;
+                    imageModal.classList.add('show');
+                });
+                
+                sphere.appendChild(face);
+            });
+            
+            // 鼠标控制变量
+            let isMouseDown = false;
+            let lastMouseX = 0;
+            let lastMouseY = 0;
+            let rotateX = -15; 
+            let rotateY = 0;
+            let velocityX = 0; 
+            let velocityY = 0;
+            let autoRotate = true;
+            let scale = 1.0; 
+            
+            // 调整参数
+            const friction = 0.95; // 摩擦力恢复到更平衡的水平
+            const sensitivity = 0.35; // 灵敏度提高，实现即时响应
+            
+            // 更新旋转 (简化，只应用当前角度)
+            function updateRotation() {
+                // 限制X轴旋转角度
+                rotateX = Math.max(-90, Math.min(90, rotateX));
+
+                // 立即应用旋转角度
+                sphere.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            }
+
+            // 更新缩放
+            function updateScale() {
+                scene.style.transform = `scale(${scale})`;
+            }
+            
+            // 鼠标事件处理
+            sphere.addEventListener('mousedown', function(e) {
+                isMouseDown = true;
+                body.classList.add('grabbing');
+                velocityX = 0; // 停止惯性
+                velocityY = 0;
+                lastMouseX = e.clientX;
+                lastMouseY = e.clientY;
+                e.preventDefault();
+            });
+            
+            document.addEventListener('mousemove', function(e) {
+                if (!isMouseDown) return;
+                
+                const deltaX = e.clientX - lastMouseX;
+                const deltaY = e.clientY - lastMouseY;
+                
+                // 核心修复：直接修改角度，实现无延迟旋转
+                rotateY += deltaX * sensitivity;
+                rotateX -= deltaY * sensitivity; 
+                
+                // 记录速度，用于惯性计算
+                velocityX = deltaX * sensitivity;
+                velocityY = deltaY * sensitivity;
+                
+                updateRotation(); // 立即更新视图
+                
+                lastMouseX = e.clientX;
+                lastMouseY = e.clientY;
+            });
+            
+            document.addEventListener('mouseup', function() {
+                isMouseDown = false;
+                body.classList.remove('grabbing');
+                // 鼠标抬起时，惯性动画将接管速度
+            });
+
+            // 鼠标滚轮缩放
+            document.addEventListener('wheel', function(e) {
+                e.preventDefault();
+                const zoomStep = 0.05; 
+                if (e.deltaY < 0) {
+                    scale = Math.min(3.0, scale + zoomStep); 
+                } else {
+                    scale = Math.max(0.1, scale - zoomStep); 
+                }
+                updateScale();
+            }, { passive: false }); 
+            
+            // 惯性动画循环
+            function animate() {
+                if (!isMouseDown) {
+                    if (autoRotate) {
+                        rotateY += 0.01; // 自动旋转
+                        velocityX = 0;
+                        velocityY = 0;
+                    } else {
+                        // 应用惯性
+                        rotateY += velocityX * 0.5; 
+                        rotateX -= velocityY * 0.5; 
+                        
+                        // 摩擦力减速
+                        velocityX *= friction;
+                        velocityY *= friction;
+                        
+                        if (Math.abs(velocityX) < 0.01) velocityX = 0;
+                        if (Math.abs(velocityY) < 0.01) velocityY = 0;
+                    }
+                    
+                    // 只要不在拖拽且有运动，就更新旋转
+                    if (autoRotate || Math.abs(velocityX) > 0.01 || Math.abs(velocityY) > 0.01) {
+                        updateRotation();
+                    }
+                }
+                
+                requestAnimationFrame(animate);
+            }
+            
+            // 启动动画
+            animate();
+            
+            // 按钮事件
+            resetBtn.addEventListener('click', function() {
+                rotateX = -15;
+                rotateY = 0;
+                velocityX = 0;
+                velocityY = 0;
+                scale = 1.0;
+                updateRotation();
+                updateScale();
+                if (autoRotate) {
+                    autoRotate = false;
+                    autoRotateBtn.textContent = '开始自动旋转';
+                }
+            });
+            
+            autoRotateBtn.addEventListener('click', function() {
+                autoRotate = !autoRotate;
+                velocityX = 0;
+                velocityY = 0;
+                autoRotateBtn.textContent = autoRotate ? '停止自动旋转' : '开始自动旋转';
+            });
+
+            // 模态框关闭事件
+            closeModalBtn.addEventListener('click', function() {
+                imageModal.classList.remove('show');
+                modalImage.src = '';
+            });
+
+            // 点击模态框背景关闭
+            imageModal.addEventListener('click', function(e) {
+                if (e.target.id === 'imageModal') {
+                    imageModal.classList.remove('show');
+                    modalImage.src = '';
+                }
+            });
+
+            // 初始显示
+            updateRotation();
+            updateScale();
+        });
+    </script>
+</body>
+</html>

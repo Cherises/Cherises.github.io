@@ -1,0 +1,440 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>主流操作系统的选取与分析建议 | Leo's Digital Genesis</title><meta name="author" content="Leonardo"><meta name="copyright" content="Leonardo"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="前情提要 就目前来说，我已经用了很多发行版本的linux，就感觉其实现在的操作系统都没啥使用上的区别，就好像无论是哪种操作系统，只要安装的相同的桌面，就是使用一样的，无非就是布局不一样，但功能都差不多，尤其是GNOME和KDE，说实话都很一般般，但唯独ARCH的Hyprland让我眼前一亮，可是转眼一看，动画啥的都挺好，但是平铺的桌面管理器，就很难用，因此就各个操作系统以及流行的桌面，以及性能分析">
+<meta property="og:type" content="article">
+<meta property="og:title" content="主流操作系统的选取与分析建议">
+<meta property="og:url" content="https://cherises.github.io/post/39224/index.html">
+<meta property="og:site_name" content="Leo&#39;s Digital Genesis">
+<meta property="og:description" content="前情提要 就目前来说，我已经用了很多发行版本的linux，就感觉其实现在的操作系统都没啥使用上的区别，就好像无论是哪种操作系统，只要安装的相同的桌面，就是使用一样的，无非就是布局不一样，但功能都差不多，尤其是GNOME和KDE，说实话都很一般般，但唯独ARCH的Hyprland让我眼前一亮，可是转眼一看，动画啥的都挺好，但是平铺的桌面管理器，就很难用，因此就各个操作系统以及流行的桌面，以及性能分析">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/Cherises/Blog-Resource-2/refs/heads/main/photos/genshin/emoj/588.png">
+<meta property="article:published_time" content="2025-10-03T12:06:08.000Z">
+<meta property="article:modified_time" content="2025-10-19T08:29:52.621Z">
+<meta property="article:author" content="Leonardo">
+<meta property="article:tag" content="操作系统">
+<meta property="article:tag" content="推荐">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Cherises/Blog-Resource-2/refs/heads/main/photos/genshin/emoj/588.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "主流操作系统的选取与分析建议",
+  "url": "https://cherises.github.io/post/39224/",
+  "image": "https://raw.githubusercontent.com/Cherises/Blog-Resource-2/refs/heads/main/photos/genshin/emoj/588.png",
+  "datePublished": "2025-10-03T12:06:08.000Z",
+  "dateModified": "2025-10-19T08:29:52.621Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Leonardo",
+      "url": "https://github.com/Cherises/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://cherises.github.io/post/39224/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":5,"unescape":false,"languages":{"hits_empty":"No results found for: ${query}","hits_stats":"${hits} articles found"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"You have switched to Traditional Chinese","cht_to_chs":"You have switched to Simplified Chinese","day_to_night":"You have switched to Dark Mode","night_to_day":"You have switched to Light Mode","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '主流操作系统的选取与分析建议',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/admonition.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css"><meta name="generator" content="Hexo 7.3.0"></head><body><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+btf.addGlobalFn('pjaxSend', () => {
+  Pace.restart()
+}, 'pace_restart')
+
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg" style="background-image: url(/img/b1.webp);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/actor-1.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">104</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">143</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">23</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/Wujie/"><i class="fa-fw fas fa-globe"></i><span> WuJie</span></a></div><div class="menus_item"><a class="site-page" href="/Music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></div><div class="menus_item"><a class="site-page" href="/About/"><i class="fa-fw fas fa-user"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Leo's Digital Genesis</span></a><a class="nav-page-title" href="/"><span class="site-name">主流操作系统的选取与分析建议</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  Back to Home</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/Wujie/"><i class="fa-fw fas fa-globe"></i><span> WuJie</span></a></div><div class="menus_item"><a class="site-page" href="/Music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></div><div class="menus_item"><a class="site-page" href="/About/"><i class="fa-fw fas fa-user"></i><span> About</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">主流操作系统的选取与分析建议</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-10-03T12:06:08.000Z" title="Created 2025-10-03 12:06:08">2025-10-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-10-19T08:29:52.621Z" title="Updated 2025-10-19 08:29:52">2025-10-19</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/tech/">tech</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word Count:</span><span class="word-count">4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading Time:</span><span>13mins</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="container post-content" id="article-container"><h3 id="前情提要"><a href="#前情提要" class="headerlink" title="前情提要"></a>前情提要</h3><blockquote>
+<p>就目前来说，我已经用了很多发行版本的linux，就感觉其实现在的操作系统都没啥使用上的区别，就好像无论是哪种操作系统，只要安装的相同的桌面，就是使用一样的，无非就是布局不一样，但功能都差不多，尤其是GNOME和KDE，说实话都很一般般，但唯独ARCH的Hyprland让我眼前一亮，可是转眼一看，动画啥的都挺好，但是平铺的桌面管理器，就很难用，因此就各个操作系统以及流行的桌面，以及性能分析，做一份几款未来长期使用的，软件支持广泛的、使用用户多的发行版分析报告</p>
+</blockquote>
+<h1 id="先给结论（快速版）"><a href="#先给结论（快速版）" class="headerlink" title="先给结论（快速版）"></a>先给结论（快速版）</h1><p>短句结论，便于立刻决策 — 我把每条推荐都写出“适合谁 &#x2F; 优点 &#x2F; 风险”。</p>
+<ol>
+<li><strong>如果你要“长期稳定 + 软件最广” → 选 Ubuntu LTS（例如 24.04 LTS）</strong>：软件包、第三方厂商支持、企业&#x2F;云生态最广，LTS 有长期安全支持，入门与兼容性都最好。(<a target="_blank" rel="noopener" href="https://ubuntu.com/blog/tag/ubuntu-24-04-lts?utm_source=chatgpt.com" title="Ubuntu 24.04 LTS">Ubuntu</a>)</li>
+<li><strong>如果你把稳定放第一（保守、服务器&#x2F;生产环境或极少升级） → 选 Debian Stable（最新为 Debian 13 “trixie”）</strong>：非常保守、超稳定、包质量高；适合不想频繁修补兼容问题的人。(<a target="_blank" rel="noopener" href="https://www.debian.org/News/2025/20250809?utm_source=chatgpt.com" title="Debian 13 &quot;trixie&quot; released">Debian</a>)</li>
+<li><strong>如果你想“保持新技术又有相对稳健体验” → 选 Fedora（或 openSUSE Leap）</strong>：Fedora 更靠近上游、更新快；openSUSE Leap 更偏企业&#x2F;稳定（Tumbleweed 则是滚动）。(<a target="_blank" rel="noopener" href="https://docs.fedoraproject.org/en-US/releases/lifecycle/?utm_source=chatgpt.com" title="Fedora Linux Release Life Cycle">Fedora Docs</a>)</li>
+<li><strong>如果你要“玩 Hyprland、想极致可定制（并能维护系统）” → 选 Arch（或更易用的 Manjaro）</strong>：Arch 能最早拿到新工具&#x2F;Hyprland 配套，Manjaro 则把 Arch 做成更友好的体验。注意：滚动 + AUR 需要维护心态，偶有上游&#x2F;社区服务中断风险。(<a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Arch_Linux?utm_source=chatgpt.com" title="Principles - ArchWiki - Arch Linux">ArchWiki</a>)</li>
+<li><strong>如果你希望“开箱即用但有现代 tiling 支持” → 选 Pop!_OS 或者 Ubuntu + 手动配置</strong>：Pop!_OS 原生提供易用的自动平铺&#x2F;键盘导航、GPU 管理，适合喜欢 tiling 但不想折腾配置的人。(<a target="_blank" rel="noopener" href="https://system76.com/pop/?srsltid=AfmBOooYHxM6fHdNgxfW1L4HhKVrB5roT4X8aZNJK6HYZRcJWqyBIVg8&utm_source=chatgpt.com" title="Welcome to Pop!_OS">System76</a>)</li>
+</ol>
+<p>下面给出更完整的比较（发行版、桌面环境&#x2F;合成器、性能比较、软件可得性、落地建议与测试流程）。</p>
+<hr>
+<h1 id="1-为什么很多发行版“用起来差不多”——本质原因（短）"><a href="#1-为什么很多发行版“用起来差不多”——本质原因（短）" class="headerlink" title="1) 为什么很多发行版“用起来差不多”——本质原因（短）"></a>1) 为什么很多发行版“用起来差不多”——本质原因（短）</h1><ul>
+<li>现代 Linux 发行版共享同一套核心组件（kernel、mesa、X&#x2F;Wayland、systemd、glibc、常用桌面栈等），所以<strong>用户看到的差异主要在默认桌面、系统调优、包管理与发行策略（LTS vs rolling）</strong>。这也造成你“装上相同桌面后感觉一样”的原因。(<a target="_blank" rel="noopener" href="https://releases.ubuntu.com/?utm_source=chatgpt.com" title="Ubuntu Releases">Ubuntu Releases</a>)</li>
+</ul>
+<hr>
+<h1 id="2-主要发行版：优劣与适配场景（要点-来源）"><a href="#2-主要发行版：优劣与适配场景（要点-来源）" class="headerlink" title="2) 主要发行版：优劣与适配场景（要点 + 来源）"></a>2) 主要发行版：优劣与适配场景（要点 + 来源）</h1><h3 id="Ubuntu-LTS（例：24-04-LTS）"><a href="#Ubuntu-LTS（例：24-04-LTS）" class="headerlink" title="Ubuntu LTS（例：24.04 LTS）"></a>Ubuntu LTS（例：24.04 LTS）</h3><ul>
+<li>优点：厂商&#x2F;第三方支持最广（商业驱动的驱动&#x2F;软件包、云镜像、各种 PPA&#x2F;第三方包）、LTS 有长期支持（Canonical 的 LTS 支持策略）。适合桌面和工作站用户想要“稳且兼容”。(<a target="_blank" rel="noopener" href="https://ubuntu.com/blog/tag/ubuntu-24-04-lts?utm_source=chatgpt.com" title="Ubuntu 24.04 LTS">Ubuntu</a>)</li>
+<li>风险：默认会包含 Snap（或其它 Canonical 决策），有些人不喜欢。对极新用户空间技术的接纳比 Fedora&#x2F;Arch 慢一些。(<a target="_blank" rel="noopener" href="https://ubuntu.com/blog/upgrade-your-desktop-ubuntu-24-04-lts?utm_source=chatgpt.com" title="Upgrade your desktop: Ubuntu 24.04.1 LTS is now available">Ubuntu</a>)</li>
+</ul>
+<h3 id="Debian-Stable（最新：Debian-13-“trixie”）"><a href="#Debian-Stable（最新：Debian-13-“trixie”）" class="headerlink" title="Debian Stable（最新：Debian 13 “trixie”）"></a>Debian Stable（最新：Debian 13 “trixie”）</h3><ul>
+<li>优点：极其稳定、包质量高、社区保守（适合做长期稳定环境或需要最少变动的人）。(<a target="_blank" rel="noopener" href="https://www.debian.org/News/2025/20250809?utm_source=chatgpt.com" title="Debian 13 &quot;trixie&quot; released">Debian</a>)</li>
+<li>风险：软件版本通常偏旧（不是问题的话就是优点）。</li>
+</ul>
+<h3 id="Fedora"><a href="#Fedora" class="headerlink" title="Fedora"></a>Fedora</h3><ul>
+<li>优点：接近上游，偏爱新的 GNOME&#x2F;Wayland 技术栈，开发者&#x2F;追新用户常用；生命周期较短（每 ~6 个月一版）。适合想尝试最新 GNOME &#x2F; toolchain 的人。(<a target="_blank" rel="noopener" href="https://docs.fedoraproject.org/en-US/releases/lifecycle/?utm_source=chatgpt.com" title="Fedora Linux Release Life Cycle">Fedora Docs</a>)</li>
+</ul>
+<h3 id="Arch-Manjaro"><a href="#Arch-Manjaro" class="headerlink" title="Arch &#x2F; Manjaro"></a>Arch &#x2F; Manjaro</h3><ul>
+<li>Arch：真正的滚动发行，能够最快拿到 Hyprland 等新组件，社区文档（ArchWiki）是极好的资源。适合愿意维护系统、享受微调者。(<a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Arch_Linux?utm_source=chatgpt.com" title="Principles - ArchWiki - Arch Linux">ArchWiki</a>)</li>
+<li>Manjaro：基于 Arch，旨在做成更易用的体验（延后包装、图形安装器、驱动支持更友好），对想要 Arch 体验但不想从零搭建的人是好选择。(<a target="_blank" rel="noopener" href="https://manjaro.org/?utm_source=chatgpt.com" title="Manjaro – The Linux for People and Organizations">manjaro.org</a>)</li>
+<li>风险（滚动）：需要处理 occasional breakage；AUR 社区包方便但质量不一；此外最近社区服务（AUR&#x2F;网站）偶有被 DDoS&#x2F;中断等事件（这会影响获取 AUR&#x2F;社区信息），应评估对你工作流的影响。(<a target="_blank" rel="noopener" href="https://www.tomshardware.com/software/linux/arch-linux-continues-to-feel-the-force-of-a-ddos-attack-after-two-brutal-weeks-attackers-yet-to-be-identified-as-project-struggles-to-restore-full-service?utm_source=chatgpt.com" title="Arch Linux continues to feel the force of a DDoS attack after two brutal weeks - attackers yet to be identified as project struggles to restore full service">Tom’s Hardware</a>)</li>
+</ul>
+<h3 id="openSUSE-Leap-Tumbleweed"><a href="#openSUSE-Leap-Tumbleweed" class="headerlink" title="openSUSE (Leap &#x2F; Tumbleweed)"></a>openSUSE (Leap &#x2F; Tumbleweed)</h3><ul>
+<li>Leap：稳定、适合企业&#x2F;长期使用；Tumbleweed：滚动、测试严格；YaST 是很强的系统管理工具。(<a target="_blank" rel="noopener" href="https://www.reddit.com/r/linuxquestions/comments/1l65vys/what_is_the_advantage_of_opensuse_tumbleweedleap/?utm_source=chatgpt.com" title="What is the advantage of OpenSUSE Tumbleweed&#x2F;Leap ...">Reddit</a>)</li>
+</ul>
+<h3 id="Linux-Mint-Cinnamon、Pop-OS"><a href="#Linux-Mint-Cinnamon、Pop-OS" class="headerlink" title="Linux Mint &#x2F; Cinnamon、Pop!_OS"></a>Linux Mint &#x2F; Cinnamon、Pop!_OS</h3><ul>
+<li>Mint（Cinnamon）：对 Windows 用户友好、轻量、长期受欢迎（用户基数大）。(<a target="_blank" rel="noopener" href="https://linuxmint.com/?utm_source=chatgpt.com" title="Linux Mint: Home">linuxmint.com</a>)</li>
+<li>Pop!_OS：面向开发者&#x2F;创作者，对 GPU&#x2F;混合显卡管理、内置 tiling 特性支持好（自动平铺、键盘管理），对想要现代体验但不想大量自行配置的用户很友好。(<a target="_blank" rel="noopener" href="https://system76.com/pop/?srsltid=AfmBOooYHxM6fHdNgxfW1L4HhKVrB5roT4X8aZNJK6HYZRcJWqyBIVg8&utm_source=chatgpt.com" title="Welcome to Pop!_OS">System76</a>)</li>
+</ul>
+<hr>
+<h1 id="3-桌面环境-合成器-对比（你关心的-Hyprland-tiling-特别说明）"><a href="#3-桌面环境-合成器-对比（你关心的-Hyprland-tiling-特别说明）" class="headerlink" title="3) 桌面环境 &#x2F; 合成器 对比（你关心的 Hyprland &#x2F; tiling 特别说明）"></a>3) 桌面环境 &#x2F; 合成器 对比（你关心的 Hyprland &#x2F; tiling 特别说明）</h1><h3 id="传统完整-DE（GNOME-KDE-Plasma-XFCE-Cinnamon-MATE）"><a href="#传统完整-DE（GNOME-KDE-Plasma-XFCE-Cinnamon-MATE）" class="headerlink" title="传统完整 DE（GNOME &#x2F; KDE Plasma &#x2F; XFCE &#x2F; Cinnamon &#x2F; MATE）"></a>传统完整 DE（GNOME &#x2F; KDE Plasma &#x2F; XFCE &#x2F; Cinnamon &#x2F; MATE）</h3><ul>
+<li><strong>GNOME</strong>：设计哲学偏简洁、一体化（很多功能靠扩展&#x2F;内置实现），近年来对 Wayland 投入多，体验现代，但某些人觉得“自定义受限”。性能上在不同测评中表现差异（需要硬件加速以流畅）。(<a target="_blank" rel="noopener" href="https://www.phoronix.com/reviews/Linux%2BGaming?utm_source=chatgpt.com" title="Linux Gaming Linux Reviews &amp; Articles">Phoronix</a>)</li>
+<li><strong>KDE Plasma</strong>：高度可定制，近年来（Plasma 6）继续优化性能，很多测试显示 Plasma 现在在资源占用上对 GNOME 已很有竞争力甚至更轻。适合喜欢微调与功能丰富的用户。(<a target="_blank" rel="noopener" href="https://www.phoronix.com/news/KDE-Plasma-6.3-Released?utm_source=chatgpt.com" title="KDE Plasma 6.3 Released With Improved Fractional ...">Phoronix</a>)</li>
+<li><strong>Xfce &#x2F; MATE &#x2F; Cinnamon</strong>：相对轻量、保守；对老机器友好（但具体内存占用受主题&#x2F;插件影响很大）。(<a target="_blank" rel="noopener" href="https://vermaden.wordpress.com/2022/07/12/desktop-environments-resource-usage-comparison/?utm_source=chatgpt.com" title="Desktop Environments Resource Usage Comparison">vermaden.wordpress.com</a>)</li>
+</ul>
+<h3 id="平铺合成器-窗口管理器（i3-Sway-Hyprland-等）"><a href="#平铺合成器-窗口管理器（i3-Sway-Hyprland-等）" class="headerlink" title="平铺合成器 &#x2F; 窗口管理器（i3 &#x2F; Sway &#x2F; Hyprland 等）"></a>平铺合成器 &#x2F; 窗口管理器（i3 &#x2F; Sway &#x2F; Hyprland 等）</h3><ul>
+<li><strong>i3</strong>（X11）与 <strong>Sway</strong>（Wayland，i3 配置兼容）适合键盘&#x2F;高效用户，资源占用非常低，学习曲线在于键盘绑定与思维模式。Sway 是在 Wayland 之上的“i3 替代”。(<a target="_blank" rel="noopener" href="https://i3wm.org/?utm_source=chatgpt.com" title="i3 — i3: improved tiling X11 window manager">i3wm.org</a>)</li>
+<li><strong>Hyprland</strong>：一个现代、注重视觉效果与动画的 Wayland 动态平铺合成器（用 C++ 编写，有漂亮动画、模糊、圆角等视觉特效），对“想要华丽但又想要平铺”的用户非常有吸引力。它对配置&#x2F;定制很灵活，但生态与插件&#x2F;工具链比 GNOME&#x2F;KDE 小一些，需要愿意调参的人。(<a target="_blank" rel="noopener" href="https://github.com/hyprwm/Hyprland?utm_source=chatgpt.com" title="hyprwm&#x2F;Hyprland">GitHub</a>)</li>
+</ul>
+<p><strong>你遇到的痛点（“平铺管理器很难用”）常见原因与解决方向：</strong></p>
+<ul>
+<li>新的平铺思维需要设定合理的键位、浮动规则（例如浏览器&#x2F;视频播放器浮动），以及合适的快捷组合（把常用 app 设为浮动、使用快捷键切换布局）。Hyprland 社区已有 starter 配置和模板（可直接用来降低学习成本）。(<a target="_blank" rel="noopener" href="https://github.com/mylinuxforwork/hyprland-starter?utm_source=chatgpt.com" title="The ML4W Hyprland Starter - The perfect starting point for ...">GitHub</a>)</li>
+</ul>
+<hr>
+<h1 id="4-性能实务（内存-响应-Wayland-vs-X11）"><a href="#4-性能实务（内存-响应-Wayland-vs-X11）" class="headerlink" title="4) 性能实务（内存 &#x2F; 响应 &#x2F; Wayland vs X11）"></a>4) 性能实务（内存 &#x2F; 响应 &#x2F; Wayland vs X11）</h1><ul>
+<li><strong>总体规则</strong>：桌面“轻”或“重”受三个因素影响：DE 自身服务&#x2F;守护进程数量、合成器（compositor）是否用 GPU 加速、以及桌面特效&#x2F;扩展所占资源。不同发行版&#x2F;主题&#x2F;扩展会让同一 DE 的占用有较大差异（因此“实测比文献更重要”）。社区与基准（Phoronix）近年的测试显示：Wayland 在很多场景（特别是现代 GPU 驱动）能带来更稳定的帧率与延迟优势；KDE&#x2F;Plasma 在 6.x 之后做了不少性能优化，GNOME 与 KDE 在 Wayland 上的表现差距在缩小，但具体感受依硬件而异。(<a target="_blank" rel="noopener" href="https://www.phoronix.com/reviews/Linux%2BGaming?utm_source=chatgpt.com" title="Linux Gaming Linux Reviews &amp; Articles">Phoronix</a>)</li>
+<li><strong>平铺 WM（i3&#x2F;Sway&#x2F;Hyprland）</strong>：通常内存占用更低、响应更快，但你需要投入时间配置快捷键&#x2F;浮动例外以获得“流畅的日常体验”。(<a target="_blank" rel="noopener" href="https://i3wm.org/?utm_source=chatgpt.com" title="i3 — i3: improved tiling X11 window manager">i3wm.org</a>)</li>
+</ul>
+<hr>
+<h1 id="5-软件获得方式（包管理-跨发行包）——为什么你“不担心软件”？"><a href="#5-软件获得方式（包管理-跨发行包）——为什么你“不担心软件”？" class="headerlink" title="5) 软件获得方式（包管理 + 跨发行包）——为什么你“不担心软件”？"></a>5) 软件获得方式（包管理 + 跨发行包）——为什么你“不担心软件”？</h1><ul>
+<li><strong>本地仓库</strong>（apt&#x2F;dnf&#x2F;pacman&#x2F;zypper）是发行版的核心。</li>
+<li><strong>跨发行格式</strong>：Flatpak（Flathub）、Snap、AppImage 提供跨 distro 的软件交付，可大幅减少“某个发行版没有某软件”的尴尬。Flathub 已成为主流桌面应用来源之一。建议把 Flatpak&#x2F;Flathub 学会，能在任何发行版上快速拿到桌面应用。(<a target="_blank" rel="noopener" href="https://flathub.org/en?utm_source=chatgpt.com" title="Flathub - Apps for Linux">Flathub - Apps for Linux</a>)</li>
+</ul>
+<hr>
+<h1 id="6-针对（喜欢-Hyprland-但讨厌平铺难用）的个性化建议（可执行）"><a href="#6-针对（喜欢-Hyprland-但讨厌平铺难用）的个性化建议（可执行）" class="headerlink" title="6) 针对（喜欢 Hyprland 但讨厌平铺难用）的个性化建议（可执行）"></a>6) 针对（喜欢 Hyprland 但讨厌平铺难用）的个性化建议（可执行）</h1><ol>
+<li><p><strong>如果你愿意折腾但想“最自由、最早拿到 Hyprland”</strong>：用 <strong>Arch + Hyprland</strong>（官方&#x2F;社区包）或 <strong>自己从 AUR&#x2F;Hyprland GitHub 装</strong>。优点：最新、灵活、文档极好；缺点：需要维护（滚动、偶有 break）。为降低维护成本，可考虑 <strong>Manjaro + Hyprland</strong>（Manjaro 提供图形安装器 + 稳定的包延后合并）。(<a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Arch_Linux?utm_source=chatgpt.com" title="Principles - ArchWiki - Arch Linux">ArchWiki</a>)</p>
+<ul>
+<li>推荐做法：直接用 Hyprland starter 配置（社区模板），把常用程序标记为 <strong>浮动</strong>（video、浏览器媒体窗口等），并把工作区快捷键做成你熟悉的映射（例如 Super+数字切换）。这能把“视觉漂亮”与“实用”合并。(<a target="_blank" rel="noopener" href="https://github.com/mylinuxforwork/hyprland-starter?utm_source=chatgpt.com" title="The ML4W Hyprland Starter - The perfect starting point for ...">GitHub</a>)</li>
+</ul>
+</li>
+<li><p><strong>如果你想体验 tiling，但“不要太多手工配置”</strong>：试试 <strong>Pop!_OS</strong>（他们的 tiling&#x2F;auto-tiling 非常好用，用户友好），或者 <strong>Ubuntu + Pop shell &#x2F;快捷 tiling 扩展</strong>。这样你能保留图形化设置界面，同时享受 tiling 带来的效率。(<a target="_blank" rel="noopener" href="https://system76.com/pop/?srsltid=AfmBOooYHxM6fHdNgxfW1L4HhKVrB5roT4X8aZNJK6HYZRcJWqyBIVg8&utm_source=chatgpt.com" title="Welcome to Pop!_OS">System76</a>)</p>
+</li>
+<li><p><strong>如果你追求长期稳定且不想修补</strong>：把 Hyprland 当作“次要桌面”来测试（在 VM 或次硬盘上装 Arch&#x2F;Manjaro），日常使用仍留在 Ubuntu LTS &#x2F; Debian。这样既能玩到 Hyprland 的美，又不会影响主力工作环境。(<a target="_blank" rel="noopener" href="https://ubuntu.com/blog/tag/ubuntu-24-04-lts?utm_source=chatgpt.com" title="Ubuntu 24.04 LTS">Ubuntu</a>)</p>
+</li>
+</ol>
+<hr>
+<h1 id="7-具体的“试用-迁移”步骤（你可以照着做）"><a href="#7-具体的“试用-迁移”步骤（你可以照着做）" class="headerlink" title="7) 具体的“试用&#x2F;迁移”步骤（你可以照着做）"></a>7) 具体的“试用&#x2F;迁移”步骤（你可以照着做）</h1><ol>
+<li><p><strong>准备</strong>：用 <code>balenaEtcher</code>&#x2F;<code>Ventoy</code> 做两个 live-USB（例如 Ubuntu LTS + Manjaro&#x2F;Arch live）。</p>
+</li>
+<li><p><strong>硬件检测（GPU&#x2F;Wi-Fi&#x2F;声卡）</strong>：先从 Live 启动，检查 GPU 驱动（NVIDIA&#x2F;AMD&#x2F;Intel）和 Wayland 支持（Wayland session 是否能启动并渲染正常）。</p>
+</li>
+<li><p><strong>试 Hyprland</strong>（推荐顺序）：</p>
+<ul>
+<li>在 Manjaro&#x2F;Arch live 环境里安装 Hyprland（或在 Manjaro 的社区包里直接启用 Hyprland session），或用 Hyprland 的 live 配置样本。参考官方 README&#x2F;ArchWiki 的配置示例。(<a target="_blank" rel="noopener" href="https://github.com/hyprwm/Hyprland?utm_source=chatgpt.com" title="hyprwm&#x2F;Hyprland">GitHub</a>)</li>
+<li>直接用社区 starter（比如 ML4W Hyprland Starter）快速得到一套可用的配置，减少从零摸索。(<a target="_blank" rel="noopener" href="https://github.com/mylinuxforwork/hyprland-starter?utm_source=chatgpt.com" title="The ML4W Hyprland Starter - The perfect starting point for ...">GitHub</a>)</li>
+<li>设定：把浏览器&#x2F;视频&#x2F;会议软件加入浮动规则，把你常用的 app 绑定到工作区快捷键。</li>
+</ul>
+</li>
+<li><p><strong>测感受</strong>：常用场景（浏览网页 + 多标签、VScode 编辑 + 终端、视频会议）都跑一遍，看是否流畅、工作效率是否上升。</p>
+</li>
+<li><p><strong>决定</strong>：如果 Hyprland 合适 —— 可以把 Arch&#x2F;Manjaro 做为主系统（或继续在双机&#x2F;双盘），否则把 Hyprland 保持为实验环境，用 Pop!_OS &#x2F; Ubuntu LTS 为主力。</p>
+</li>
+</ol>
+<hr>
+<h1 id="8-其他你可能关心的点（一针见血）"><a href="#8-其他你可能关心的点（一针见血）" class="headerlink" title="8) 其他你可能关心的点（一针见血）"></a>8) 其他你可能关心的点（一针见血）</h1><ul>
+<li><strong>滚动 vs LTS</strong>：滚动能最早拿到新特性（适合喜欢 Hyprland 的人），但需要时间维护；LTS 更适合生产力&#x2F;兼容性。你要问自己：想“玩新玩意”还是“把电脑当工具”？答案决定发行版。(<a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Arch_Linux?utm_source=chatgpt.com" title="Principles - ArchWiki - Arch Linux">ArchWiki</a>)</li>
+<li><strong>安全&#x2F;企业支持</strong>：Ubuntu&#x2F;CentOS&#x2F;RHEL 家族在企业&#x2F;云上支持更完善；Debian 则以稳定与可预测性著称。(<a target="_blank" rel="noopener" href="https://www.techradar.com/best/best-linux-server-distro?utm_source=chatgpt.com" title="Best Linux server distro of 2025">TechRadar</a>)</li>
+<li><strong>软件兼容性</strong>：学会用 <strong>Flatpak&#x2F;Flathub</strong> 能在任意发行版上快速拿到桌面程序，减少因为“某发行版没有某软件”而换系统的痛苦。(<a target="_blank" rel="noopener" href="https://flathub.org/en?utm_source=chatgpt.com" title="Flathub - Apps for Linux">Flathub - Apps for Linux</a>)</li>
+</ul>
+<hr>
+<h1 id="参考（部分线上来源）"><a href="#参考（部分线上来源）" class="headerlink" title="参考（部分线上来源）"></a>参考（部分线上来源）</h1><ul>
+<li>Ubuntu releases &#x2F; LTS policy（Ubuntu 官方）. (<a target="_blank" rel="noopener" href="https://releases.ubuntu.com/?utm_source=chatgpt.com" title="Ubuntu Releases">Ubuntu Releases</a>)</li>
+<li>Debian 13 “trixie” release notes. (<a target="_blank" rel="noopener" href="https://www.debian.org/News/2025/20250809?utm_source=chatgpt.com" title="Debian 13 &quot;trixie&quot; released">Debian</a>)</li>
+<li>Arch Linux principles &#x2F; rolling release (ArchWiki). (<a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Arch_Linux?utm_source=chatgpt.com" title="Principles - ArchWiki - Arch Linux">ArchWiki</a>)</li>
+<li>Manjaro 官方介绍（对 Arch 的易用封装）. (<a target="_blank" rel="noopener" href="https://manjaro.org/?utm_source=chatgpt.com" title="Manjaro – The Linux for People and Organizations">manjaro.org</a>)</li>
+<li>Hyprland（官方 GitHub &#x2F; ArchWiki &#x2F; Hyprland Wiki）与 starter 配置示例. (<a target="_blank" rel="noopener" href="https://github.com/hyprwm/Hyprland?utm_source=chatgpt.com" title="hyprwm&#x2F;Hyprland">GitHub</a>)</li>
+<li>GNOME&#x2F;KDE&#x2F;Wayland 性能与基准讨论（Phoronix 及相关社区讨论）. (<a target="_blank" rel="noopener" href="https://www.phoronix.com/reviews/Linux%2BGaming?utm_source=chatgpt.com" title="Linux Gaming Linux Reviews &amp; Articles">Phoronix</a>)</li>
+<li>Flatpak &#x2F; Flathub 概述（跨发行应用分发）. (<a target="_blank" rel="noopener" href="https://flatpak.org/?utm_source=chatgpt.com" title="Flatpak—the future of application distribution">Flatpak</a>)</li>
+<li>有关滚动发行潜在外部风险（例：Arch 项目服务 DDoS 报道）. (<a target="_blank" rel="noopener" href="https://www.tomshardware.com/software/linux/arch-linux-continues-to-feel-the-force-of-a-ddos-attack-after-two-brutal-weeks-attackers-yet-to-be-identified-as-project-struggles-to-restore-full-service?utm_source=chatgpt.com" title="Arch Linux continues to feel the force of a DDoS attack after two brutal weeks - attackers yet to be identified as project struggles to restore full service">Tom’s Hardware</a>)</li>
+</ul>
+<hr>
+<h1 id="最后-——-我给你的可执行建议（一步到位）"><a href="#最后-——-我给你的可执行建议（一步到位）" class="headerlink" title="最后 —— 我给你的可执行建议（一步到位）"></a>最后 —— 我给你的可执行建议（一步到位）</h1><ol>
+<li>如果你现在的工作流<strong>不能容忍小概率 break</strong>：先把 <strong>Ubuntu LTS</strong> 当作主系统（或 Debian），然后用 VM 或另一个磁盘玩 Hyprland（Arch&#x2F;Manjaro）。(<a target="_blank" rel="noopener" href="https://ubuntu.com/blog/tag/ubuntu-24-04-lts?utm_source=chatgpt.com" title="Ubuntu 24.04 LTS">Ubuntu</a>)</li>
+<li>如果你<strong>热衷定制与最新体验</strong>（并愿意动手维护）：直接上 <strong>Arch + Hyprland</strong>（或 Manjaro 做“缓冲”），并用 Hyprland starter 快速配置浮动规则。(<a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Arch_Linux?utm_source=chatgpt.com" title="Principles - ArchWiki - Arch Linux">ArchWiki</a>)</li>
+<li>如果你想“最少配置又想试 tiling” → 试 <strong>Pop!_OS</strong> 的 tiling 功能；如果喜欢 KDE 的自由度与美学，选 <strong>KDE Plasma（例如在 Manjaro&#x2F;Kubuntu）</strong>。(<a target="_blank" rel="noopener" href="https://system76.com/pop/?srsltid=AfmBOooYHxM6fHdNgxfW1L4HhKVrB5roT4X8aZNJK6HYZRcJWqyBIVg8&utm_source=chatgpt.com" title="Welcome to Pop!_OS">System76</a>)</li>
+</ol>
+<p>—— 如果你愿意，我可以：</p>
+<ul>
+<li>A）基于你当前机器（给我 GPU 型号、CPU、内存）给出最优发行版 + 桌面组合（包含是否需要专有驱动和安装注意）；</li>
+<li>B）直接给你一份<strong>Hyprland starter 配置（可直接拷贝）</strong>，把常见 app 设为浮动、设定工作区快捷键、以及常用 keybindings（我可以写一套你把它放到 <code>~/.config/hypr/hyprland.conf</code> 就能用）。</li>
+</ul>
+<p>你想先要 A 还是 B？（或者都要 — 我可以直接给出 Hyprland 配置样例）</p>
+<hr>
+<h1 id="archlinux对显卡支持度"><a href="#archlinux对显卡支持度" class="headerlink" title="archlinux对显卡支持度"></a>archlinux对显卡支持度</h1><h2 id="1-总体结论"><a href="#1-总体结论" class="headerlink" title="1. 总体结论"></a>1. <strong>总体结论</strong></h2><p>Arch Linux 本身 <strong>不会自带显卡驱动</strong>，但因为它是滚动发行版，<strong>驱动更新非常快</strong>，几乎总是可以第一时间拿到最新的 Linux 内核、Mesa、NVIDIA 驱动。<br>所以它对显卡的支持度取决于 <strong>上游驱动的支持情况</strong>，Arch 只负责“把最新的东西打包给你”。</p>
+<hr>
+<h2 id="2-不同厂商的显卡支持情况"><a href="#2-不同厂商的显卡支持情况" class="headerlink" title="2. 不同厂商的显卡支持情况"></a>2. <strong>不同厂商的显卡支持情况</strong></h2><h3 id="🔹-Intel-显卡"><a href="#🔹-Intel-显卡" class="headerlink" title="🔹 Intel 显卡"></a>🔹 Intel 显卡</h3><ul>
+<li><strong>开源驱动（i915, i965, Iris, Xe 等）</strong>：内核和 Mesa 内置，Arch 的滚动更新会让 Intel GPU 用户很快用上新驱动。</li>
+<li><strong>优点</strong>：零配置，大部分情况下“开机即用”。</li>
+<li><strong>Wayland 支持</strong>：非常好，和 GNOME、KDE Plasma、Hyprland 等 Wayland 桌面配合顺畅。</li>
+</ul>
+<p>👉 如果你是 Intel 核显用户，Arch + Wayland 桌面（比如 GNOME、Plasma、Hyprland）就是最优体验。</p>
+<hr>
+<h3 id="🔹-AMD-显卡"><a href="#🔹-AMD-显卡" class="headerlink" title="🔹 AMD 显卡"></a>🔹 AMD 显卡</h3><ul>
+<li><strong>开源驱动 amdgpu</strong>：内核和 Mesa 原生支持，不需要额外装闭源驱动。</li>
+<li><strong>游戏 &#x2F; 3D</strong>：配合 Mesa 的 RADV（Vulkan 驱动），支持 Steam Proton &#x2F; DXVK，性能非常好。</li>
+<li><strong>Wayland</strong>：AMD GPU 对 Wayland（尤其是 KDE Plasma 6 和 GNOME 46）支持很优秀。</li>
+<li><strong>更新快</strong>：Arch 的 Mesa 一般比 Ubuntu &#x2F; Debian 快好几个版本，对 AMD 玩家非常友好。</li>
+</ul>
+<p>👉 如果是 AMD 显卡，Arch Linux 可以说是 <strong>最推荐</strong> 的系统之一。</p>
+<hr>
+<h3 id="🔹-NVIDIA-显卡"><a href="#🔹-NVIDIA-显卡" class="headerlink" title="🔹 NVIDIA 显卡"></a>🔹 NVIDIA 显卡</h3><ul>
+<li><p><strong>专有驱动 (nvidia)</strong>：Arch 提供 <code>nvidia</code> 包（闭源驱动，始终跟随 NVIDIA 官方新版本）。</p>
+</li>
+<li><p><strong>开源驱动 (nouveau)</strong>：只适合轻度桌面，游戏&#x2F;3D 加速表现差。</p>
+</li>
+<li><p><strong>问题点</strong>：</p>
+<ul>
+<li>在 <strong>Wayland</strong> 下体验不如 AMD&#x2F;Intel 稳定（虽然 NVIDIA 从 515+ 版本开始改进了 GBM 支持，但 GNOME&#x2F;Plasma&#x2F;Hyprland 上偶尔还是有兼容性 bug）。</li>
+<li>每次 <strong>内核大更新</strong> 时，NVIDIA 专有驱动可能会滞后几天（但 Arch 社区通常打得很快）。</li>
+</ul>
+</li>
+<li><p><strong>解决方案</strong>：</p>
+<ul>
+<li>用 <strong>LTS 内核</strong>（<code>linux-lts</code> + <code>nvidia-lts</code>），可以减少因驱动滞后而无法进入图形界面的问题。</li>
+<li>装 <code>nvidia-utils</code>、<code>lib32-nvidia-utils</code> 以保证 32 位兼容（游戏必要）。</li>
+</ul>
+</li>
+</ul>
+<p>👉 如果你是 NVIDIA 用户，Arch 也能很好用，但要 <strong>学会处理驱动更新与 Wayland 兼容问题</strong>。<br>👉 建议：日常用 <strong>X11</strong> 或 Plasma Wayland，Hyprland 对 NVIDIA 仍可能踩坑。</p>
+<hr>
+<h2 id="3-Arch-特点对显卡用户的影响"><a href="#3-Arch-特点对显卡用户的影响" class="headerlink" title="3. Arch 特点对显卡用户的影响"></a>3. <strong>Arch 特点对显卡用户的影响</strong></h2><ul>
+<li><p><strong>优点</strong></p>
+<ul>
+<li>最新内核 + 最新 Mesa → Intel&#x2F;AMD 体验最佳。</li>
+<li>NVIDIA 驱动也会快速更新。</li>
+<li>AUR 社区里有各种“优化包”（比如 <code>nvidia-dkms</code>、<code>mesa-git</code>、<code>linux-zen</code> 等）。</li>
+</ul>
+</li>
+<li><p><strong>缺点</strong></p>
+<ul>
+<li>因为滚动更新，NVIDIA 用户可能会遇到“推送了新内核，驱动没及时跟上，导致黑屏”的情况。</li>
+<li>要么等几天，要么提前装 LTS 内核当 fallback。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="4-推荐做法"><a href="#4-推荐做法" class="headerlink" title="4. 推荐做法"></a>4. <strong>推荐做法</strong></h2><ol>
+<li><p><strong>Intel&#x2F;AMD 显卡用户</strong></p>
+<ul>
+<li>直接用 Arch 主线内核（<code>linux</code> 或 <code>linux-zen</code>），开机即用。</li>
+<li>Wayland + Hyprland&#x2F;Plasma → 最优体验。</li>
+</ul>
+</li>
+<li><p><strong>NVIDIA 显卡用户</strong></p>
+<ul>
+<li><p>安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> pacman -S nvidia nvidia-utils nvidia-settings</span><br></pre></td></tr></table></figure></li>
+<li><p>同时安装 LTS 内核和驱动：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> pacman -S linux-lts linux-lts-headers nvidia-lts</span><br></pre></td></tr></table></figure></li>
+<li><p>在 GRUB 中保留一个 LTS fallback 内核，防止新内核导致黑屏。</p>
+</li>
+<li><p>Hyprland 可能不太稳定，建议先用 <strong>KDE Plasma Wayland</strong>，等 Hyprland 对 NVIDIA 更成熟再切换。</p>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<p>✅ <strong>一句话总结</strong>：</p>
+<ul>
+<li><strong>Intel&#x2F;AMD 显卡</strong> → Arch Linux 是最佳选择，最新驱动 + 最佳 Wayland 支持。</li>
+<li><strong>NVIDIA 显卡</strong> → 可用，但要小心驱动更新与 Wayland 兼容，建议同时安装 <strong>LTS 内核</strong>备用。</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://github.com/Cherises/">Leonardo</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://cherises.github.io/post/39224/">https://cherises.github.io/post/39224/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://github.com/Cherises/">Leonardo</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><a class="post-meta__tags" href="/tags/%E6%8E%A8%E8%8D%90/">推荐</a></div><div class="post-share"><div class="social-share" data-image="https://raw.githubusercontent.com/Cherises/Blog-Resource-2/refs/heads/main/photos/genshin/emoj/588.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/actor-1.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Leonardo</div><div class="author-info-description">Focus on thinking, imagination, reasoning, truth-seeking, and pragmatism</div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">104</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">143</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">23</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Cherises/"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E6%83%85%E6%8F%90%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">前情提要</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%88%E7%BB%99%E7%BB%93%E8%AE%BA%EF%BC%88%E5%BF%AB%E9%80%9F%E7%89%88%EF%BC%89"><span class="toc-number"></span> <span class="toc-text">先给结论（快速版）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E4%B8%BA%E4%BB%80%E4%B9%88%E5%BE%88%E5%A4%9A%E5%8F%91%E8%A1%8C%E7%89%88%E2%80%9C%E7%94%A8%E8%B5%B7%E6%9D%A5%E5%B7%AE%E4%B8%8D%E5%A4%9A%E2%80%9D%E2%80%94%E2%80%94%E6%9C%AC%E8%B4%A8%E5%8E%9F%E5%9B%A0%EF%BC%88%E7%9F%AD%EF%BC%89"><span class="toc-number"></span> <span class="toc-text">1) 为什么很多发行版“用起来差不多”——本质原因（短）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E4%B8%BB%E8%A6%81%E5%8F%91%E8%A1%8C%E7%89%88%EF%BC%9A%E4%BC%98%E5%8A%A3%E4%B8%8E%E9%80%82%E9%85%8D%E5%9C%BA%E6%99%AF%EF%BC%88%E8%A6%81%E7%82%B9-%E6%9D%A5%E6%BA%90%EF%BC%89"><span class="toc-number"></span> <span class="toc-text">2) 主要发行版：优劣与适配场景（要点 + 来源）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Ubuntu-LTS%EF%BC%88%E4%BE%8B%EF%BC%9A24-04-LTS%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">Ubuntu LTS（例：24.04 LTS）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Debian-Stable%EF%BC%88%E6%9C%80%E6%96%B0%EF%BC%9ADebian-13-%E2%80%9Ctrixie%E2%80%9D%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">Debian Stable（最新：Debian 13 “trixie”）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Fedora"><span class="toc-number">3.</span> <span class="toc-text">Fedora</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Arch-Manjaro"><span class="toc-number">4.</span> <span class="toc-text">Arch &#x2F; Manjaro</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#openSUSE-Leap-Tumbleweed"><span class="toc-number">5.</span> <span class="toc-text">openSUSE (Leap &#x2F; Tumbleweed)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux-Mint-Cinnamon%E3%80%81Pop-OS"><span class="toc-number">6.</span> <span class="toc-text">Linux Mint &#x2F; Cinnamon、Pop!_OS</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E6%A1%8C%E9%9D%A2%E7%8E%AF%E5%A2%83-%E5%90%88%E6%88%90%E5%99%A8-%E5%AF%B9%E6%AF%94%EF%BC%88%E4%BD%A0%E5%85%B3%E5%BF%83%E7%9A%84-Hyprland-tiling-%E7%89%B9%E5%88%AB%E8%AF%B4%E6%98%8E%EF%BC%89"><span class="toc-number"></span> <span class="toc-text">3) 桌面环境 &#x2F; 合成器 对比（你关心的 Hyprland &#x2F; tiling 特别说明）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%A0%E7%BB%9F%E5%AE%8C%E6%95%B4-DE%EF%BC%88GNOME-KDE-Plasma-XFCE-Cinnamon-MATE%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">传统完整 DE（GNOME &#x2F; KDE Plasma &#x2F; XFCE &#x2F; Cinnamon &#x2F; MATE）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%B3%E9%93%BA%E5%90%88%E6%88%90%E5%99%A8-%E7%AA%97%E5%8F%A3%E7%AE%A1%E7%90%86%E5%99%A8%EF%BC%88i3-Sway-Hyprland-%E7%AD%89%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">平铺合成器 &#x2F; 窗口管理器（i3 &#x2F; Sway &#x2F; Hyprland 等）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-%E6%80%A7%E8%83%BD%E5%AE%9E%E5%8A%A1%EF%BC%88%E5%86%85%E5%AD%98-%E5%93%8D%E5%BA%94-Wayland-vs-X11%EF%BC%89"><span class="toc-number"></span> <span class="toc-text">4) 性能实务（内存 &#x2F; 响应 &#x2F; Wayland vs X11）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-%E8%BD%AF%E4%BB%B6%E8%8E%B7%E5%BE%97%E6%96%B9%E5%BC%8F%EF%BC%88%E5%8C%85%E7%AE%A1%E7%90%86-%E8%B7%A8%E5%8F%91%E8%A1%8C%E5%8C%85%EF%BC%89%E2%80%94%E2%80%94%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%A0%E2%80%9C%E4%B8%8D%E6%8B%85%E5%BF%83%E8%BD%AF%E4%BB%B6%E2%80%9D%EF%BC%9F"><span class="toc-number"></span> <span class="toc-text">5) 软件获得方式（包管理 + 跨发行包）——为什么你“不担心软件”？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-%E9%92%88%E5%AF%B9%EF%BC%88%E5%96%9C%E6%AC%A2-Hyprland-%E4%BD%86%E8%AE%A8%E5%8E%8C%E5%B9%B3%E9%93%BA%E9%9A%BE%E7%94%A8%EF%BC%89%E7%9A%84%E4%B8%AA%E6%80%A7%E5%8C%96%E5%BB%BA%E8%AE%AE%EF%BC%88%E5%8F%AF%E6%89%A7%E8%A1%8C%EF%BC%89"><span class="toc-number"></span> <span class="toc-text">6) 针对（喜欢 Hyprland 但讨厌平铺难用）的个性化建议（可执行）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-%E5%85%B7%E4%BD%93%E7%9A%84%E2%80%9C%E8%AF%95%E7%94%A8-%E8%BF%81%E7%A7%BB%E2%80%9D%E6%AD%A5%E9%AA%A4%EF%BC%88%E4%BD%A0%E5%8F%AF%E4%BB%A5%E7%85%A7%E7%9D%80%E5%81%9A%EF%BC%89"><span class="toc-number"></span> <span class="toc-text">7) 具体的“试用&#x2F;迁移”步骤（你可以照着做）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8-%E5%85%B6%E4%BB%96%E4%BD%A0%E5%8F%AF%E8%83%BD%E5%85%B3%E5%BF%83%E7%9A%84%E7%82%B9%EF%BC%88%E4%B8%80%E9%92%88%E8%A7%81%E8%A1%80%EF%BC%89"><span class="toc-number"></span> <span class="toc-text">8) 其他你可能关心的点（一针见血）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83%EF%BC%88%E9%83%A8%E5%88%86%E7%BA%BF%E4%B8%8A%E6%9D%A5%E6%BA%90%EF%BC%89"><span class="toc-number"></span> <span class="toc-text">参考（部分线上来源）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%80%E5%90%8E-%E2%80%94%E2%80%94-%E6%88%91%E7%BB%99%E4%BD%A0%E7%9A%84%E5%8F%AF%E6%89%A7%E8%A1%8C%E5%BB%BA%E8%AE%AE%EF%BC%88%E4%B8%80%E6%AD%A5%E5%88%B0%E4%BD%8D%EF%BC%89"><span class="toc-number"></span> <span class="toc-text">最后 —— 我给你的可执行建议（一步到位）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#archlinux%E5%AF%B9%E6%98%BE%E5%8D%A1%E6%94%AF%E6%8C%81%E5%BA%A6"><span class="toc-number"></span> <span class="toc-text">archlinux对显卡支持度</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%80%BB%E4%BD%93%E7%BB%93%E8%AE%BA"><span class="toc-number"></span> <span class="toc-text">1. 总体结论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E4%B8%8D%E5%90%8C%E5%8E%82%E5%95%86%E7%9A%84%E6%98%BE%E5%8D%A1%E6%94%AF%E6%8C%81%E6%83%85%E5%86%B5"><span class="toc-number"></span> <span class="toc-text">2. 不同厂商的显卡支持情况</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%94%B9-Intel-%E6%98%BE%E5%8D%A1"><span class="toc-number">1.</span> <span class="toc-text">🔹 Intel 显卡</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%94%B9-AMD-%E6%98%BE%E5%8D%A1"><span class="toc-number">2.</span> <span class="toc-text">🔹 AMD 显卡</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%94%B9-NVIDIA-%E6%98%BE%E5%8D%A1"><span class="toc-number">3.</span> <span class="toc-text">🔹 NVIDIA 显卡</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Arch-%E7%89%B9%E7%82%B9%E5%AF%B9%E6%98%BE%E5%8D%A1%E7%94%A8%E6%88%B7%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="toc-number"></span> <span class="toc-text">3. Arch 特点对显卡用户的影响</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E6%8E%A8%E8%8D%90%E5%81%9A%E6%B3%95"><span class="toc-number"></span> <span class="toc-text">4. 推荐做法</span></a></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/37181/" title="获取新闻列表并调用大模型总结"><img src="https://raw.githubusercontent.com/Cherises/Blog-Resource-2/refs/heads/main/photos/genshin/emoj/195.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="获取新闻列表并调用大模型总结"/></a><div class="content"><a class="title" href="/post/37181/" title="获取新闻列表并调用大模型总结">获取新闻列表并调用大模型总结</a><time datetime="2025-11-16T17:20:17.000Z" title="Created 2025-11-16 17:20:17">2025-11-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/42087/" title="2025年11月16日网易新闻总结"><img src="https://raw.githubusercontent.com/Cherises/Blog-Resource-2/refs/heads/main/photos/genshin/emoj/596.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2025年11月16日网易新闻总结"/></a><div class="content"><a class="title" href="/post/42087/" title="2025年11月16日网易新闻总结">2025年11月16日网易新闻总结</a><time datetime="2025-11-16T12:00:35.000Z" title="Created 2025-11-16 12:00:35">2025-11-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/61362/" title="2025年11月14日"><img src="https://raw.githubusercontent.com/Cherises/Blog-Resource-2/refs/heads/main/photos/genshin/emoj/51.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2025年11月14日"/></a><div class="content"><a class="title" href="/post/61362/" title="2025年11月14日">2025年11月14日</a><time datetime="2025-11-14T17:51:59.000Z" title="Created 2025-11-14 17:51:59">2025-11-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/2522/" title="第一个微调训练模型"><img src="https://raw.githubusercontent.com/Cherises/Blog-Resource-2/refs/heads/main/photos/genshin/emoj/168.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第一个微调训练模型"/></a><div class="content"><a class="title" href="/post/2522/" title="第一个微调训练模型">第一个微调训练模型</a><time datetime="2025-11-12T20:15:08.000Z" title="Created 2025-11-12 20:15:08">2025-11-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/26464/" title="关于搭建本地知识库的可行性分析"><img src="https://raw.githubusercontent.com/Cherises/Blog-Resource-2/refs/heads/main/photos/genshin/emoj/709.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="关于搭建本地知识库的可行性分析"/></a><div class="content"><a class="title" href="/post/26464/" title="关于搭建本地知识库的可行性分析">关于搭建本地知识库的可行性分析</a><time datetime="2025-11-12T10:24:12.000Z" title="Created 2025-11-12 10:24:12">2025-11-12</time></div></div></div></div></div></div></main><footer id="footer" style="background: transparent;"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2021 - 2025 By Leonardo</span><span class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"></div><script src="/js/scroll-disable-blur.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
+      }
+    }
+  }
+
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
+
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      const usePjax = true
+      false
+        ? (usePjax ? pjax.loadUrl('/404.html') : window.location.href = '/404.html')
+        : window.location.href = e.request.responseURL
+    }
+  })
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章🔍" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

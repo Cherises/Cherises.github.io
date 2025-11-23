@@ -1,0 +1,675 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>全栈考试与权限管理系统-开发报告 | Leo's Digital Genesis</title><meta name="author" content="Leonardo"><meta name="copyright" content="Leonardo"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="项目名称 基于 Spring Boot + Vue 3 的校园考试与权限管理系统     一、项目概述 本系统面向学校&#x2F;教育机构，提供完整的用户与权限管理、学生信息管理、题库管理、练习&#x2F;模拟&#x2F;正式考试流程、成绩统计与导出、教师阅卷、以及利用本地大模型（本地部署的 LLM）进行单选题与填空题自动批阅的能力。系统目标是易用、安全、可扩展，便于日常教学考试管理与成绩分析。     二、主要功能模块（高层">
+<meta property="og:type" content="article">
+<meta property="og:title" content="全栈考试与权限管理系统-开发报告">
+<meta property="og:url" content="https://cherises.github.io/post/38256/index.html">
+<meta property="og:site_name" content="Leo&#39;s Digital Genesis">
+<meta property="og:description" content="项目名称 基于 Spring Boot + Vue 3 的校园考试与权限管理系统     一、项目概述 本系统面向学校&#x2F;教育机构，提供完整的用户与权限管理、学生信息管理、题库管理、练习&#x2F;模拟&#x2F;正式考试流程、成绩统计与导出、教师阅卷、以及利用本地大模型（本地部署的 LLM）进行单选题与填空题自动批阅的能力。系统目标是易用、安全、可扩展，便于日常教学考试管理与成绩分析。     二、主要功能模块（高层">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/Cherises/Blog-Resource-2/refs/heads/main/photos/genshin/emoj/529.png">
+<meta property="article:published_time" content="2025-09-19T21:11:48.000Z">
+<meta property="article:modified_time" content="2025-10-19T08:29:52.606Z">
+<meta property="article:author" content="Leonardo">
+<meta property="article:tag" content="Artificial Intelligence">
+<meta property="article:tag" content="Quantum Computing">
+<meta property="article:tag" content="Neural Networks">
+<meta property="article:tag" content="Future Tech">
+<meta property="article:tag" content="Digital Philosophy">
+<meta property="article:tag" content="Cybersecurity">
+<meta property="article:tag" content="Blockchain">
+<meta property="article:tag" content="Metaverse">
+<meta property="article:tag" content="Algorithmic Ethics">
+<meta property="article:tag" content="Space Technology">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Cherises/Blog-Resource-2/refs/heads/main/photos/genshin/emoj/529.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "全栈考试与权限管理系统-开发报告",
+  "url": "https://cherises.github.io/post/38256/",
+  "image": "https://raw.githubusercontent.com/Cherises/Blog-Resource-2/refs/heads/main/photos/genshin/emoj/529.png",
+  "datePublished": "2025-09-19T21:11:48.000Z",
+  "dateModified": "2025-10-19T08:29:52.606Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Leonardo",
+      "url": "https://github.com/Cherises/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://cherises.github.io/post/38256/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":5,"unescape":false,"languages":{"hits_empty":"No results found for: ${query}","hits_stats":"${hits} articles found"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"You have switched to Traditional Chinese","cht_to_chs":"You have switched to Simplified Chinese","day_to_night":"You have switched to Dark Mode","night_to_day":"You have switched to Light Mode","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '全栈考试与权限管理系统-开发报告',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/admonition.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css"><meta name="generator" content="Hexo 7.3.0"></head><body><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+btf.addGlobalFn('pjaxSend', () => {
+  Pace.restart()
+}, 'pace_restart')
+
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg" style="background-image: url(/img/b1.webp);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/actor-1.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">104</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">143</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">23</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/Wujie/"><i class="fa-fw fas fa-globe"></i><span> WuJie</span></a></div><div class="menus_item"><a class="site-page" href="/Music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></div><div class="menus_item"><a class="site-page" href="/About/"><i class="fa-fw fas fa-user"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Leo's Digital Genesis</span></a><a class="nav-page-title" href="/"><span class="site-name">全栈考试与权限管理系统-开发报告</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  Back to Home</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/Wujie/"><i class="fa-fw fas fa-globe"></i><span> WuJie</span></a></div><div class="menus_item"><a class="site-page" href="/Music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></div><div class="menus_item"><a class="site-page" href="/About/"><i class="fa-fw fas fa-user"></i><span> About</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">全栈考试与权限管理系统-开发报告</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-09-19T21:11:48.000Z" title="Created 2025-09-19 21:11:48">2025-09-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-10-19T08:29:52.606Z" title="Updated 2025-10-19 08:29:52">2025-10-19</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/study/">study</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word Count:</span><span class="word-count">2.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading Time:</span><span>11mins</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="container post-content" id="article-container"><p><img src="/img/banner.webp" alt="这是图片"></p>
+<h1 id="项目名称"><a href="#项目名称" class="headerlink" title="项目名称"></a>项目名称</h1><p>基于 Spring Boot + Vue 3 的校园考试与权限管理系统</p>
+<hr>
+<h1 id="一、项目概述"><a href="#一、项目概述" class="headerlink" title="一、项目概述"></a>一、项目概述</h1><p>本系统面向学校&#x2F;教育机构，提供完整的用户与权限管理、学生信息管理、题库管理、练习&#x2F;模拟&#x2F;正式考试流程、成绩统计与导出、教师阅卷、以及利用本地大模型（本地部署的 LLM）进行单选题与填空题自动批阅的能力。系统目标是易用、安全、可扩展，便于日常教学考试管理与成绩分析。</p>
+<hr>
+<h1 id="二、主要功能模块（高层）"><a href="#二、主要功能模块（高层）" class="headerlink" title="二、主要功能模块（高层）"></a>二、主要功能模块（高层）</h1><ol>
+<li><p>身份与权限管理（RBAC）</p>
+<ul>
+<li>角色：学生、教师、管理员、领导&#x2F;部门</li>
+<li>权限管理：细粒度权限点管理（增删改查、批量导入、阅卷、发布考试等）</li>
+</ul>
+</li>
+<li><p>用户与学生管理</p>
+<ul>
+<li>学生信息增删改查、按班级&#x2F;年级&#x2F;学号&#x2F;姓名查询</li>
+<li>批量上传（CSV&#x2F;Excel）并校验（重复&#x2F;缺失&#x2F;数据格式）</li>
+</ul>
+</li>
+<li><p>考试与题库管理</p>
+<ul>
+<li>题型支持：单选、多选、判断、填空（可扩展：主观题）</li>
+<li>题库批量导入（CSV&#x2F;Excel&#x2F;JSON）并校验</li>
+<li>题目标签、科目、难度、分数配置</li>
+</ul>
+</li>
+<li><p>刷题&#x2F;模拟&#x2F;考试功能</p>
+<ul>
+<li>刷题（针对题库练习）与模拟（随机试卷&#x2F;组卷规则）</li>
+<li>正式考试（在线计时、题目随机化、试卷发布&#x2F;下发）</li>
+</ul>
+</li>
+<li><p>阅卷与批改</p>
+<ul>
+<li>自动批改：单选&#x2F;多选&#x2F;判断题 + 基于本地大模型的填空题（可配置阈值与人工复核）</li>
+<li>教师手动批阅主观题并留评语</li>
+</ul>
+</li>
+<li><p>成绩与分析</p>
+<ul>
+<li>单人成绩查看、班级&#x2F;年级排名、分数分布、错题统计</li>
+<li>支持按班级&#x2F;年级快速导出 Excel&#x2F;CSV（可自定义字段）</li>
+</ul>
+</li>
+<li><p>日志&#x2F;审计与安全</p>
+<ul>
+<li>操作日志、考试完整性（防作弊基本措施）</li>
+</ul>
+</li>
+<li><p>管理后台与接口文档（Swagger）</p>
+</li>
+</ol>
+<hr>
+<h1 id="三、技术栈推荐"><a href="#三、技术栈推荐" class="headerlink" title="三、技术栈推荐"></a>三、技术栈推荐</h1><p><strong>后端</strong></p>
+<ul>
+<li>Java 17+</li>
+<li>Spring Boot 3.x</li>
+<li>Spring Security（JWT 或 OAuth2 资源服务器）用于认证&#x2F;授权</li>
+<li>Spring Data JPA（或 MyBatis-Plus）用于 ORM</li>
+<li>数据库：PostgreSQL（推荐），可选 MySQL</li>
+<li>文件存储：本地文件系统或对象存储（MinIO）用于保存上传文件&#x2F;试卷答题日志</li>
+<li>缓存：Redis（会话、频率限制、考试临时状态）</li>
+<li>异步任务：Spring Task &#x2F; RabbitMQ（用于批量导入、成绩批量统计、LLM 批阅队列）</li>
+<li>文档：Springdoc OpenAPI（自动生成 Swagger）</li>
+</ul>
+<p><strong>前端</strong></p>
+<ul>
+<li>Vue 3 + Vite</li>
+<li>TypeScript</li>
+<li>Pinia（状态管理）</li>
+<li>Vue Router</li>
+<li>Element Plus（或 Ant Design Vue）作为 UI 组件库</li>
+<li>Axios（HTTP 客户端）</li>
+<li>xlsx &#x2F; sheetjs（Excel 导入导出）</li>
+</ul>
+<p><strong>本地大模型集成（快速批阅）</strong></p>
+<ul>
+<li>本地推理服务（例如：Llama.cpp, Ollama 本地服务，或其他兼容的本地推理服务）</li>
+<li>后端通过 gRPC&#x2F;HTTP 调用本地模型推理服务</li>
+<li>使用微调或 prompt-engineering 来控制评分规则与相似度阈值</li>
+</ul>
+<p><strong>辅助&#x2F;DevOps</strong></p>
+<ul>
+<li>Docker &#x2F; Docker Compose（容器化）</li>
+<li>CI：GitHub Actions &#x2F; GitLab CI</li>
+<li>日志：ELK 或 Loki + Grafana（可选）</li>
+<li>监控：Prometheus &amp; Grafana（可选）</li>
+</ul>
+<hr>
+<h1 id="四、数据库设计（核心表，含字段及说明）"><a href="#四、数据库设计（核心表，含字段及说明）" class="headerlink" title="四、数据库设计（核心表，含字段及说明）"></a>四、数据库设计（核心表，含字段及说明）</h1><blockquote>
+<p>以下为主要表的建议字段（已省略常见的 create_time&#x2F;update_time、deleted_flag 等审计字段，请按需添加）</p>
+</blockquote>
+<h2 id="1-users（系统用户）"><a href="#1-users（系统用户）" class="headerlink" title="1. users（系统用户）"></a>1. users（系统用户）</h2><ul>
+<li>id (bigint, PK)</li>
+<li>username (varchar, 唯一)</li>
+<li>password_hash (varchar)</li>
+<li>real_name (varchar)</li>
+<li>email (varchar)</li>
+<li>mobile (varchar)</li>
+<li>role_id (bigint) — 默认角色或主角色</li>
+<li>status (int) — 状态：正常&#x2F;禁用</li>
+<li>last_login (timestamp)</li>
+</ul>
+<h2 id="2-roles（角色）"><a href="#2-roles（角色）" class="headerlink" title="2. roles（角色）"></a>2. roles（角色）</h2><ul>
+<li>id (bigint, PK)</li>
+<li>name (varchar)</li>
+<li>code (varchar) — 如 ROLE_ADMIN&#x2F;ROLE_TEACHER</li>
+<li>description (text)</li>
+</ul>
+<h2 id="3-permissions（权限点）"><a href="#3-permissions（权限点）" class="headerlink" title="3. permissions（权限点）"></a>3. permissions（权限点）</h2><ul>
+<li>id (bigint, PK)</li>
+<li>name (varchar)</li>
+<li>code (varchar) — 如 student:import, exam:publish</li>
+<li>description (text)</li>
+</ul>
+<h2 id="4-role-permission（角色-权限关联）"><a href="#4-role-permission（角色-权限关联）" class="headerlink" title="4. role_permission（角色-权限关联）"></a>4. role_permission（角色-权限关联）</h2><ul>
+<li>id</li>
+<li>role_id</li>
+<li>permission_id</li>
+</ul>
+<h2 id="5-user-role（用户-角色多对多，可选）"><a href="#5-user-role（用户-角色多对多，可选）" class="headerlink" title="5. user_role（用户-角色多对多，可选）"></a>5. user_role（用户-角色多对多，可选）</h2><ul>
+<li>id</li>
+<li>user_id</li>
+<li>role_id</li>
+</ul>
+<h2 id="6-students（学生信息）"><a href="#6-students（学生信息）" class="headerlink" title="6. students（学生信息）"></a>6. students（学生信息）</h2><ul>
+<li>id</li>
+<li>student_no (varchar, 唯一)</li>
+<li>name</li>
+<li>gender</li>
+<li>birthday (date)</li>
+<li>class_id (FK)</li>
+<li>grade (int)</li>
+<li>address</li>
+<li>contact_parent</li>
+<li>admission_year (int)</li>
+</ul>
+<h2 id="7-classes（班级）"><a href="#7-classes（班级）" class="headerlink" title="7. classes（班级）"></a>7. classes（班级）</h2><ul>
+<li>id</li>
+<li>name</li>
+<li>grade (int)</li>
+<li>major (varchar)</li>
+</ul>
+<h2 id="8-teachers（教师信息，可合并-users-表并加-role）"><a href="#8-teachers（教师信息，可合并-users-表并加-role）" class="headerlink" title="8. teachers（教师信息，可合并 users 表并加 role）"></a>8. teachers（教师信息，可合并 users 表并加 role）</h2><ul>
+<li>id</li>
+<li>teacher_no</li>
+<li>name</li>
+<li>department_id</li>
+</ul>
+<h2 id="9-departments（组织-领导部门）"><a href="#9-departments（组织-领导部门）" class="headerlink" title="9. departments（组织&#x2F;领导部门）"></a>9. departments（组织&#x2F;领导部门）</h2><ul>
+<li>id</li>
+<li>name</li>
+<li>parent_id</li>
+</ul>
+<h2 id="10-subjects（科目）"><a href="#10-subjects（科目）" class="headerlink" title="10. subjects（科目）"></a>10. subjects（科目）</h2><ul>
+<li>id</li>
+<li>name</li>
+<li>code</li>
+</ul>
+<h2 id="11-question-bank（题库主表-题目表）"><a href="#11-question-bank（题库主表-题目表）" class="headerlink" title="11. question_bank（题库主表&#x2F;题目表）"></a>11. question_bank（题库主表&#x2F;题目表）</h2><ul>
+<li>id</li>
+<li>title (text)</li>
+<li>type (enum: SINGLE,MULTI,TRUE_FALSE,BLANK,ESSAY)</li>
+<li>options (json) — 对单选&#x2F;多选保存选项</li>
+<li>answer (text&#x2F;json) — 标准答案</li>
+<li>score (decimal)</li>
+<li>difficulty (int)</li>
+<li>subject_id</li>
+<li>tags (json)</li>
+<li>created_by (user_id)</li>
+</ul>
+<h2 id="12-question-import-job（题库导入任务）"><a href="#12-question-import-job（题库导入任务）" class="headerlink" title="12. question_import_job（题库导入任务）"></a>12. question_import_job（题库导入任务）</h2><ul>
+<li>id</li>
+<li>file_path</li>
+<li>status (PENDING&#x2F;PROCESSING&#x2F;FAILED&#x2F;SUCCESS)</li>
+<li>total_count</li>
+<li>success_count</li>
+<li>fail_count</li>
+<li>error_log (text)</li>
+</ul>
+<h2 id="13-exam-paper（试卷模板-考次）"><a href="#13-exam-paper（试卷模板-考次）" class="headerlink" title="13. exam_paper（试卷模板&#x2F;考次）"></a>13. exam_paper（试卷模板&#x2F;考次）</h2><ul>
+<li>id</li>
+<li>name</li>
+<li>description</li>
+<li>start_time</li>
+<li>end_time</li>
+<li>duration_minutes</li>
+<li>total_score</li>
+<li>shuffle_questions (bool)</li>
+<li>publish_status (DRAFT&#x2F;PUBLISHED&#x2F;ENDED)</li>
+<li>grade_scope (班级&#x2F;年级&#x2F;指定学生)</li>
+</ul>
+<h2 id="14-exam-paper-question（试卷-题目关联）"><a href="#14-exam-paper-question（试卷-题目关联）" class="headerlink" title="14. exam_paper_question（试卷-题目关联）"></a>14. exam_paper_question（试卷-题目关联）</h2><ul>
+<li>id</li>
+<li>exam_paper_id</li>
+<li>question_id</li>
+<li>seq_no</li>
+<li>score</li>
+</ul>
+<h2 id="15-exam-session（学生参加的考试记录-答卷实例）"><a href="#15-exam-session（学生参加的考试记录-答卷实例）" class="headerlink" title="15. exam_session（学生参加的考试记录&#x2F;答卷实例）"></a>15. exam_session（学生参加的考试记录&#x2F;答卷实例）</h2><ul>
+<li>id</li>
+<li>exam_paper_id</li>
+<li>user_id (student)</li>
+<li>start_time</li>
+<li>end_time</li>
+<li>status (IN_PROGRESS&#x2F;SUBMITTED&#x2F;GRADED)</li>
+<li>total_score</li>
+<li>metadata (json) — 如 IP、设备、试题顺序等</li>
+</ul>
+<h2 id="16-student-answer（学生答案）"><a href="#16-student-answer（学生答案）" class="headerlink" title="16. student_answer（学生答案）"></a>16. student_answer（学生答案）</h2><ul>
+<li>id</li>
+<li>exam_session_id</li>
+<li>question_id</li>
+<li>answer (text&#x2F;json)</li>
+<li>score_awarded (decimal, nullable)</li>
+<li>is_auto_graded (bool)</li>
+<li>grader_id (teacher_id nullable)</li>
+<li>graded_at (timestamp)</li>
+<li>remark (text)</li>
+</ul>
+<h2 id="17-grading-job（异步批阅任务）"><a href="#17-grading-job（异步批阅任务）" class="headerlink" title="17. grading_job（异步批阅任务）"></a>17. grading_job（异步批阅任务）</h2><ul>
+<li>id</li>
+<li>exam_session_id</li>
+<li>status (QUEUED&#x2F;PROCESSING&#x2F;COMPLETED&#x2F;FAILED)</li>
+<li>engine (AUTO&#x2F;LLM&#x2F;HUMAN)</li>
+<li>result_summary (json)</li>
+</ul>
+<h2 id="18-score-snapshot（用于快速统计的成绩快照表，按班-年级）"><a href="#18-score-snapshot（用于快速统计的成绩快照表，按班-年级）" class="headerlink" title="18. score_snapshot（用于快速统计的成绩快照表，按班&#x2F;年级）"></a>18. score_snapshot（用于快速统计的成绩快照表，按班&#x2F;年级）</h2><ul>
+<li>id</li>
+<li>exam_session_id</li>
+<li>student_id</li>
+<li>class_id</li>
+<li>grade</li>
+<li>total_score</li>
+<li>rank_in_class</li>
+<li>rank_in_grade</li>
+</ul>
+<h2 id="19-upload-jobs（通用批量上传任务表）"><a href="#19-upload-jobs（通用批量上传任务表）" class="headerlink" title="19. upload_jobs（通用批量上传任务表）"></a>19. upload_jobs（通用批量上传任务表）</h2><ul>
+<li>id</li>
+<li>type (STUDENT&#x2F;QUESTION)</li>
+<li>file_path</li>
+<li>status</li>
+<li>errors (text)</li>
+</ul>
+<hr>
+<h1 id="五、API-接口列表（按模块列出主要接口，示例请求-响应要点）"><a href="#五、API-接口列表（按模块列出主要接口，示例请求-响应要点）" class="headerlink" title="五、API 接口列表（按模块列出主要接口，示例请求&#x2F;响应要点）"></a>五、API 接口列表（按模块列出主要接口，示例请求&#x2F;响应要点）</h1><blockquote>
+<p>所有接口建议统一前缀 <code>/api/v1</code>，并使用标准的 HTTP 状态码与错误格式。</p>
+</blockquote>
+<h2 id="鉴权与用户"><a href="#鉴权与用户" class="headerlink" title="鉴权与用户"></a>鉴权与用户</h2><ul>
+<li><p>POST <code>/api/v1/auth/login</code> — 登录（返回 JWT token、refresh token）</p>
+<ul>
+<li>body: <code>&#123; username, password &#125;</code></li>
+<li>resp: <code>&#123; accessToken, refreshToken, user: &#123;id, username, roles&#125;&#125;</code></li>
+</ul>
+</li>
+<li><p>POST <code>/api/v1/auth/refresh</code> — 刷新 token</p>
+</li>
+<li><p>GET <code>/api/v1/users/me</code> — 获取当前用户信息</p>
+</li>
+<li><p>POST <code>/api/v1/users</code> — 新建用户（管理员）</p>
+</li>
+<li><p>GET <code>/api/v1/users</code> — 用户列表（分页+筛选）</p>
+</li>
+<li><p>PUT <code>/api/v1/users/&#123;id&#125;</code> — 更新用户</p>
+</li>
+<li><p>DELETE <code>/api/v1/users/&#123;id&#125;</code> — 删除&#x2F;禁用</p>
+</li>
+</ul>
+<h2 id="角色与权限"><a href="#角色与权限" class="headerlink" title="角色与权限"></a>角色与权限</h2><ul>
+<li>GET <code>/api/v1/roles</code> — 列表</li>
+<li>POST <code>/api/v1/roles</code> — 新建角色</li>
+<li>PUT <code>/api/v1/roles/&#123;id&#125;</code> — 更新（含权限）</li>
+<li>GET <code>/api/v1/permissions</code> — 列出所有权限点</li>
+</ul>
+<h2 id="学生与班级管理"><a href="#学生与班级管理" class="headerlink" title="学生与班级管理"></a>学生与班级管理</h2><ul>
+<li><p>POST <code>/api/v1/students</code> — 新增学生</p>
+</li>
+<li><p>POST <code>/api/v1/students/import</code> — 批量导入学生（multipart file）</p>
+<ul>
+<li>返回导入任务 id</li>
+</ul>
+</li>
+<li><p>GET <code>/api/v1/students</code> — 列表（支持按班级、年级、学号、姓名过滤）</p>
+</li>
+<li><p>GET <code>/api/v1/students/&#123;id&#125;</code></p>
+</li>
+<li><p>PUT <code>/api/v1/students/&#123;id&#125;</code></p>
+</li>
+<li><p>DELETE <code>/api/v1/students/&#123;id&#125;</code></p>
+</li>
+<li><p>GET <code>/api/v1/classes</code> — 班级列表</p>
+</li>
+<li><p>POST <code>/api/v1/classes</code>、PUT <code>/api/v1/classes/&#123;id&#125;</code>、DELETE <code>/api/v1/classes/&#123;id&#125;</code></p>
+</li>
+</ul>
+<h2 id="题库管理"><a href="#题库管理" class="headerlink" title="题库管理"></a>题库管理</h2><ul>
+<li><p>POST <code>/api/v1/questions</code> — 新建题目</p>
+</li>
+<li><p>POST <code>/api/v1/questions/import</code> — 批量导入题目（multipart file），返回 job id</p>
+</li>
+<li><p>GET <code>/api/v1/questions</code> — 题目分页查询（按科目、标签、难度）</p>
+</li>
+<li><p>GET <code>/api/v1/questions/&#123;id&#125;</code></p>
+</li>
+<li><p>PUT <code>/api/v1/questions/&#123;id&#125;</code></p>
+</li>
+<li><p>DELETE <code>/api/v1/questions/&#123;id&#125;</code></p>
+</li>
+<li><p>POST <code>/api/v1/questions/&#123;id&#125;/preview</code> — 试题预览&#x2F;渲染（用于前端）</p>
+</li>
+</ul>
+<h2 id="组卷与考试发布"><a href="#组卷与考试发布" class="headerlink" title="组卷与考试发布"></a>组卷与考试发布</h2><ul>
+<li>POST <code>/api/v1/exams</code> — 创建试卷&#x2F;考试（含题目列表或组卷规则）</li>
+<li>PUT <code>/api/v1/exams/&#123;id&#125;</code> — 编辑</li>
+<li>POST <code>/api/v1/exams/&#123;id&#125;/publish</code> — 发布（学生可见）</li>
+<li>POST <code>/api/v1/exams/&#123;id&#125;/unpublish</code> — 下线</li>
+<li>GET <code>/api/v1/exams</code> — 列表</li>
+<li>GET <code>/api/v1/exams/&#123;id&#125;</code> — 详情（含题目顺序）</li>
+</ul>
+<h2 id="学生考试流程"><a href="#学生考试流程" class="headerlink" title="学生考试流程"></a>学生考试流程</h2><ul>
+<li>POST <code>/api/v1/exams/&#123;id&#125;/start</code> — 学生开始考试（创建 exam_session）</li>
+<li>POST <code>/api/v1/exams/&#123;id&#125;/submit</code> — 学生交卷（提交 answers）</li>
+<li>GET <code>/api/v1/sessions/&#123;sessionId&#125;</code> — 获取答卷状态&#x2F;题目&#x2F;剩余时间</li>
+</ul>
+<h2 id="答案与阅卷"><a href="#答案与阅卷" class="headerlink" title="答案与阅卷"></a>答案与阅卷</h2><ul>
+<li>POST <code>/api/v1/sessions/&#123;sessionId&#125;/answers</code> — 保存临时答案（自动保存）</li>
+<li>POST <code>/api/v1/sessions/&#123;sessionId&#125;/submit</code> — 学生提交（重复说明）</li>
+<li>GET <code>/api/v1/sessions/&#123;sessionId&#125;/answers</code> — 获取学生答案</li>
+<li>POST <code>/api/v1/grading/&#123;sessionId&#125;/queue</code> — 发起自动&#x2F;LLM 批阅（异步）</li>
+<li>GET <code>/api/v1/grading/&#123;jobId&#125;</code> — 批阅任务状态与结果</li>
+<li>POST <code>/api/v1/grading/&#123;sessionId&#125;/manual</code> — 教师提交人工阅卷分数与评语</li>
+</ul>
+<h2 id="成绩与统计"><a href="#成绩与统计" class="headerlink" title="成绩与统计"></a>成绩与统计</h2><ul>
+<li>GET <code>/api/v1/exams/&#123;id&#125;/results</code> — 本次考试成绩列表（分页、可导出）</li>
+<li>GET <code>/api/v1/exams/&#123;id&#125;/results/export?scope=class|grade|all&amp;classId=xxx</code> — 导出 Excel</li>
+<li>GET <code>/api/v1/students/&#123;studentId&#125;/scores</code> — 学生成绩历史</li>
+<li>GET <code>/api/v1/exams/&#123;id&#125;/analysis</code> — 分数分布、易错题、题目命中率</li>
+</ul>
+<h2 id="文件-上传任务"><a href="#文件-上传任务" class="headerlink" title="文件&#x2F;上传任务"></a>文件&#x2F;上传任务</h2><ul>
+<li>GET <code>/api/v1/imports/&#123;jobId&#125;/status</code> — 查询导入任务状态</li>
+<li>GET <code>/api/v1/files/&#123;fileId&#125;</code> — 下载&#x2F;查看上传文件</li>
+</ul>
+<hr>
+<h1 id="六、关键设计-实现细节与建议"><a href="#六、关键设计-实现细节与建议" class="headerlink" title="六、关键设计&#x2F;实现细节与建议"></a>六、关键设计&#x2F;实现细节与建议</h1><ol>
+<li><p><strong>鉴权设计</strong>：采用 JWT 做前后端分离鉴权；后端接口统一校验 token 与权限点（注解 + 方法拦截）。管理员可在后台分配权限点到角色。</p>
+</li>
+<li><p><strong>批量导入实现</strong>：</p>
+<ul>
+<li>前端上传文件 -&gt; 后端保存到临时存储 -&gt; 入库由异步任务消费（RabbitMQ 或 Spring Async）</li>
+<li>导入过程中记录校验错误并生成错误报告供管理员下载</li>
+<li>对大文件支持分片上传（若需要）</li>
+</ul>
+</li>
+<li><p><strong>考试实时性与防作弊</strong>：</p>
+<ul>
+<li>考试期间采用 WebSocket&#x2F;Server-Sent Events 保持客户端与服务端心跳，用于检测断线、同步倒计时</li>
+<li>保存客户端答题快照（防止断线丢失）</li>
+<li>可选：限制 IP、禁止复制粘贴、截图检测（浏览器插件限制）、监考端记录异常行为</li>
+</ul>
+</li>
+<li><p><strong>自动批阅（本地大模型）</strong>：</p>
+<ul>
+<li><p>仅用于客观题与较短的填空题。流程示例：</p>
+<ol>
+<li>后端将待批问题与标准答案、评分规则拼装为 prompt。</li>
+<li>将 student answer 发送给本地 LLM 推理服务，模型返回打分与置信度说明。</li>
+<li>若置信度 &gt;&#x3D; 阈值（可配置），自动采用模型分数；否则标记为人工复核。</li>
+</ol>
+</li>
+<li><p>对填空题，先做 tokenizer&#x2F;简单归一化（大小写&#x2F;全半角&#x2F;数字格式），再送模型判断相似度。可使用向量相似度（Faiss）提高判断准确性。</p>
+</li>
+<li><p>结果应该保存为 <code>grading_job</code> 与 <code>student_answer</code> 的 score_awarded 字段，并保留模型返回的 <code>result_summary</code>。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>并发与扩展性</strong>：</p>
+<ul>
+<li>使用 Redis 做分布式锁和缓存考试临时状态</li>
+<li>批阅任务与数据统计做异步队列，避免写堵塞主请求线程</li>
+</ul>
+</li>
+<li><p><strong>导出表格</strong>：</p>
+<ul>
+<li>后端生成 Excel（使用 Apache POI 或 easyexcel），支持导出字段模板选择、按班级&#x2F;年级聚合</li>
+<li>若数据量大，可先生成异步导出任务并返回下载链接</li>
+</ul>
+</li>
+<li><p><strong>数据权限</strong>：</p>
+<ul>
+<li>角色细化：例如教师只能查看自己任课班级的学生成绩；领导可查看所在部门&#x2F;年级范围</li>
+<li>SQL 层&#x2F;服务层加入数据权限过滤</li>
+</ul>
+</li>
+<li><p><strong>日志审计</strong>：记录关键操作：试卷发布、分数变更、导入任务、登录异常等</p>
+</li>
+</ol>
+<hr>
+<h1 id="七、开发里程碑（建议的迭代顺序）"><a href="#七、开发里程碑（建议的迭代顺序）" class="headerlink" title="七、开发里程碑（建议的迭代顺序）"></a>七、开发里程碑（建议的迭代顺序）</h1><ol>
+<li>项目初始化：代码仓库、基本框架、用户鉴权、数据库连接、基本 CRUD 框架</li>
+<li>用户&#x2F;角色&#x2F;权限模块 + 管理后台基础页面</li>
+<li>学生&#x2F;班级管理 + 批量学生导入</li>
+<li>题库基本 CRUD + 题目导入&#x2F;校验</li>
+<li>组卷、考试流程（发布&#x2F;考试&#x2F;提交&#x2F;保存答题快照）</li>
+<li>基本自动评分（客观题）与成绩保存</li>
+<li>教师阅卷界面（主观题人工评阅）</li>
+<li>LLM 批阅集成（本地推理服务） + 异常复核流程</li>
+<li>成绩统计&#x2F;导出&#x2F;排名&#x2F;分析功能</li>
+<li>日志&#x2F;监控&#x2F;性能优化&#x2F;安全审计</li>
+</ol>
+<hr>
+<h1 id="八、测试策略"><a href="#八、测试策略" class="headerlink" title="八、测试策略"></a>八、测试策略</h1><ul>
+<li>单元测试：Service 层、工具类、校验逻辑</li>
+<li>集成测试：Controller -&gt; Service -&gt; DB 流程（可用 Testcontainers）</li>
+<li>E2E 测试：使用 Playwright 或 Cypress 测试关键用户流程（学生考试、教师阅卷）</li>
+<li>压力测试：模拟并发考试场景（大量学生同时提交）</li>
+</ul>
+<hr>
+<h1 id="九、可选增强项（未来迭代）"><a href="#九、可选增强项（未来迭代）" class="headerlink" title="九、可选增强项（未来迭代）"></a>九、可选增强项（未来迭代）</h1><ul>
+<li>题目智能解析：OCR 识别试题导入纸质题</li>
+<li>更复杂的防作弊（视频监考、行为分析）</li>
+<li>AI 生成试题&#x2F;组卷（基于 LLM 自动出题）</li>
+<li>移动端原生 App 或 PWA 支持</li>
+</ul>
+<hr>
+<h1 id="十、交付物（建议）"><a href="#十、交付物（建议）" class="headerlink" title="十、交付物（建议）"></a>十、交付物（建议）</h1><ul>
+<li>源代码仓库（后端、前端、部署脚本）</li>
+<li>数据库建表 SQL 脚本与 ER 图</li>
+<li>API 文档（OpenAPI&#x2F;Swagger）</li>
+<li>部署文档（Docker Compose &#x2F; Kubernetes YAML）</li>
+<li>测试报告与导出示例数据</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://github.com/Cherises/">Leonardo</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://cherises.github.io/post/38256/">https://cherises.github.io/post/38256/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://github.com/Cherises/">Leonardo</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="https://raw.githubusercontent.com/Cherises/Blog-Resource-2/refs/heads/main/photos/genshin/emoj/529.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/actor-1.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Leonardo</div><div class="author-info-description">Focus on thinking, imagination, reasoning, truth-seeking, and pragmatism</div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">104</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">143</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">23</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Cherises/"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E5%90%8D%E7%A7%B0"><span class="toc-number">1.</span> <span class="toc-text">项目名称</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E9%A1%B9%E7%9B%AE%E6%A6%82%E8%BF%B0"><span class="toc-number">2.</span> <span class="toc-text">一、项目概述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%B8%BB%E8%A6%81%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97%EF%BC%88%E9%AB%98%E5%B1%82%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">二、主要功能模块（高层）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%8A%80%E6%9C%AF%E6%A0%88%E6%8E%A8%E8%8D%90"><span class="toc-number">4.</span> <span class="toc-text">三、技术栈推荐</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1%EF%BC%88%E6%A0%B8%E5%BF%83%E8%A1%A8%EF%BC%8C%E5%90%AB%E5%AD%97%E6%AE%B5%E5%8F%8A%E8%AF%B4%E6%98%8E%EF%BC%89"><span class="toc-number">5.</span> <span class="toc-text">四、数据库设计（核心表，含字段及说明）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-users%EF%BC%88%E7%B3%BB%E7%BB%9F%E7%94%A8%E6%88%B7%EF%BC%89"><span class="toc-number">5.1.</span> <span class="toc-text">1. users（系统用户）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-roles%EF%BC%88%E8%A7%92%E8%89%B2%EF%BC%89"><span class="toc-number">5.2.</span> <span class="toc-text">2. roles（角色）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-permissions%EF%BC%88%E6%9D%83%E9%99%90%E7%82%B9%EF%BC%89"><span class="toc-number">5.3.</span> <span class="toc-text">3. permissions（权限点）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-role-permission%EF%BC%88%E8%A7%92%E8%89%B2-%E6%9D%83%E9%99%90%E5%85%B3%E8%81%94%EF%BC%89"><span class="toc-number">5.4.</span> <span class="toc-text">4. role_permission（角色-权限关联）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-user-role%EF%BC%88%E7%94%A8%E6%88%B7-%E8%A7%92%E8%89%B2%E5%A4%9A%E5%AF%B9%E5%A4%9A%EF%BC%8C%E5%8F%AF%E9%80%89%EF%BC%89"><span class="toc-number">5.5.</span> <span class="toc-text">5. user_role（用户-角色多对多，可选）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-students%EF%BC%88%E5%AD%A6%E7%94%9F%E4%BF%A1%E6%81%AF%EF%BC%89"><span class="toc-number">5.6.</span> <span class="toc-text">6. students（学生信息）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-classes%EF%BC%88%E7%8F%AD%E7%BA%A7%EF%BC%89"><span class="toc-number">5.7.</span> <span class="toc-text">7. classes（班级）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-teachers%EF%BC%88%E6%95%99%E5%B8%88%E4%BF%A1%E6%81%AF%EF%BC%8C%E5%8F%AF%E5%90%88%E5%B9%B6-users-%E8%A1%A8%E5%B9%B6%E5%8A%A0-role%EF%BC%89"><span class="toc-number">5.8.</span> <span class="toc-text">8. teachers（教师信息，可合并 users 表并加 role）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-departments%EF%BC%88%E7%BB%84%E7%BB%87-%E9%A2%86%E5%AF%BC%E9%83%A8%E9%97%A8%EF%BC%89"><span class="toc-number">5.9.</span> <span class="toc-text">9. departments（组织&#x2F;领导部门）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-subjects%EF%BC%88%E7%A7%91%E7%9B%AE%EF%BC%89"><span class="toc-number">5.10.</span> <span class="toc-text">10. subjects（科目）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-question-bank%EF%BC%88%E9%A2%98%E5%BA%93%E4%B8%BB%E8%A1%A8-%E9%A2%98%E7%9B%AE%E8%A1%A8%EF%BC%89"><span class="toc-number">5.11.</span> <span class="toc-text">11. question_bank（题库主表&#x2F;题目表）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-question-import-job%EF%BC%88%E9%A2%98%E5%BA%93%E5%AF%BC%E5%85%A5%E4%BB%BB%E5%8A%A1%EF%BC%89"><span class="toc-number">5.12.</span> <span class="toc-text">12. question_import_job（题库导入任务）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-exam-paper%EF%BC%88%E8%AF%95%E5%8D%B7%E6%A8%A1%E6%9D%BF-%E8%80%83%E6%AC%A1%EF%BC%89"><span class="toc-number">5.13.</span> <span class="toc-text">13. exam_paper（试卷模板&#x2F;考次）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-exam-paper-question%EF%BC%88%E8%AF%95%E5%8D%B7-%E9%A2%98%E7%9B%AE%E5%85%B3%E8%81%94%EF%BC%89"><span class="toc-number">5.14.</span> <span class="toc-text">14. exam_paper_question（试卷-题目关联）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15-exam-session%EF%BC%88%E5%AD%A6%E7%94%9F%E5%8F%82%E5%8A%A0%E7%9A%84%E8%80%83%E8%AF%95%E8%AE%B0%E5%BD%95-%E7%AD%94%E5%8D%B7%E5%AE%9E%E4%BE%8B%EF%BC%89"><span class="toc-number">5.15.</span> <span class="toc-text">15. exam_session（学生参加的考试记录&#x2F;答卷实例）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16-student-answer%EF%BC%88%E5%AD%A6%E7%94%9F%E7%AD%94%E6%A1%88%EF%BC%89"><span class="toc-number">5.16.</span> <span class="toc-text">16. student_answer（学生答案）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-grading-job%EF%BC%88%E5%BC%82%E6%AD%A5%E6%89%B9%E9%98%85%E4%BB%BB%E5%8A%A1%EF%BC%89"><span class="toc-number">5.17.</span> <span class="toc-text">17. grading_job（异步批阅任务）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#18-score-snapshot%EF%BC%88%E7%94%A8%E4%BA%8E%E5%BF%AB%E9%80%9F%E7%BB%9F%E8%AE%A1%E7%9A%84%E6%88%90%E7%BB%A9%E5%BF%AB%E7%85%A7%E8%A1%A8%EF%BC%8C%E6%8C%89%E7%8F%AD-%E5%B9%B4%E7%BA%A7%EF%BC%89"><span class="toc-number">5.18.</span> <span class="toc-text">18. score_snapshot（用于快速统计的成绩快照表，按班&#x2F;年级）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#19-upload-jobs%EF%BC%88%E9%80%9A%E7%94%A8%E6%89%B9%E9%87%8F%E4%B8%8A%E4%BC%A0%E4%BB%BB%E5%8A%A1%E8%A1%A8%EF%BC%89"><span class="toc-number">5.19.</span> <span class="toc-text">19. upload_jobs（通用批量上传任务表）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81API-%E6%8E%A5%E5%8F%A3%E5%88%97%E8%A1%A8%EF%BC%88%E6%8C%89%E6%A8%A1%E5%9D%97%E5%88%97%E5%87%BA%E4%B8%BB%E8%A6%81%E6%8E%A5%E5%8F%A3%EF%BC%8C%E7%A4%BA%E4%BE%8B%E8%AF%B7%E6%B1%82-%E5%93%8D%E5%BA%94%E8%A6%81%E7%82%B9%EF%BC%89"><span class="toc-number">6.</span> <span class="toc-text">五、API 接口列表（按模块列出主要接口，示例请求&#x2F;响应要点）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%89%B4%E6%9D%83%E4%B8%8E%E7%94%A8%E6%88%B7"><span class="toc-number">6.1.</span> <span class="toc-text">鉴权与用户</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%92%E8%89%B2%E4%B8%8E%E6%9D%83%E9%99%90"><span class="toc-number">6.2.</span> <span class="toc-text">角色与权限</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%A6%E7%94%9F%E4%B8%8E%E7%8F%AD%E7%BA%A7%E7%AE%A1%E7%90%86"><span class="toc-number">6.3.</span> <span class="toc-text">学生与班级管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E5%BA%93%E7%AE%A1%E7%90%86"><span class="toc-number">6.4.</span> <span class="toc-text">题库管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%84%E5%8D%B7%E4%B8%8E%E8%80%83%E8%AF%95%E5%8F%91%E5%B8%83"><span class="toc-number">6.5.</span> <span class="toc-text">组卷与考试发布</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%A6%E7%94%9F%E8%80%83%E8%AF%95%E6%B5%81%E7%A8%8B"><span class="toc-number">6.6.</span> <span class="toc-text">学生考试流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AD%94%E6%A1%88%E4%B8%8E%E9%98%85%E5%8D%B7"><span class="toc-number">6.7.</span> <span class="toc-text">答案与阅卷</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%90%E7%BB%A9%E4%B8%8E%E7%BB%9F%E8%AE%A1"><span class="toc-number">6.8.</span> <span class="toc-text">成绩与统计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6-%E4%B8%8A%E4%BC%A0%E4%BB%BB%E5%8A%A1"><span class="toc-number">6.9.</span> <span class="toc-text">文件&#x2F;上传任务</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E5%85%B3%E9%94%AE%E8%AE%BE%E8%AE%A1-%E5%AE%9E%E7%8E%B0%E7%BB%86%E8%8A%82%E4%B8%8E%E5%BB%BA%E8%AE%AE"><span class="toc-number">7.</span> <span class="toc-text">六、关键设计&#x2F;实现细节与建议</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E5%BC%80%E5%8F%91%E9%87%8C%E7%A8%8B%E7%A2%91%EF%BC%88%E5%BB%BA%E8%AE%AE%E7%9A%84%E8%BF%AD%E4%BB%A3%E9%A1%BA%E5%BA%8F%EF%BC%89"><span class="toc-number">8.</span> <span class="toc-text">七、开发里程碑（建议的迭代顺序）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E6%B5%8B%E8%AF%95%E7%AD%96%E7%95%A5"><span class="toc-number">9.</span> <span class="toc-text">八、测试策略</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B9%9D%E3%80%81%E5%8F%AF%E9%80%89%E5%A2%9E%E5%BC%BA%E9%A1%B9%EF%BC%88%E6%9C%AA%E6%9D%A5%E8%BF%AD%E4%BB%A3%EF%BC%89"><span class="toc-number">10.</span> <span class="toc-text">九、可选增强项（未来迭代）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%81%E3%80%81%E4%BA%A4%E4%BB%98%E7%89%A9%EF%BC%88%E5%BB%BA%E8%AE%AE%EF%BC%89"><span class="toc-number">11.</span> <span class="toc-text">十、交付物（建议）</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/37181/" title="获取新闻列表并调用大模型总结"><img src="https://raw.githubusercontent.com/Cherises/Blog-Resource-2/refs/heads/main/photos/genshin/emoj/195.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="获取新闻列表并调用大模型总结"/></a><div class="content"><a class="title" href="/post/37181/" title="获取新闻列表并调用大模型总结">获取新闻列表并调用大模型总结</a><time datetime="2025-11-16T17:20:17.000Z" title="Created 2025-11-16 17:20:17">2025-11-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/42087/" title="2025年11月16日网易新闻总结"><img src="https://raw.githubusercontent.com/Cherises/Blog-Resource-2/refs/heads/main/photos/genshin/emoj/596.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2025年11月16日网易新闻总结"/></a><div class="content"><a class="title" href="/post/42087/" title="2025年11月16日网易新闻总结">2025年11月16日网易新闻总结</a><time datetime="2025-11-16T12:00:35.000Z" title="Created 2025-11-16 12:00:35">2025-11-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/61362/" title="2025年11月14日"><img src="https://raw.githubusercontent.com/Cherises/Blog-Resource-2/refs/heads/main/photos/genshin/emoj/51.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2025年11月14日"/></a><div class="content"><a class="title" href="/post/61362/" title="2025年11月14日">2025年11月14日</a><time datetime="2025-11-14T17:51:59.000Z" title="Created 2025-11-14 17:51:59">2025-11-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/2522/" title="第一个微调训练模型"><img src="https://raw.githubusercontent.com/Cherises/Blog-Resource-2/refs/heads/main/photos/genshin/emoj/168.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第一个微调训练模型"/></a><div class="content"><a class="title" href="/post/2522/" title="第一个微调训练模型">第一个微调训练模型</a><time datetime="2025-11-12T20:15:08.000Z" title="Created 2025-11-12 20:15:08">2025-11-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/26464/" title="关于搭建本地知识库的可行性分析"><img src="https://raw.githubusercontent.com/Cherises/Blog-Resource-2/refs/heads/main/photos/genshin/emoj/709.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="关于搭建本地知识库的可行性分析"/></a><div class="content"><a class="title" href="/post/26464/" title="关于搭建本地知识库的可行性分析">关于搭建本地知识库的可行性分析</a><time datetime="2025-11-12T10:24:12.000Z" title="Created 2025-11-12 10:24:12">2025-11-12</time></div></div></div></div></div></div></main><footer id="footer" style="background: transparent;"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2021 - 2025 By Leonardo</span><span class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"></div><script src="/js/scroll-disable-blur.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
+      }
+    }
+  }
+
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
+
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      const usePjax = true
+      false
+        ? (usePjax ? pjax.loadUrl('/404.html') : window.location.href = '/404.html')
+        : window.location.href = e.request.responseURL
+    }
+  })
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章🔍" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

@@ -1,0 +1,323 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>一次性搞清楚chatGPT | Leo's Digital Genesis</title><meta name="author" content="Leonardo"><meta name="copyright" content="Leonardo"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="备选标题  1. 《一口气搞清楚ChatGPT：从图灵测试到AI巨头战争，你需要知道的一切底层逻辑》  2. 《颠覆世界的聊天机器人：ChatGPT爆火背后的技术演进、商业秘密与失业警报》  3. 《为什么是ChatGPT？AI语言模型背后的三次技术飞跃与微软谷歌的生死对决》     博客正文：一口气搞清楚ChatGPT：从图灵测试到AI巨头战争，你需要知道的一切底层逻辑 引言：一夜之间，所有人都">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一次性搞清楚chatGPT">
+<meta property="og:url" content="https://cherises.github.io/post/19149/index.html">
+<meta property="og:site_name" content="Leo&#39;s Digital Genesis">
+<meta property="og:description" content="备选标题  1. 《一口气搞清楚ChatGPT：从图灵测试到AI巨头战争，你需要知道的一切底层逻辑》  2. 《颠覆世界的聊天机器人：ChatGPT爆火背后的技术演进、商业秘密与失业警报》  3. 《为什么是ChatGPT？AI语言模型背后的三次技术飞跃与微软谷歌的生死对决》     博客正文：一口气搞清楚ChatGPT：从图灵测试到AI巨头战争，你需要知道的一切底层逻辑 引言：一夜之间，所有人都">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/Cherises/Blog-Resource-2/refs/heads/main/photos/genshin/emoj/357.png">
+<meta property="article:published_time" content="2025-10-03T21:16:21.000Z">
+<meta property="article:modified_time" content="2025-10-19T08:29:52.620Z">
+<meta property="article:author" content="Leonardo">
+<meta property="article:tag" content="ChatGPT">
+<meta property="article:tag" content="人工智能">
+<meta property="article:tag" content="AI战争">
+<meta property="article:tag" content="谷歌微软">
+<meta property="article:tag" content="生成式AI">
+<meta property="article:tag" content="OpenAI">
+<meta property="article:tag" content="图灵测试">
+<meta property="article:tag" content="Transformer架构">
+<meta property="article:tag" content="未来职业">
+<meta property="article:tag" content="科技革命">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Cherises/Blog-Resource-2/refs/heads/main/photos/genshin/emoj/357.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "一次性搞清楚chatGPT",
+  "url": "https://cherises.github.io/post/19149/",
+  "image": "https://raw.githubusercontent.com/Cherises/Blog-Resource-2/refs/heads/main/photos/genshin/emoj/357.png",
+  "datePublished": "2025-10-03T21:16:21.000Z",
+  "dateModified": "2025-10-19T08:29:52.620Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Leonardo",
+      "url": "https://github.com/Cherises/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://cherises.github.io/post/19149/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":5,"unescape":false,"languages":{"hits_empty":"No results found for: ${query}","hits_stats":"${hits} articles found"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"You have switched to Traditional Chinese","cht_to_chs":"You have switched to Simplified Chinese","day_to_night":"You have switched to Dark Mode","night_to_day":"You have switched to Light Mode","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '一次性搞清楚chatGPT',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/admonition.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css"><meta name="generator" content="Hexo 7.3.0"></head><body><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+btf.addGlobalFn('pjaxSend', () => {
+  Pace.restart()
+}, 'pace_restart')
+
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg" style="background-image: url(/img/b1.webp);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/actor-1.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">104</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">143</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">23</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/Wujie/"><i class="fa-fw fas fa-globe"></i><span> WuJie</span></a></div><div class="menus_item"><a class="site-page" href="/Music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></div><div class="menus_item"><a class="site-page" href="/About/"><i class="fa-fw fas fa-user"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Leo's Digital Genesis</span></a><a class="nav-page-title" href="/"><span class="site-name">一次性搞清楚chatGPT</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  Back to Home</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/Wujie/"><i class="fa-fw fas fa-globe"></i><span> WuJie</span></a></div><div class="menus_item"><a class="site-page" href="/Music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></div><div class="menus_item"><a class="site-page" href="/About/"><i class="fa-fw fas fa-user"></i><span> About</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">一次性搞清楚chatGPT</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-10-03T21:16:21.000Z" title="Created 2025-10-03 21:16:21">2025-10-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-10-19T08:29:52.620Z" title="Updated 2025-10-19 08:29:52">2025-10-19</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/tech/">tech</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word Count:</span><span class="word-count">2.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading Time:</span><span>7mins</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="container post-content" id="article-container"><h2 id="备选标题"><a href="#备选标题" class="headerlink" title="备选标题"></a>备选标题</h2><ol>
+<li><strong>《一口气搞清楚ChatGPT：从图灵测试到AI巨头战争，你需要知道的一切底层逻辑》</strong></li>
+<li><strong>《颠覆世界的聊天机器人：ChatGPT爆火背后的技术演进、商业秘密与失业警报》</strong></li>
+<li><strong>《为什么是ChatGPT？AI语言模型背后的三次技术飞跃与微软谷歌的生死对决》</strong></li>
+</ol>
+<hr>
+<h2 id="博客正文：一口气搞清楚ChatGPT：从图灵测试到AI巨头战争，你需要知道的一切底层逻辑"><a href="#博客正文：一口气搞清楚ChatGPT：从图灵测试到AI巨头战争，你需要知道的一切底层逻辑" class="headerlink" title="博客正文：一口气搞清楚ChatGPT：从图灵测试到AI巨头战争，你需要知道的一切底层逻辑"></a>博客正文：一口气搞清楚ChatGPT：从图灵测试到AI巨头战争，你需要知道的一切底层逻辑</h2><h3 id="引言：一夜之间，所有人都患上了“AI焦虑症”"><a href="#引言：一夜之间，所有人都患上了“AI焦虑症”" class="headerlink" title="引言：一夜之间，所有人都患上了“AI焦虑症”"></a>引言：一夜之间，所有人都患上了“AI焦虑症”</h3><p>想象一下，你打开电脑，要求一个聊天机器人为你写一段视频脚本，它“哗哗哗”列出1、2、3、4、5、6、7点大纲，甚至能为你撰写初稿 。这不是科幻电影，这是<strong>ChatGPT</strong>带来的现实。</p>
+<p>在短短两个月内，<strong>ChatGPT</strong>的月活跃用户就突破了惊人的一亿大关。它能参加司法考试、拿下美国医学牌照 、撰写代码、甚至写小说 。它的出现，不仅震撼了我们对<strong>聊天机器人</strong>的认知，更让整个科技界和资本圈陷入一种狂热与焦虑并存的状态 。为什么是它？为什么是现在？本文将串联起<strong>ChatGPT</strong>背后的历史碎片、技术演进、以及它引发的商业战争，带你彻底搞清楚这个正在颠覆世界的AI模型。</p>
+<hr>
+<h3 id="核心观点总结：ChatGPT爆火的三个关键"><a href="#核心观点总结：ChatGPT爆火的三个关键" class="headerlink" title="核心观点总结：ChatGPT爆火的三个关键"></a>核心观点总结：ChatGPT爆火的三个关键</h3><p><strong>ChatGPT</strong>的横空出世，绝非偶然。它是人工智能历史长河中，在技术、数据和资本三个要素达到临界点后的必然产物。</p>
+<ol>
+<li><strong>AI历史的里程碑：轻松通过“图灵测试”的聊天机器人。</strong><br>从1950年图灵提出“模仿游戏”（即图灵测试） ，到1966年的Eliza 、1995年的ALICE ，再到2001年的SmarterChild ，早期的<strong>聊天机器人</strong>大多基于简单的<strong>模式匹配（Pattern Matching）<strong>和预设规则 。而</strong>ChatGPT</strong>作为半个世纪技术积累的成果，其语言表达和对话能力，已能<strong>轻轻松松通过图灵测试</strong>。</li>
+<li><strong>技术飞跃：Transformer架构的“任督二脉”。</strong><br>从<strong>模式匹配</strong>到<strong>机器学习</strong> ，再到2010年代<strong>人工神经网络（ANN）<strong>的崛起 ，<strong>AI语言模型</strong>的发展之路并不平坦。真正的突破发生在2017年，谷歌提出了</strong>Transformer</strong>这一革命性的学习框架。它解决了循环神经网络（RNN）无法同时处理大量文字和长文本的问题 ，如同打通了机器在文字学习方面的“任督二脉”，为GPT模型的诞生奠定了基石。</li>
+<li><strong>资本与算力的催化剂：OpenAI与微软的百亿联姻。</strong><br>有了强大的模型（Transformer），还需要<strong>海量的数据</strong>和<strong>强大的算力</strong> 。<strong>ChatGPT</strong>的母公司<strong>OpenAI</strong>（最初由马斯克、彼得·蒂尔等人于2015年注资成立的非营利组织）在资金压力下，于2019年转型为“收益封顶的盈利组织”。<strong>微软</strong>立即注资10亿美元，并为OpenAI建立了全球第五的超级计算机。这笔交易让GPT-3的参数量从GPT-2的15亿<strong>暴增100倍</strong>，达到惊人的<strong>1750亿</strong>，从而实现了效果上的质变。</li>
+</ol>
+<hr>
+<h3 id="详细阐述：AI语言模型的三代进化史"><a href="#详细阐述：AI语言模型的三代进化史" class="headerlink" title="详细阐述：AI语言模型的三代进化史"></a>详细阐述：AI语言模型的三代进化史</h3><p><strong>ChatGPT</strong>的进化路径可以清晰地分为三个代际：</p>
+<h4 id="1-模式匹配时代：Eliza与ALICE"><a href="#1-模式匹配时代：Eliza与ALICE" class="headerlink" title="1. 模式匹配时代：Eliza与ALICE"></a>1. 模式匹配时代：Eliza与ALICE</h4><p>这一代机器人的核心是“小聪明”，即<strong>Pattern Matching（模式匹配）</strong> 。</p>
+<ul>
+<li><strong>代表：</strong> 1966年的<strong>Eliza</strong>（心理治疗师设定）和1995年的<strong>ALICE</strong> [cite: 5, 6]。</li>
+<li><strong>工作原理：</strong> 开发者为它预设关键词和对应的回复模板 。例如，一听到“mother（妈妈）”，它就回复“跟我说说你的家庭” 。</li>
+<li><strong>局限：</strong> 规则再复杂，也<strong>不可能穷尽所有答案</strong>，更<strong>不可能创造新的答案</strong> 。今天的客服机器人、银行机器人，很多仍在使用这种模式 。</li>
+</ul>
+<h4 id="2-机器学习时代：SmarterChild与人工神经网络"><a href="#2-机器学习时代：SmarterChild与人工神经网络" class="headerlink" title="2. 机器学习时代：SmarterChild与人工神经网络"></a>2. 机器学习时代：SmarterChild与人工神经网络</h4><p>随着数据量的爆炸式增长，<strong>机器学习</strong>流派开始崭露头角。基本理念是：不给机器预设规则，而是给它<strong>大量例子让它自己去学习和找规律</strong> 。</p>
+<ul>
+<li><strong>代表：</strong> 2001年火出圈的<strong>SmarterChild</strong>，它首次将机器学习应用于聊天，并横扫了AOL、Yahoo等聊天平台 [cite: 9, 10]。</li>
+<li><strong>技术核心：</strong> <strong>人工神经网络（ANN）</strong> 。它模拟人脑中神经元通过网状链接判断信息的方式 [cite: 11, 12]。互联网时代提供了<strong>数据</strong>，算力的指数级提升提供了<strong>支撑</strong>，才让神经网络真正应用起来 [cite: 12, 13]。</li>
+</ul>
+<h4 id="3-Transformer与RLHF时代：GPT系列"><a href="#3-Transformer与RLHF时代：GPT系列" class="headerlink" title="3. Transformer与RLHF时代：GPT系列"></a>3. Transformer与RLHF时代：GPT系列</h4><p>这一代标志着AI语言模型的成熟。</p>
+<ul>
+<li><strong>Transformer架构（T）：</strong> 谷歌2017年的论文提出了这一框架，它让机器可以<strong>同时学习大量的文字</strong>，而不是像电路串联一样挨个学习。<strong>BERT</strong>和<strong>ChatGPT</strong>中的“T”都指代它。</li>
+<li><strong>GPT系列与参数爆炸：</strong> OpenAI在Transformer基础上推出了<strong>GPT模型</strong>。随着微软的巨额注资和算力支持，GPT-3的参数量达到<strong>1750亿</strong>。</li>
+<li><strong>人工反馈的强化学习（RLHF）：</strong> 纯机器训练出的GPT-3在回答质量上有时不够稳定。为解决此问题，OpenAI加入了<strong>人工反馈的机制</strong>，让人类告诉模型“你聊得好还是不好”。这极大地提升了训练效率和效果，并最终在2022年11月推出了<strong>ChatGPT</strong>。</li>
+</ul>
+<hr>
+<h3 id="实用技巧：理解ChatGPT的工作机制与局限"><a href="#实用技巧：理解ChatGPT的工作机制与局限" class="headerlink" title="实用技巧：理解ChatGPT的工作机制与局限"></a>实用技巧：理解ChatGPT的工作机制与局限</h3><p>想更好地利用<strong>ChatGPT</strong>，必须理解它的本质：一个<strong>强大的语言模型</strong>。</p>
+<h4 id="ChatGPT的工作本质"><a href="#ChatGPT的工作本质" class="headerlink" title="ChatGPT的工作本质"></a>ChatGPT的工作本质</h4><ul>
+<li><strong>仅是概率计算：</strong> <strong>ChatGPT</strong>的本质是计算“下一个词、下一句话该出现什么”的<strong>概率问题</strong>。它通过海量数据训练，形成了一个庞大的神经网络，从而总结出“编程该这么写”“视频脚本该长这样”的<strong>相关性规律</strong>。</li>
+<li><strong>强大的沟通接口：</strong> <strong>ChatGPT</strong>最神奇之处不在于执行任务，而在于它能<strong>准确理解你的问题和语境</strong>，然后从数据库中提炼信息，并用<strong>人话</strong>（文字）反馈给你。它极大地提升了人类与机器的<strong>沟通效率</strong>。</li>
+</ul>
+<h4 id="ChatGPT的局限与“弱智错误”"><a href="#ChatGPT的局限与“弱智错误”" class="headerlink" title="ChatGPT的局限与“弱智错误”"></a>ChatGPT的局限与“弱智错误”</h4><ul>
+<li><strong>缺乏理解：</strong> 至少在目前版本，<strong>ChatGPT****完全不懂</strong>它自己在说什么。它就像一个记忆力极好的小孩在模仿大人说话，但缺乏真正的逻辑和认知。</li>
+<li><strong>逻辑错误与编造：</strong> 正因为其本质是语言模型，它会犯一些我们看起来<strong>非常弱智的逻辑性错误</strong>（如加减乘除），也经常出现<strong>大量编造答案的情况</strong>（即“胡说八道”或“幻觉”）。</li>
+<li><strong>信息滞后：</strong> <strong>ChatGPT</strong>的训练数据只截止到2021年。它不知道最近发生的事情。这也是为什么微软要将它与<strong>Bing搜索引擎</strong>结合（Copilot for the Web），用Bing来获取实时信息。</li>
+</ul>
+<hr>
+<h3 id="AI巨头战争：谷歌微软的生死对决"><a href="#AI巨头战争：谷歌微软的生死对决" class="headerlink" title="AI巨头战争：谷歌微软的生死对决"></a>AI巨头战争：谷歌微软的生死对决</h3><p><strong>ChatGPT</strong>的出现，对科技巨头<strong>谷歌</strong>构成了直接威胁，因为它撼动了谷歌最大的蛋糕——<strong>搜索业务</strong>。</p>
+<table>
+<thead>
+<tr>
+<th align="left">巨头</th>
+<th align="left">策略与行动</th>
+<th align="left">优势与劣势</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>微软</strong></td>
+<td align="left"><strong>激进投资与整合</strong>。宣布再注资<strong>100亿美元</strong>给OpenAI，并将<strong>ChatGPT</strong>融入<strong>Bing搜索引擎</strong>（Copilot for the Web），用AI聊天功能来撬动谷歌垄断的搜索市场。</td>
+<td align="left"><strong>优势：</strong> 先发优势、敢于砸钱（每年运行成本高达100万美元）、市场营销满分。<strong>劣势：</strong> 需要与OpenAI分成利润。</td>
+</tr>
+<tr>
+<td align="left"><strong>谷歌</strong></td>
+<td align="left"><strong>“Code Red”（红色预警）与仓促应对</strong>。谷歌在AI领域技术领先（Transformer的开发者），拥有更先进的对话机器人<strong>LaMDA</strong>。但在微软的舆论压力下，仓促推出了基于LaMDA开发的对话服务<strong>Bard</strong>。</td>
+<td align="left"><strong>优势：</strong> AI技术储备雄厚，LaMDA更专注于自然对话和情感表达。<strong>劣势：</strong> 担心AI胡说八道损坏<strong>搜索业务的严谨名誉</strong>；行动迟缓，Bard发布会上出现了<strong>事实性错误</strong>，导致市值蒸发1000亿美元。</td>
+</tr>
+</tbody></table>
+<p>这场AI战争才刚打响，但从第一回合来看，微软的准备充分和高调宣传，让谷歌吃了大亏。</p>
+<hr>
+<h3 id="总结与个人见解：如何利用AI，避免被“套路性工作”取代？"><a href="#总结与个人见解：如何利用AI，避免被“套路性工作”取代？" class="headerlink" title="总结与个人见解：如何利用AI，避免被“套路性工作”取代？"></a>总结与个人见解：如何利用AI，避免被“套路性工作”取代？</h3><h3 id="避免失业的生存指南"><a href="#避免失业的生存指南" class="headerlink" title="避免失业的生存指南"></a>避免失业的生存指南</h3><p>技术革新是一把双刃剑。短期内，<strong>ChatGPT</strong>肯定会导致一部分人失业，特别是从事<strong>套路性工作</strong>的人。</p>
+<p><strong>套路性工作</strong>指的是那些“你熟练之后闭着眼睛都能干”的工作，因为它背后有固定的模式（Pattern）。</p>
+<ul>
+<li><strong>例子：</strong> 编写有固定模式的童话故事、写大量网文、撰写基本的财务报告或法律建议。</li>
+<li><strong>我们的对策：</strong> 我们应该尽可能<strong>避免</strong>让自己陷入这种套路性的、可被机器总结规律的工作中。相反，要学会利用AI工具<strong>提高自己的生产力</strong>。<strong>AI不会取代人，但会利用AI的人会取代不会利用AI的人。</strong></li>
+</ul>
+<h3 id="潘多拉魔盒的开启"><a href="#潘多拉魔盒的开启" class="headerlink" title="潘多拉魔盒的开启"></a>潘多拉魔盒的开启</h3><p><strong>ChatGPT</strong>带来的颠覆性冲击，远不止于失业。它对<strong>教育体系</strong>（九成美国学生用它写作业）、<strong>法律伦理</strong>（AI生成内容的版权）、乃至<strong>社会秩序</strong>都带来了巨大挑战。我们就像突然拥有了“飞车”的技术，但还没有一套完整的交通体系来规范它。</p>
+<p>我们正处于<strong>生成式AI</strong>（AIGC）井喷式发展的起点。AI团队最初也只是“摸着石头过河”，没有预料到它会如此强大。<strong>ChatGPT</strong>的诞生，标志着“潘多拉的魔盒”正在一点一点被打开。我们不仅要学习如何驾驭这股力量，更要思考如何在新体系建立之前，应对随之而来的混乱与挑战。</p>
+<hr>
+<h3 id="主题标签-Tags"><a href="#主题标签-Tags" class="headerlink" title="主题标签 (Tags)"></a>主题标签 (Tags)</h3><p>#ChatGPT #人工智能 #AI战争 #谷歌微软 #生成式AI #OpenAI #图灵测试 #Transformer架构 #未来职业 #科技革命</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://github.com/Cherises/">Leonardo</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://cherises.github.io/post/19149/">https://cherises.github.io/post/19149/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://github.com/Cherises/">Leonardo</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/ChatGPT/">ChatGPT</a><a class="post-meta__tags" href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">人工智能</a><a class="post-meta__tags" href="/tags/AI%E6%88%98%E4%BA%89/">AI战争</a><a class="post-meta__tags" href="/tags/%E8%B0%B7%E6%AD%8C%E5%BE%AE%E8%BD%AF/">谷歌微软</a><a class="post-meta__tags" href="/tags/%E7%94%9F%E6%88%90%E5%BC%8FAI/">生成式AI</a><a class="post-meta__tags" href="/tags/OpenAI/">OpenAI</a><a class="post-meta__tags" href="/tags/%E5%9B%BE%E7%81%B5%E6%B5%8B%E8%AF%95/">图灵测试</a><a class="post-meta__tags" href="/tags/Transformer%E6%9E%B6%E6%9E%84/">Transformer架构</a><a class="post-meta__tags" href="/tags/%E6%9C%AA%E6%9D%A5%E8%81%8C%E4%B8%9A/">未来职业</a><a class="post-meta__tags" href="/tags/%E7%A7%91%E6%8A%80%E9%9D%A9%E5%91%BD/">科技革命</a></div><div class="post-share"><div class="social-share" data-image="https://raw.githubusercontent.com/Cherises/Blog-Resource-2/refs/heads/main/photos/genshin/emoj/357.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/actor-1.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Leonardo</div><div class="author-info-description">Focus on thinking, imagination, reasoning, truth-seeking, and pragmatism</div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">104</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">143</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">23</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Cherises/"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%87%E9%80%89%E6%A0%87%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text">备选标题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%9A%E5%AE%A2%E6%AD%A3%E6%96%87%EF%BC%9A%E4%B8%80%E5%8F%A3%E6%B0%94%E6%90%9E%E6%B8%85%E6%A5%9AChatGPT%EF%BC%9A%E4%BB%8E%E5%9B%BE%E7%81%B5%E6%B5%8B%E8%AF%95%E5%88%B0AI%E5%B7%A8%E5%A4%B4%E6%88%98%E4%BA%89%EF%BC%8C%E4%BD%A0%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84%E4%B8%80%E5%88%87%E5%BA%95%E5%B1%82%E9%80%BB%E8%BE%91"><span class="toc-number">2.</span> <span class="toc-text">博客正文：一口气搞清楚ChatGPT：从图灵测试到AI巨头战争，你需要知道的一切底层逻辑</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E8%A8%80%EF%BC%9A%E4%B8%80%E5%A4%9C%E4%B9%8B%E9%97%B4%EF%BC%8C%E6%89%80%E6%9C%89%E4%BA%BA%E9%83%BD%E6%82%A3%E4%B8%8A%E4%BA%86%E2%80%9CAI%E7%84%A6%E8%99%91%E7%97%87%E2%80%9D"><span class="toc-number">2.1.</span> <span class="toc-text">引言：一夜之间，所有人都患上了“AI焦虑症”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E8%A7%82%E7%82%B9%E6%80%BB%E7%BB%93%EF%BC%9AChatGPT%E7%88%86%E7%81%AB%E7%9A%84%E4%B8%89%E4%B8%AA%E5%85%B3%E9%94%AE"><span class="toc-number">2.2.</span> <span class="toc-text">核心观点总结：ChatGPT爆火的三个关键</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%A6%E7%BB%86%E9%98%90%E8%BF%B0%EF%BC%9AAI%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%B8%89%E4%BB%A3%E8%BF%9B%E5%8C%96%E5%8F%B2"><span class="toc-number">2.3.</span> <span class="toc-text">详细阐述：AI语言模型的三代进化史</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D%E6%97%B6%E4%BB%A3%EF%BC%9AEliza%E4%B8%8EALICE"><span class="toc-number">2.3.1.</span> <span class="toc-text">1. 模式匹配时代：Eliza与ALICE</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%97%B6%E4%BB%A3%EF%BC%9ASmarterChild%E4%B8%8E%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="toc-number">2.3.2.</span> <span class="toc-text">2. 机器学习时代：SmarterChild与人工神经网络</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-Transformer%E4%B8%8ERLHF%E6%97%B6%E4%BB%A3%EF%BC%9AGPT%E7%B3%BB%E5%88%97"><span class="toc-number">2.3.3.</span> <span class="toc-text">3. Transformer与RLHF时代：GPT系列</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7%EF%BC%9A%E7%90%86%E8%A7%A3ChatGPT%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6%E4%B8%8E%E5%B1%80%E9%99%90"><span class="toc-number">2.4.</span> <span class="toc-text">实用技巧：理解ChatGPT的工作机制与局限</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ChatGPT%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%9C%AC%E8%B4%A8"><span class="toc-number">2.4.1.</span> <span class="toc-text">ChatGPT的工作本质</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ChatGPT%E7%9A%84%E5%B1%80%E9%99%90%E4%B8%8E%E2%80%9C%E5%BC%B1%E6%99%BA%E9%94%99%E8%AF%AF%E2%80%9D"><span class="toc-number">2.4.2.</span> <span class="toc-text">ChatGPT的局限与“弱智错误”</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AI%E5%B7%A8%E5%A4%B4%E6%88%98%E4%BA%89%EF%BC%9A%E8%B0%B7%E6%AD%8C%E5%BE%AE%E8%BD%AF%E7%9A%84%E7%94%9F%E6%AD%BB%E5%AF%B9%E5%86%B3"><span class="toc-number">2.5.</span> <span class="toc-text">AI巨头战争：谷歌微软的生死对决</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E4%B8%8E%E4%B8%AA%E4%BA%BA%E8%A7%81%E8%A7%A3%EF%BC%9A%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8AI%EF%BC%8C%E9%81%BF%E5%85%8D%E8%A2%AB%E2%80%9C%E5%A5%97%E8%B7%AF%E6%80%A7%E5%B7%A5%E4%BD%9C%E2%80%9D%E5%8F%96%E4%BB%A3%EF%BC%9F"><span class="toc-number">2.6.</span> <span class="toc-text">总结与个人见解：如何利用AI，避免被“套路性工作”取代？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%81%BF%E5%85%8D%E5%A4%B1%E4%B8%9A%E7%9A%84%E7%94%9F%E5%AD%98%E6%8C%87%E5%8D%97"><span class="toc-number">2.7.</span> <span class="toc-text">避免失业的生存指南</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BD%98%E5%A4%9A%E6%8B%89%E9%AD%94%E7%9B%92%E7%9A%84%E5%BC%80%E5%90%AF"><span class="toc-number">2.8.</span> <span class="toc-text">潘多拉魔盒的开启</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E9%A2%98%E6%A0%87%E7%AD%BE-Tags"><span class="toc-number">2.9.</span> <span class="toc-text">主题标签 (Tags)</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/37181/" title="获取新闻列表并调用大模型总结"><img src="https://raw.githubusercontent.com/Cherises/Blog-Resource-2/refs/heads/main/photos/genshin/emoj/195.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="获取新闻列表并调用大模型总结"/></a><div class="content"><a class="title" href="/post/37181/" title="获取新闻列表并调用大模型总结">获取新闻列表并调用大模型总结</a><time datetime="2025-11-16T17:20:17.000Z" title="Created 2025-11-16 17:20:17">2025-11-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/42087/" title="2025年11月16日网易新闻总结"><img src="https://raw.githubusercontent.com/Cherises/Blog-Resource-2/refs/heads/main/photos/genshin/emoj/596.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2025年11月16日网易新闻总结"/></a><div class="content"><a class="title" href="/post/42087/" title="2025年11月16日网易新闻总结">2025年11月16日网易新闻总结</a><time datetime="2025-11-16T12:00:35.000Z" title="Created 2025-11-16 12:00:35">2025-11-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/61362/" title="2025年11月14日"><img src="https://raw.githubusercontent.com/Cherises/Blog-Resource-2/refs/heads/main/photos/genshin/emoj/51.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2025年11月14日"/></a><div class="content"><a class="title" href="/post/61362/" title="2025年11月14日">2025年11月14日</a><time datetime="2025-11-14T17:51:59.000Z" title="Created 2025-11-14 17:51:59">2025-11-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/2522/" title="第一个微调训练模型"><img src="https://raw.githubusercontent.com/Cherises/Blog-Resource-2/refs/heads/main/photos/genshin/emoj/168.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第一个微调训练模型"/></a><div class="content"><a class="title" href="/post/2522/" title="第一个微调训练模型">第一个微调训练模型</a><time datetime="2025-11-12T20:15:08.000Z" title="Created 2025-11-12 20:15:08">2025-11-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/26464/" title="关于搭建本地知识库的可行性分析"><img src="https://raw.githubusercontent.com/Cherises/Blog-Resource-2/refs/heads/main/photos/genshin/emoj/709.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="关于搭建本地知识库的可行性分析"/></a><div class="content"><a class="title" href="/post/26464/" title="关于搭建本地知识库的可行性分析">关于搭建本地知识库的可行性分析</a><time datetime="2025-11-12T10:24:12.000Z" title="Created 2025-11-12 10:24:12">2025-11-12</time></div></div></div></div></div></div></main><footer id="footer" style="background: transparent;"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2021 - 2025 By Leonardo</span><span class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"></div><script src="/js/scroll-disable-blur.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
+      }
+    }
+  }
+
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
+
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      const usePjax = true
+      false
+        ? (usePjax ? pjax.loadUrl('/404.html') : window.location.href = '/404.html')
+        : window.location.href = e.request.responseURL
+    }
+  })
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章🔍" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

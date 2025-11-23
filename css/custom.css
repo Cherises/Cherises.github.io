@@ -1,0 +1,303 @@
+/* ===== 黑白灰极简透明主题 ===== */
+:root {
+  /* 亮色模式下（白底黑字） */
+  --font-color: #000000;
+  --text-highlight-color: #333333;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* 暗色模式下（黑底白字） */
+    --font-color: #ffffff;
+    --text-highlight-color: #dddddd;
+  }
+}
+
+/* 主体色系：黑底透明 + 白色文字 + 模糊玻璃风格 */
+
+/* ===== 全局布局加宽 ===== */
+@media screen and (min-width: 1200px) {
+  .layout { max-width: 95% !important; }
+}
+@media screen and (min-width: 1600px) {
+  .layout { max-width: 90% !important; }
+}
+
+/* ===== 主体背景透明 + 模糊 ===== */
+#recent-posts .recent-post-item,
+#post,
+.post-block,
+#page,
+#aside-content .card-widget,
+#footer,
+.search-dialog,
+.highlight-wrap,
+.category-list,
+.tag-list {
+  background: rgba(0, 0, 0, 0.35) !important;
+  backdrop-filter: blur(15px) saturate(160%);
+  -webkit-backdrop-filter: blur(15px) saturate(160%);
+  color: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* ===== 全局文字白色 ===== */
+#recent-posts .recent-post-item,
+#post,
+.post-block,
+#page,
+#aside-content .card-widget,
+.post-title,
+.post-meta,
+#nav .menu-item a,
+#site-name, 
+#site-title,
+#footer {
+  color: rgba(255, 255, 255, 0.95) !important;
+  /* text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6); */
+}
+
+/* ===== 内容与副标题 ===== */
+.post-content,
+.article-content,
+.entry-content,
+.markdown-body { color: rgba(255, 255, 255, 0.9) !important; }
+
+.post-meta,
+.article-meta,
+.post-description,
+.article-description { color: rgba(255, 255, 255, 0.75) !important; }
+
+/* ===== 边框柔化 ===== */
+#recent-posts .recent-post-item,
+#post,
+.post-block,
+#page,
+#aside-content .card-widget,
+.search-dialog {
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+/* ===== 按钮与分页 ===== */
+.button, .btn, .pagination .page-number, .pagination .extend {
+  background: rgba(0, 0, 0, 0.6) !important;
+  color: white !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.button:hover, .btn:hover, .pagination .page-number:hover {
+  background: rgba(255, 255, 255, 0.15) !important;
+  transform: translateY(-2px);
+}
+
+/* ===== 侧边栏 Follow Me 按钮玻璃风样式 ===== */
+#aside-content .card-info #card-info-btn {
+  display: block;
+  margin-top: 14px;
+  background: rgba(0, 0, 0, 0.25) !important;   /* 黑色半透明 */
+  color: rgba(255, 255, 255, 0.95) !important;  /* 柔和白字 */
+  text-align: center;
+  line-height: 2.4;
+  border-radius: 7px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px) saturate(160%);
+  -webkit-backdrop-filter: blur(10px) saturate(160%);
+  transition: all 0.3s ease;
+}
+
+/* ===== 悬停时发出柔光 ===== */
+#aside-content .card-info #card-info-btn:hover {
+  background: rgba(255, 255, 255, 0.15) !important;
+  color: #fff !important;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
+}
+
+/* ===== 相关文章卡片 ===== */
+#related-posts .relatedPosts-list > div {
+  background: rgba(0, 0, 0, 0.4) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+#related-posts .relatedPosts-list > div:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  transform: translateY(-3px);
+}
+
+/* ===== 标签云 ===== */
+/* #aside-content .card-tag-cloud a {
+  color: rgba(255, 255, 255, 0.9) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(6px);
+  border-radius: 6px;
+  padding: 4px 10px;
+  margin: 4px;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+#aside-content .card-tag-cloud a:hover {
+  background: rgba(255, 255, 255, 0.25) !important;
+  color: white !important;
+  transform: translateY(-2px);
+} */
+/* 恢复标签云彩色显示 */
+#aside-content .card-tag-cloud a {
+  color: #fff !important;
+  background: none !important;
+  border: none !important;
+  /* 根据标签名称生成彩色阴影（可选） */
+  transition: all 0.3s ease;
+}
+
+/* 使用 HSL 随机生成彩色 */
+#aside-content .card-tag-cloud a:nth-child(6n+1) { color: hsl(0, 100%, 75%) !important; }
+#aside-content .card-tag-cloud a:nth-child(6n+2) { color: hsl(30, 100%, 75%) !important; }
+#aside-content .card-tag-cloud a:nth-child(6n+3) { color: hsl(60, 100%, 75%) !important; }
+#aside-content .card-tag-cloud a:nth-child(6n+4) { color: hsl(120, 100%, 75%) !important; }
+#aside-content .card-tag-cloud a:nth-child(6n+5) { color: hsl(200, 100%, 75%) !important; }
+#aside-content .card-tag-cloud a:nth-child(6n+6) { color: hsl(280, 100%, 75%) !important; }
+
+/* 悬停时亮一点 */
+#aside-content .card-tag-cloud a:hover {
+  filter: brightness(1.4);
+  transform: scale(1.05);
+}
+
+
+
+
+/* ===== 顶部导航栏（保持不变，只调色） ===== */
+/* #page-header {
+  background: rgba(0, 0, 0, 0.3) !important;
+  backdrop-filter: blur(25px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.95) !important;
+} */
+
+
+/* 顶部导航栏 */
+#page-header {
+  /* background: rgba(0, 0, 0, 0.3) !important; */
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  box-shadow: 
+    0 6px 25px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  transition: all 0.3s ease;
+  z-index: 50;
+  color: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* 导航栏本体样式 */
+#nav {
+  /* background: transparent !important; */
+  background: rgba(0, 0, 0, 0.3) !important;
+  box-shadow: none !important;
+}
+
+/* 导航菜单样式 */
+#nav .menu-item a {
+  color: rgba(255, 255, 255, 0.95) !important;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  padding: 8px 16px;
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+}
+
+#nav .menu-item a:hover {
+  color: rgba(255, 211, 84, 0.95) !important;
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+#nav .menu-item.active a {
+  color: rgba(255, 211, 84, 0.95) !important;
+  background: rgba(255, 255, 255, 0.2);
+  border-bottom: 3px solid rgba(211, 84, 0, 0.8) !important;
+}
+
+/* 站点标题 */
+#site-name, #site-title {
+  color: rgba(255, 255, 255, 0.95) !important;
+  font-weight: 800;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+  font-size: 1.4em;
+}
+
+/* 移动端菜单按钮 */
+#nav-toggle {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.95);
+}
+
+
+/* ===== 页脚 ===== */
+#footer {
+  background: rgba(0, 0, 0, 0.4) !important;
+  backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* ===== 代码块 ===== */
+.highlight-wrap {
+  background: rgba(0, 0, 0, 0.45) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* ===== 搜索框 ===== */
+.search-dialog {
+  background: rgba(0, 0, 0, 0.6) !important;
+  backdrop-filter: blur(20px);
+  border-radius: 18px;
+}
+
+/* ===== 引用块 ===== */
+blockquote {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-left: 4px solid rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* ===== 链接颜色（白灰过渡） ===== */
+a { color: rgba(255, 255, 255, 0.85) !important; transition: color 0.3s ease; }
+a:hover { color: rgba(255, 255, 255, 1) !important; }
+
+/* ===== 文本选择颜色 ===== */
+::selection, ::-moz-selection {
+  background: rgba(255, 255, 255, 0.2) !important;
+  color: #fff !important;
+}
+
+/* ===== 轻微悬浮动画优化 ===== */
+#recent-posts .recent-post-item:hover,
+#aside-content .card-widget:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* 移动端优化 */
+@media (max-width: 768px) {
+  #recent-posts .recent-post-item,
+  #post,
+  #aside-content .card-widget {
+    backdrop-filter: blur(8px) !important;
+    background: rgba(0, 0, 0, 0.4) !important;
+  }
+}

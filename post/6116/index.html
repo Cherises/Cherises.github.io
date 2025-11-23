@@ -1,0 +1,654 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>常用浏览器对比 | Leo's Digital Genesis</title><meta name="author" content="Leonardo"><meta name="copyright" content="Leonardo"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="常见浏览器比较报告 — Chrome &#x2F; Brave &#x2F; Firefox &#x2F; Tor Browser（详尽对比：安全、隐私、易用性、目标用户等） 下面把四款常见浏览器按关键维度做系统性对比——并给出适用人群与实用建议。结论基于官方说明与近期权威综述（引用见文末）。我先给一个快速概览表，再逐项拆解重点与实操建议。  维度 &#x2F; 浏览器Google ChromeBraveMozilla FirefoxT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常用浏览器对比">
+<meta property="og:url" content="https://cherises.github.io/post/6116/index.html">
+<meta property="og:site_name" content="Leo&#39;s Digital Genesis">
+<meta property="og:description" content="常见浏览器比较报告 — Chrome &#x2F; Brave &#x2F; Firefox &#x2F; Tor Browser（详尽对比：安全、隐私、易用性、目标用户等） 下面把四款常见浏览器按关键维度做系统性对比——并给出适用人群与实用建议。结论基于官方说明与近期权威综述（引用见文末）。我先给一个快速概览表，再逐项拆解重点与实操建议。  维度 &#x2F; 浏览器Google ChromeBraveMozilla FirefoxT">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/Cherises/Blog-Resource-2/refs/heads/main/photos/genshin/emoj/105.png">
+<meta property="article:published_time" content="2025-10-12T15:07:44.000Z">
+<meta property="article:modified_time" content="2025-10-19T08:29:52.607Z">
+<meta property="article:author" content="Leonardo">
+<meta property="article:tag" content="浏览器">
+<meta property="article:tag" content="Chrome">
+<meta property="article:tag" content="Firefox">
+<meta property="article:tag" content="Brave">
+<meta property="article:tag" content="TorBrowser">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Cherises/Blog-Resource-2/refs/heads/main/photos/genshin/emoj/105.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "常用浏览器对比",
+  "url": "https://cherises.github.io/post/6116/",
+  "image": "https://raw.githubusercontent.com/Cherises/Blog-Resource-2/refs/heads/main/photos/genshin/emoj/105.png",
+  "datePublished": "2025-10-12T15:07:44.000Z",
+  "dateModified": "2025-10-19T08:29:52.607Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Leonardo",
+      "url": "https://github.com/Cherises/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://cherises.github.io/post/6116/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":5,"unescape":false,"languages":{"hits_empty":"No results found for: ${query}","hits_stats":"${hits} articles found"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"You have switched to Traditional Chinese","cht_to_chs":"You have switched to Simplified Chinese","day_to_night":"You have switched to Dark Mode","night_to_day":"You have switched to Light Mode","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-center"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '常用浏览器对比',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/admonition.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css"><meta name="generator" content="Hexo 7.3.0"></head><body><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+btf.addGlobalFn('pjaxSend', () => {
+  Pace.restart()
+}, 'pace_restart')
+
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg" style="background-image: url(/img/b1.webp);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/actor-1.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">104</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">143</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">23</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/Wujie/"><i class="fa-fw fas fa-globe"></i><span> WuJie</span></a></div><div class="menus_item"><a class="site-page" href="/Music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></div><div class="menus_item"><a class="site-page" href="/About/"><i class="fa-fw fas fa-user"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Leo's Digital Genesis</span></a><a class="nav-page-title" href="/"><span class="site-name">常用浏览器对比</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  Back to Home</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/Wujie/"><i class="fa-fw fas fa-globe"></i><span> WuJie</span></a></div><div class="menus_item"><a class="site-page" href="/Music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></div><div class="menus_item"><a class="site-page" href="/About/"><i class="fa-fw fas fa-user"></i><span> About</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">常用浏览器对比</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-10-12T15:07:44.000Z" title="Created 2025-10-12 15:07:44">2025-10-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-10-19T08:29:52.607Z" title="Updated 2025-10-19 08:29:52">2025-10-19</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/study/">study</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word Count:</span><span class="word-count">3.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading Time:</span><span>12mins</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="container post-content" id="article-container"><h1 id="常见浏览器比较报告-—-Chrome-Brave-Firefox-Tor-Browser（详尽对比：安全、隐私、易用性、目标用户等）"><a href="#常见浏览器比较报告-—-Chrome-Brave-Firefox-Tor-Browser（详尽对比：安全、隐私、易用性、目标用户等）" class="headerlink" title="常见浏览器比较报告 — Chrome &#x2F; Brave &#x2F; Firefox &#x2F; Tor Browser（详尽对比：安全、隐私、易用性、目标用户等）"></a>常见浏览器比较报告 — Chrome &#x2F; Brave &#x2F; Firefox &#x2F; Tor Browser（详尽对比：安全、隐私、易用性、目标用户等）</h1><p>下面把四款常见浏览器按关键维度做系统性对比——并给出适用人群与实用建议。结论基于官方说明与近期权威综述（引用见文末）。我先给一个快速概览表，再逐项拆解重点与实操建议。</p>
+<table>
+<thead>
+<tr>
+<th>维度 &#x2F; 浏览器</th>
+<th align="right">Google Chrome</th>
+<th align="right">Brave</th>
+<th align="right">Mozilla Firefox</th>
+<th align="right">Tor Browser</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>默认安全性（沙箱、网站隔离、恶意检测）</td>
+<td align="right">★★★★★（强）。沙箱、站点隔离、钓鱼&#x2F;恶意检测等官方强化。(<a target="_blank" rel="noopener" href="https://safety.google/chrome/?utm_source=cherises.github.io" title="Chrome Privacy &amp; Security Settings">safety.google</a>)</td>
+<td align="right">★★★★☆（良好） — 基于Chromium，继承许多安全特性，同时默认屏蔽追踪。(<a target="_blank" rel="noopener" href="https://brave.com/?utm_source=cherises.github.io" title="Brave: The browser that puts you first">Brave</a>)</td>
+<td align="right">★★★★☆（良好） — 主动推送安全功能（HTTPS-only、DoH 等）；更新频繁。(<a target="_blank" rel="noopener" href="https://support.mozilla.org/en-US/kb/firefox-privacy-and-security-features?utm_source=cherises.github.io" title="Firefox privacy and security features">Mozilla 支持</a>)</td>
+<td align="right">★★★☆☆（专注匿名） — 安全性强，但为匿名路由流量可能牺牲某些浏览器层面的性能&#x2F;功能。(<a target="_blank" rel="noopener" href="https://www.privacytools.io/private-browser?utm_source=cherises.github.io" title="Best Private Web Browsers for Most Privacy in 2025">privacytools.io</a>)</td>
+</tr>
+<tr>
+<td>隐私保护（默认追踪阻断、指纹、遥测）</td>
+<td align="right">★★☆☆☆ — 大公司产品，采集&#x2F;生态绑定广泛；隐私控制有但非最默认最严格。(<a target="_blank" rel="noopener" href="https://safety.google/chrome/?utm_source=cherises.github.io" title="Chrome Privacy &amp; Security Settings">safety.google</a>)</td>
+<td align="right">★★★★☆ — 默认屏蔽广告&#x2F;追踪、指纹抗性改良，并可选择 Rewards（隐私保留的广告模式）。(<a target="_blank" rel="noopener" href="https://brave.com/features/?utm_source=cherises.github.io" title="Brave Browser Features">Brave</a>)</td>
+<td align="right">★★★★☆ — 提供 Total Cookie Protection、增强追踪防护、容器等，可高度配置以提高隐私。(<a target="_blank" rel="noopener" href="https://support.mozilla.org/en-US/kb/firefox-privacy-and-security-features?utm_source=cherises.github.io" title="Firefox privacy and security features">Mozilla 支持</a>)</td>
+<td align="right">★★★★★ — 针对匿名设计（Tor 网络、流量多层加密、绕过监管），但速度慢且不适合登录常规服务。(<a target="_blank" rel="noopener" href="https://www.privacytools.io/private-browser?utm_source=cherises.github.io" title="Best Private Web Browsers for Most Privacy in 2025">privacytools.io</a>)</td>
+</tr>
+<tr>
+<td>易用性 &#x2F; 性能</td>
+<td align="right">★★★★★ — 快、跨平台、与 Google 生态整合好。(<a target="_blank" rel="noopener" href="https://safety.google/chrome/?utm_source=cherises.github.io" title="Chrome Privacy &amp; Security Settings">safety.google</a>)</td>
+<td align="right">★★★★☆ — 基于 Chromium，体验接近 Chrome，启动更快且默认更轻量。(<a target="_blank" rel="noopener" href="https://brave.com/?utm_source=cherises.github.io" title="Brave: The browser that puts you first">Brave</a>)</td>
+<td align="right">★★★★☆ — 灵活、扩展性强；有时内存&#x2F;性能与 Chrome 旗鼓相当或更轻（视配置）。(<a target="_blank" rel="noopener" href="https://support.mozilla.org/en-US/kb/firefox-privacy-and-security-features?utm_source=cherises.github.io" title="Firefox privacy and security features">Mozilla 支持</a>)</td>
+<td align="right">★★☆☆☆ — 使用 Tor 路由，延迟和速度明显受影响；界面基于Firefox，偏技术向。(<a target="_blank" rel="noopener" href="https://www.privacytools.io/private-browser?utm_source=cherises.github.io" title="Best Private Web Browsers for Most Privacy in 2025">privacytools.io</a>)</td>
+</tr>
+<tr>
+<td>扩展生态 &#x2F; 自定义</td>
+<td align="right">★★★★★（最大）</td>
+<td align="right">★★★★☆（Chromium 扩展兼容，但官方推广自家功能）</td>
+<td align="right">★★★★☆（丰富且以隐私扩展著称）</td>
+<td align="right">★★☆☆☆（限制插件以避免泄露匿名性）</td>
+</tr>
+<tr>
+<td>移动支持</td>
+<td align="right">★★★★★（Android&#x2F;iOS、与桌面联动）</td>
+<td align="right">★★★★☆（良好，移动端也有Brave）</td>
+<td align="right">★★★★☆（移动端也有，且隐私选项多）</td>
+<td align="right">★★☆☆☆（有移动版，但使用同样因速度受限）</td>
+</tr>
+<tr>
+<td>适合的用户群体</td>
+<td align="right">一般用户、开发者、企业、需要兼容性的场景</td>
+<td align="right">注重隐私但又要速度、希望默认拦截追踪的普通用户</td>
+<td align="right">注重隐私定制与开源支持，技术用户与隐私爱好者</td>
+<td align="right">隐私极限&#x2F;匿名用户、记者、活动家、受审查环境用户</td>
+</tr>
+</tbody></table>
+<h2 id="逐项详解（带要点与事实支撑）"><a href="#逐项详解（带要点与事实支撑）" class="headerlink" title="逐项详解（带要点与事实支撑）"></a>逐项详解（带要点与事实支撑）</h2><h3 id="1-安全性（浏览器内核、沙箱、漏洞修补）"><a href="#1-安全性（浏览器内核、沙箱、漏洞修补）" class="headerlink" title="1) 安全性（浏览器内核、沙箱、漏洞修补）"></a>1) 安全性（浏览器内核、沙箱、漏洞修补）</h3><ul>
+<li><strong>Chrome</strong>：凭借 Google 的资源，Chrome 在网站隔离、渲染进程沙箱、防钓鱼与恶意软件检测等方面非常完善，而且推送更新迅速（适合对兼容性和安全补丁敏感的用户&#x2F;企业）。官方说明强调“安全默认”和多项防护。(<a target="_blank" rel="noopener" href="https://safety.google/chrome/?utm_source=cherises.github.io" title="Chrome Privacy &amp; Security Settings">safety.google</a>)</li>
+<li><strong>Brave</strong>：基于 Chromium，因此继承了 Chromium 的安全架构（如沙箱）。Brave 将重点放在默认阻止第三方追踪与广告，同时仍保留 Chromium 的安全功能。(<a target="_blank" rel="noopener" href="https://brave.com/?utm_source=cherises.github.io" title="Brave: The browser that puts you first">Brave</a>)</li>
+<li><strong>Firefox</strong>：安全功能集中在“隐私即安全”策略（比如 HTTPS-only 模式、跟踪防护、DNS-over-HTTPS 等），并且有专门的支持文档列出这些特性。更新频率高。(<a target="_blank" rel="noopener" href="https://support.mozilla.org/en-US/kb/firefox-privacy-and-security-features?utm_source=cherises.github.io" title="Firefox privacy and security features">Mozilla 支持</a>)</li>
+<li><strong>Tor Browser</strong>：侧重网络匿名与抗审查，使用多重加密隧道（Tor 网络）。对“浏览器层面”的某些功能（如插件、WebRTC）做限制以避免泄露真实IP，因此在“匿名”维度非常强，但与常规浏览器的功能&#x2F;性能取舍明显。(<a target="_blank" rel="noopener" href="https://www.privacytools.io/private-browser?utm_source=cherises.github.io" title="Best Private Web Browsers for Most Privacy in 2025">privacytools.io</a>)</li>
+</ul>
+<h3 id="2-隐私保护（默认设置-vs-可调节）"><a href="#2-隐私保护（默认设置-vs-可调节）" class="headerlink" title="2) 隐私保护（默认设置 vs 可调节）"></a>2) 隐私保护（默认设置 vs 可调节）</h3><ul>
+<li><strong>默认隐私</strong>：Brave 和 Tor 在出厂即默认拦截广告&#x2F;追踪（Brave更平衡速度与隐私），而 Firefox 提供强大的追踪防护但部分需要用户到设置里选更严格策略；Chrome 虽然有隐私控制，但默认与 Google 服务深度集成，对隐私极度敏感用户并非首选。(<a target="_blank" rel="noopener" href="https://brave.com/?utm_source=cherises.github.io" title="Brave: The browser that puts you first">Brave</a>)</li>
+<li><strong>指纹与遥测</strong>：Firefox 推出“Total Cookie Protection”等功能以降低跨站跟踪；Brave 也有指纹防护层。Tor 则通过网络层面与浏览器配置双重降低指纹与流量关联。(<a target="_blank" rel="noopener" href="https://support.mozilla.org/en-US/kb/firefox-privacy-and-security-features?utm_source=cherises.github.io" title="Firefox privacy and security features">Mozilla 支持</a>)</li>
+<li><strong>企业&#x2F;生态数据收集</strong>：Chrome 与 Google 生态高度联动（Privacy Sandbox 等尝试替代第三方 cookie，但仍是受关注的话题）；Firefox 与 Brave 更强调开源或较少遥测（但也需留意各自隐私政策&#x2F;条款更新）。(<a target="_blank" rel="noopener" href="https://privacysandbox.com/news/privacy-sandbox-next-steps/?utm_source=cherises.github.io" title="Next steps for Privacy Sandbox and tracking protections in ...">Privacy Sandbox</a>)</li>
+</ul>
+<h3 id="3-易用性、兼容性、扩展生态"><a href="#3-易用性、兼容性、扩展生态" class="headerlink" title="3) 易用性、兼容性、扩展生态"></a>3) 易用性、兼容性、扩展生态</h3><ul>
+<li><strong>扩展与兼容</strong>：Chrome 拥有最大的扩展生态，网页兼容性最好（网页开发通常以 Chrome 为首测）。Brave 与 Edge 等 Chromium 浏览器可以使用 Chrome Web Store 插件。Firefox 虽然扩展生态丰富且以隐私扩展见长，但某些 Chromium-only 扩展可能不兼容。Tor 为保护匿名性禁用了或强烈限制扩展使用。(<a target="_blank" rel="noopener" href="https://safety.google/chrome/?utm_source=cherises.github.io" title="Chrome Privacy &amp; Security Settings">safety.google</a>)</li>
+<li><strong>性能</strong>：总体 Chrome&#x2F;Brave 在多进程和 JS 引擎优化上表现优；Firefox 在近年收敛优势，也相当流畅。Tor 牺牲速度以换取匿名性。官方&#x2F;评测与用户讨论显示这一点持续成立。(<a target="_blank" rel="noopener" href="https://safety.google/chrome/?utm_source=cherises.github.io" title="Chrome Privacy &amp; Security Settings">safety.google</a>)</li>
+</ul>
+<h3 id="4-更新与生态（战略与未来方向）"><a href="#4-更新与生态（战略与未来方向）" class="headerlink" title="4) 更新与生态（战略与未来方向）"></a>4) 更新与生态（战略与未来方向）</h3><ul>
+<li><strong>Chrome&#x2F;Privacy Sandbox</strong>：Google 正逐步推进 Privacy Sandbox（试图用新机制替代第三方 cookie），这对广告与追踪生态有长远影响，也意味着 Chrome 的隐私策略在渐进调整。(<a target="_blank" rel="noopener" href="https://privacysandbox.com/news/privacy-sandbox-next-steps/?utm_source=cherises.github.io" title="Next steps for Privacy Sandbox and tracking protections in ...">Privacy Sandbox</a>)</li>
+<li><strong>Firefox 的隐私路线</strong>：Mozilla 持续推出新隐私功能（如容器、profiles、Total Cookie Protection），并以用户控制为核心。最近也在改善 profile 隔离等。(<a target="_blank" rel="noopener" href="https://www.theverge.com/news/795998/mozilla-firefox-browser-profiles-separate-tabs?utm_source=cherises.github.io" title="Firefox is adding profiles to separate your browsing sessions">The Verge</a>)</li>
+<li><strong>Brave 的商业模式</strong>：Brave 通过默认阻止追踪并提供可选的“隐私保护广告 + BAT 奖励”模式来平衡收益与隐私。(<a target="_blank" rel="noopener" href="https://brave.com/features/?utm_source=cherises.github.io" title="Brave Browser Features">Brave</a>)</li>
+</ul>
+<h3 id="5-适用场景与推荐（实用建议）"><a href="#5-适用场景与推荐（实用建议）" class="headerlink" title="5) 适用场景与推荐（实用建议）"></a>5) 适用场景与推荐（实用建议）</h3><ul>
+<li>如果你需要<strong>最大兼容性、速度和企业级安全</strong>（且乐于在 Google 生态中工作）：<strong>Chrome</strong>。注意手动收紧权限、关闭不必要的同步或隐私侵入项。(<a target="_blank" rel="noopener" href="https://safety.google/chrome/?utm_source=cherises.github.io" title="Chrome Privacy &amp; Security Settings">safety.google</a>)</li>
+<li>如果你是<strong>普通用户但想开箱即用的隐私保护</strong>（默认拦截广告&#x2F;追踪，同时仍想速度与扩展兼容）：<strong>Brave</strong>。它在隐私与性能间做了很好折中。(<a target="_blank" rel="noopener" href="https://brave.com/?utm_source=cherises.github.io" title="Brave: The browser that puts you first">Brave</a>)</li>
+<li>如果你是<strong>隐私爱好者或技术用户</strong>，想大量自定义并使用容器&#x2F;隐私扩展：<strong>Firefox</strong>（建议开启 Total Cookie Protection、HTTPS-Only、并熟悉隐私设置）。(<a target="_blank" rel="noopener" href="https://support.mozilla.org/en-US/kb/firefox-privacy-and-security-features?utm_source=cherises.github.io" title="Firefox privacy and security features">Mozilla 支持</a>)</li>
+<li>如果你追求<strong>高度匿名</strong>（规避审查、网络追踪、保护敏感身份）：<strong>Tor Browser</strong>。但别用它做常规登录、银行业务或高带宽应用（速度&#x2F;兼容性问题）。(<a target="_blank" rel="noopener" href="https://www.privacytools.io/private-browser?utm_source=cherises.github.io" title="Best Private Web Browsers for Most Privacy in 2025">privacytools.io</a>)</li>
+</ul>
+<h2 id="实操建议（一步到位的隐私-安全设置清单）"><a href="#实操建议（一步到位的隐私-安全设置清单）" class="headerlink" title="实操建议（一步到位的隐私&#x2F;安全设置清单）"></a>实操建议（一步到位的隐私&#x2F;安全设置清单）</h2><p>（以“普通安全+隐私”用户为例，可在任一浏览器上应用）</p>
+<ol>
+<li>开启浏览器的<strong>自动更新</strong>与<strong>恶意网站防护</strong>。Chrome&#x2F;Firefox 都有相应项。(<a target="_blank" rel="noopener" href="https://safety.google/chrome/?utm_source=cherises.github.io" title="Chrome Privacy &amp; Security Settings">safety.google</a>)</li>
+<li>在<strong>隐私设置</strong>中禁用或限制第三方 cookie；启用 HTTPS-Only（若有）。Firefox 提供“Enhanced Tracking Protection &#x2F; Total Cookie Protection”。(<a target="_blank" rel="noopener" href="https://support.mozilla.org/en-US/kb/firefox-privacy-and-security-features?utm_source=cherises.github.io" title="Firefox privacy and security features">Mozilla 支持</a>)</li>
+<li>使用<strong>密码管理器</strong>（内置或独立）并开启强制唯一密码。Chrome&#x2F;Firefox 都有内置密码功能。(<a target="_blank" rel="noopener" href="https://safety.google/chrome/?utm_source=cherises.github.io" title="Chrome Privacy &amp; Security Settings">safety.google</a>)</li>
+<li>谨慎安装扩展：只用可信来源，尽量不安装太多无关权限的扩展。Tor <strong>避免</strong>安装任何扩展以保护匿名性。(<a target="_blank" rel="noopener" href="https://www.privacytools.io/private-browser?utm_source=cherises.github.io" title="Best Private Web Browsers for Most Privacy in 2025">privacytools.io</a>)</li>
+<li>若需要广告支持创作者又希望隐私：可考虑 Brave 的 Rewards（了解数据如何被匿名化再决定开启）。(<a target="_blank" rel="noopener" href="https://brave.com/features/?utm_source=cherises.github.io" title="Brave Browser Features">Brave</a>)</li>
+</ol>
+<h2 id="常见误区与风险提醒"><a href="#常见误区与风险提醒" class="headerlink" title="常见误区与风险提醒"></a>常见误区与风险提醒</h2><ul>
+<li>“只用‘隐私浏览&#x2F;无痕’就能匿名” —— 不对。无痕主要是在本地不保存历史，但不会隐藏 IP、不会阻止网站或广告商追踪。若真的需匿名需 Tor 或额外工具。(<a target="_blank" rel="noopener" href="https://www.privacytools.io/private-browser?utm_source=cherises.github.io" title="Best Private Web Browsers for Most Privacy in 2025">privacytools.io</a>)</li>
+<li>“改用 Brave 就完全私密” —— Brave 默认更隐私，但任何浏览器都可能有遥测或策略更新，务必查看隐私政策并按需调整（例如是否启用 Rewards）。(<a target="_blank" rel="noopener" href="https://brave.com/?utm_source=cherises.github.io" title="Brave: The browser that puts you first">Brave</a>)</li>
+<li>企业&#x2F;政府监控、网站指纹化、浏览器指纹仍然可能暴露用户（需要综合手段：浏览器配置 + 网络层工具 + 行为习惯改变）。</li>
+</ul>
+<h2 id="结论（一句话）"><a href="#结论（一句话）" class="headerlink" title="结论（一句话）"></a>结论（一句话）</h2><ul>
+<li>要<strong>兼容与速度</strong>选 <strong>Chrome</strong>；要<strong>开箱即用的隐私与速度平衡</strong>选 <strong>Brave</strong>；要<strong>高度可配置与开源隐私工具</strong>选 <strong>Firefox</strong>；要<strong>极端匿名&#x2F;翻墙抗审查</strong>选 <strong>Tor Browser</strong>。每款浏览器都有取舍：隐私 ↔ 可用性 与 匿名 ↔ 速度 是长期主题。</li>
+</ul>
+<h2 id="参考（重要来源）"><a href="#参考（重要来源）" class="headerlink" title="参考（重要来源）"></a>参考（重要来源）</h2><ul>
+<li>Google Chrome 安全&#x2F;隐私介绍（官方）。(<a target="_blank" rel="noopener" href="https://safety.google/chrome/?utm_source=cherises.github.io" title="Chrome Privacy &amp; Security Settings">safety.google</a>)</li>
+<li>Brave 官方站与功能页面（官方）。(<a target="_blank" rel="noopener" href="https://brave.com/?utm_source=cherises.github.io" title="Brave: The browser that puts you first">Brave</a>)</li>
+<li>Mozilla Firefox 隐私与安全说明（官方支持页与隐私声明）。(<a target="_blank" rel="noopener" href="https://support.mozilla.org/en-US/kb/firefox-privacy-and-security-features?utm_source=cherises.github.io" title="Firefox privacy and security features">Mozilla 支持</a>)</li>
+<li>PrivacyTools &#x2F; Tor Browser 隐私建议（关于 Tor 的定位与匿名性）。(<a target="_blank" rel="noopener" href="https://www.privacytools.io/private-browser?utm_source=cherises.github.io" title="Best Private Web Browsers for Most Privacy in 2025">privacytools.io</a>)</li>
+<li>Privacy Sandbox 相关进展（Chrome 广告&#x2F;追踪替代计划）。(<a target="_blank" rel="noopener" href="https://privacysandbox.com/news/privacy-sandbox-next-steps/?utm_source=cherises.github.io" title="Next steps for Privacy Sandbox and tracking protections in ...">Privacy Sandbox</a>)</li>
+</ul>
+<hr>
+<p>我们现在来做一个**“多场景浏览器使用与配置指南”<strong>，在不同任务（工作 &#x2F; 学习 &#x2F; 娱乐 &#x2F; 隐私 &#x2F; 跨境访问等）中都能获得最佳安全性与体验。<br>本指南是面向</strong>桌面端（Linux &#x2F; Windows &#x2F; macOS）**的。</p>
+<h1 id="🧭-浏览器多场景使用与配置全指南"><a href="#🧭-浏览器多场景使用与配置全指南" class="headerlink" title="🧭 浏览器多场景使用与配置全指南"></a>🧭 浏览器多场景使用与配置全指南</h1><table>
+<thead>
+<tr>
+<th>场景</th>
+<th>推荐浏览器组合</th>
+<th>使用目标</th>
+<th>隐私级别</th>
+<th>推荐配置难度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>💼 工作 &#x2F; 学习 &#x2F; 开发</td>
+<td><strong>Chrome + Firefox</strong></td>
+<td>兼容性最强，开发调试，查资料</td>
+<td>★★☆☆☆</td>
+<td>中等</td>
+</tr>
+<tr>
+<td>🕵️‍♀️ 私密浏览 &#x2F; 登录分离</td>
+<td><strong>Firefox Containers &#x2F; Brave</strong></td>
+<td>分离账户、保护隐私</td>
+<td>★★★★☆</td>
+<td>中等偏上</td>
+</tr>
+<tr>
+<td>🧱 高度匿名 &#x2F; 跨境访问</td>
+<td><strong>Tor Browser + Brave</strong></td>
+<td>匿名上网、访问受限内容</td>
+<td>★★★★★</td>
+<td>较高</td>
+</tr>
+<tr>
+<td>🎥 娱乐 &#x2F; 视频 &#x2F; 网购</td>
+<td><strong>Chrome &#x2F; Edge (或 Brave)</strong></td>
+<td>流畅播放、支付兼容性好</td>
+<td>★☆☆☆☆</td>
+<td>低</td>
+</tr>
+<tr>
+<td>🧩 综合日常 + 隐私平衡</td>
+<td><strong>Brave + Firefox</strong></td>
+<td>开箱即用防追踪 + 灵活扩展</td>
+<td>★★★★☆</td>
+<td>中等</td>
+</tr>
+</tbody></table>
+<h2 id="💼-场景一：工作-学习-开发（高兼容性-多账户）"><a href="#💼-场景一：工作-学习-开发（高兼容性-多账户）" class="headerlink" title="💼 场景一：工作 &#x2F; 学习 &#x2F; 开发（高兼容性 + 多账户）"></a>💼 场景一：工作 &#x2F; 学习 &#x2F; 开发（高兼容性 + 多账户）</h2><blockquote>
+<p><strong>推荐组合：Chrome + Firefox</strong></p>
+</blockquote>
+<h3 id="✅-使用目标"><a href="#✅-使用目标" class="headerlink" title="✅ 使用目标"></a>✅ 使用目标</h3><ul>
+<li>与 Google Docs、Github、ChatGPT、Coursera、Notion 等网站完全兼容</li>
+<li>同时登录多个账户（如学校邮箱 &#x2F; 个人邮箱 &#x2F; 项目平台）</li>
+<li>快速开发网页调试（F12 开发者工具）</li>
+</ul>
+<h3 id="🧰-配置建议"><a href="#🧰-配置建议" class="headerlink" title="🧰 配置建议"></a>🧰 配置建议</h3><p><strong>1️⃣ Chrome 基础设置</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">设置 → 隐私与安全 → 安全浏览 → 选择“增强保护”</span><br><span class="line">设置 → 同步与 Google 服务 → 关闭 “允许发送使用数据” 和 “辅助改进功能”</span><br></pre></td></tr></table></figure>
+
+<p><strong>2️⃣ 账户分区</strong></p>
+<ul>
+<li><p>新建多个 Chrome “个人资料”（每个资料独立 cookie 与插件）。</p>
+<ul>
+<li>比如：<code>个人</code>、<code>学习</code>、<code>工作</code>。</li>
+</ul>
+</li>
+<li><p>快捷方式：<code>chrome://settings/people</code></p>
+</li>
+</ul>
+<p><strong>3️⃣ Firefox 辅助使用</strong></p>
+<ul>
+<li><p>在 Firefox 中安装：</p>
+<ul>
+<li>📦 <a target="_blank" rel="noopener" href="https://addons.mozilla.org/zh-CN/firefox/addon/multi-account-containers/">Multi-Account Containers</a></li>
+<li>📦 <a target="_blank" rel="noopener" href="https://addons.mozilla.org/zh-CN/firefox/addon/ublock-origin/">uBlock Origin</a></li>
+</ul>
+</li>
+<li><p>将不同网站放入不同容器，如：</p>
+<ul>
+<li>蓝色容器（工作邮箱）</li>
+<li>红色容器（学校账号）</li>
+<li>绿色容器（娱乐登录）</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>✅ <strong>优势</strong>：Chrome 提供开发与兼容性，Firefox 保持分离登录和隐私隔离。</p>
+</blockquote>
+<h2 id="🕵️‍♀️-场景二：私密浏览-登录分离-防追踪"><a href="#🕵️‍♀️-场景二：私密浏览-登录分离-防追踪" class="headerlink" title="🕵️‍♀️ 场景二：私密浏览 &#x2F; 登录分离 &#x2F; 防追踪"></a>🕵️‍♀️ 场景二：私密浏览 &#x2F; 登录分离 &#x2F; 防追踪</h2><blockquote>
+<p><strong>推荐组合：Firefox Containers + Brave</strong></p>
+</blockquote>
+<h3 id="✅-使用目标-1"><a href="#✅-使用目标-1" class="headerlink" title="✅ 使用目标"></a>✅ 使用目标</h3><ul>
+<li>登录多个社交平台但互不追踪（微博、B站、Twitter、Reddit）</li>
+<li>购物 &#x2F; 新闻 &#x2F; 视频浏览时屏蔽广告与指纹</li>
+<li>区分“主号”“小号”“测试账号”</li>
+</ul>
+<h3 id="🧰-配置建议-1"><a href="#🧰-配置建议-1" class="headerlink" title="🧰 配置建议"></a>🧰 配置建议</h3><p><strong>1️⃣ Firefox 设置</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">about:preferences#privacy → 打开“增强型跟踪保护” → 选择“严格”</span><br><span class="line">开启“HTTPS-only 模式”</span><br><span class="line">开启“隐私保护 DNS（DoH）”</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>安装：</p>
+<ul>
+<li>🌐 <strong>Facebook Container</strong></li>
+<li>🧩 <strong>Cookie AutoDelete</strong>（自动清理非白名单网站 cookie）</li>
+</ul>
+</li>
+</ul>
+<p><strong>2️⃣ Brave 设置</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">设置 → 隐私与安全 → 屏蔽器和安全 → 启用“严格”广告与跟踪防护</span><br><span class="line">设置 → Shields → 开启“防止指纹追踪” → “严格模式”</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Brave 内置广告屏蔽，无需装 AdBlock。</li>
+<li>若访问部分国内视频站，可在“Shields”里暂时关闭拦截。</li>
+</ul>
+<blockquote>
+<p>✅ <strong>优势</strong>：Firefox 控制粒度细、容器隔离好；Brave 快速开箱即用，默认隐私强。</p>
+</blockquote>
+<h2 id="🧱-场景三：高度匿名-跨境访问-敏感研究"><a href="#🧱-场景三：高度匿名-跨境访问-敏感研究" class="headerlink" title="🧱 场景三：高度匿名 &#x2F; 跨境访问 &#x2F; 敏感研究"></a>🧱 场景三：高度匿名 &#x2F; 跨境访问 &#x2F; 敏感研究</h2><blockquote>
+<p><strong>推荐组合：Tor Browser + Brave</strong></p>
+</blockquote>
+<h3 id="✅-使用目标-2"><a href="#✅-使用目标-2" class="headerlink" title="✅ 使用目标"></a>✅ 使用目标</h3><ul>
+<li>在不暴露真实 IP 的情况下浏览互联网</li>
+<li>访问受审查网站（如部分科研&#x2F;技术资料）</li>
+<li>避免被浏览器指纹化追踪</li>
+</ul>
+<h3 id="⚙️-配置建议"><a href="#⚙️-配置建议" class="headerlink" title="⚙️ 配置建议"></a>⚙️ 配置建议</h3><p><strong>1️⃣ Tor Browser</strong></p>
+<ul>
+<li><p>下载地址：<a target="_blank" rel="noopener" href="https://www.torproject.org/">https://www.torproject.org</a></p>
+</li>
+<li><p>设置 → 隐私与安全 → <strong>选择“最安全”模式</strong></p>
+<ul>
+<li>禁用 JavaScript</li>
+<li>禁用多媒体自动播放</li>
+</ul>
+</li>
+<li><p>禁止安装扩展与修改 UA</p>
+</li>
+<li><p>若网速太慢，可使用 “Bridges”（隐蔽入口节点）</p>
+</li>
+</ul>
+<p><strong>2️⃣ Brave 配合模式</strong></p>
+<ul>
+<li><p>用 Brave 浏览普通网页，遇到需匿名访问的网站：</p>
+<ul>
+<li>点击右上角菜单 → “新建 Tor 窗口” （Brave 内置 Tor 代理）</li>
+<li>Brave 不会替代官方 Tor，但提供轻量匿名访问（中间级匿名）</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>⚠️ <strong>注意</strong>：</p>
+<ul>
+<li>不在 Tor 中登录真实账户（如银行、社交媒体）</li>
+<li>不传敏感文件（可能被出口节点窃听）</li>
+<li>不启用扩展</li>
+</ul>
+</blockquote>
+<h2 id="🎥-场景四：娱乐-视频-网购-日常流畅体验"><a href="#🎥-场景四：娱乐-视频-网购-日常流畅体验" class="headerlink" title="🎥 场景四：娱乐 &#x2F; 视频 &#x2F; 网购 &#x2F; 日常流畅体验"></a>🎥 场景四：娱乐 &#x2F; 视频 &#x2F; 网购 &#x2F; 日常流畅体验</h2><blockquote>
+<p><strong>推荐组合：Chrome 或 Brave</strong></p>
+</blockquote>
+<h3 id="✅-使用目标-3"><a href="#✅-使用目标-3" class="headerlink" title="✅ 使用目标"></a>✅ 使用目标</h3><ul>
+<li>在线购物、支付（支持支付宝、微信）</li>
+<li>播放流媒体视频（YouTube、Netflix、B站）</li>
+<li>游戏启动器、网页会议兼容性最高</li>
+</ul>
+<h3 id="🧰-配置建议-2"><a href="#🧰-配置建议-2" class="headerlink" title="🧰 配置建议"></a>🧰 配置建议</h3><p><strong>1️⃣ Chrome</strong></p>
+<ul>
+<li><p>确保启用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chrome://settings/content/protectedContent</span><br></pre></td></tr></table></figure>
+
+<p>（开启 DRM 支持，播放受保护媒体）</p>
+</li>
+<li><p>启用“硬件加速”</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chrome://settings/system</span><br></pre></td></tr></table></figure>
+
+<p>（RTX3060 的 GPU 可加速播放 4K 视频）</p>
+</li>
+</ul>
+<p><strong>2️⃣ Brave</strong></p>
+<ul>
+<li>同样支持 YouTube、Netflix（需在 <code>brave://settings/extensions</code> 打开 Widevine 支持）</li>
+<li>若遇国内视频网站广告问题，开启 Shields 即可屏蔽</li>
+</ul>
+<blockquote>
+<p>✅ <strong>优势</strong>：Chrome 最流畅；Brave 无广告，省流量。</p>
+</blockquote>
+<h2 id="🧩-场景五：综合日常-隐私平衡（推荐大多数人）"><a href="#🧩-场景五：综合日常-隐私平衡（推荐大多数人）" class="headerlink" title="🧩 场景五：综合日常 + 隐私平衡（推荐大多数人）"></a>🧩 场景五：综合日常 + 隐私平衡（推荐大多数人）</h2><blockquote>
+<p><strong>推荐组合：Brave + Firefox</strong></p>
+</blockquote>
+<h3 id="✅-使用目标-4"><a href="#✅-使用目标-4" class="headerlink" title="✅ 使用目标"></a>✅ 使用目标</h3><ul>
+<li>Brave 用于日常、搜索、视频、社交（快速且无广告）</li>
+<li>Firefox 用于学习、登录、资料查询（容器管理、隐私强化）</li>
+</ul>
+<h3 id="🧰-建议配置组合"><a href="#🧰-建议配置组合" class="headerlink" title="🧰 建议配置组合"></a>🧰 建议配置组合</h3><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>用 Brave</th>
+<th>用 Firefox</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>YouTube &#x2F; Reddit &#x2F; B站</td>
+<td>✅（默认屏蔽广告）</td>
+<td>❌（广告多）</td>
+</tr>
+<tr>
+<td>ChatGPT &#x2F; Notion &#x2F; Docs</td>
+<td>✅（性能好）</td>
+<td>✅（可隔离账户）</td>
+</tr>
+<tr>
+<td>登录小号 &#x2F; 实验账号</td>
+<td>⚠️ 建议 Firefox 容器</td>
+<td>✅（理想）</td>
+</tr>
+<tr>
+<td>隐私敏感搜索</td>
+<td>✅（DuckDuckGo 默认）</td>
+<td>✅（可手动改为 Startpage）</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>💡 <strong>额外优化</strong>：</p>
+<ul>
+<li>Brave 设置默认搜索引擎为 <strong>DuckDuckGo &#x2F; Brave Search</strong>。</li>
+<li>Firefox 设置主页为空白页，提高启动速度。</li>
+<li>使用 <code>Ctrl+Shift+N</code> &#x2F; <code>Ctrl+Shift+P</code> 分别打开无痕与容器窗口。</li>
+</ul>
+</blockquote>
+<h1 id="🛠️-附录：增强插件推荐表"><a href="#🛠️-附录：增强插件推荐表" class="headerlink" title="🛠️ 附录：增强插件推荐表"></a>🛠️ 附录：增强插件推荐表</h1><table>
+<thead>
+<tr>
+<th>目标</th>
+<th>插件名</th>
+<th>适用浏览器</th>
+<th>简介</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>广告拦截</td>
+<td><strong>uBlock Origin</strong></td>
+<td>Chrome &#x2F; Firefox &#x2F; Brave</td>
+<td>精准规则、轻量高效</td>
+</tr>
+<tr>
+<td>Cookie 清理</td>
+<td><strong>Cookie AutoDelete</strong></td>
+<td>Firefox</td>
+<td>关闭标签后自动清理 cookie</td>
+</tr>
+<tr>
+<td>登录隔离</td>
+<td><strong>Multi-Account Containers</strong></td>
+<td>Firefox</td>
+<td>不同网站账号分区</td>
+</tr>
+<tr>
+<td>密码安全</td>
+<td><strong>Bitwarden &#x2F; 1Password</strong></td>
+<td>所有</td>
+<td>云端加密密码管理器</td>
+</tr>
+<tr>
+<td>隐私防护</td>
+<td><strong>Privacy Badger</strong></td>
+<td>Firefox &#x2F; Chrome</td>
+<td>自动识别并屏蔽追踪器</td>
+</tr>
+<tr>
+<td>用户代理</td>
+<td><strong>User-Agent Switcher</strong></td>
+<td>Chrome &#x2F; Firefox</td>
+<td>模拟不同浏览器系统环境</td>
+</tr>
+<tr>
+<td>搜索优化</td>
+<td><strong>DuckDuckGo Privacy Essentials</strong></td>
+<td>所有</td>
+<td>隐私搜索 + HTTPS 强制</td>
+</tr>
+</tbody></table>
+<h1 id="🧠-最佳实践总结"><a href="#🧠-最佳实践总结" class="headerlink" title="🧠 最佳实践总结"></a>🧠 最佳实践总结</h1><table>
+<thead>
+<tr>
+<th>使用需求</th>
+<th>推荐策略</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>兼容性最强（工作）</td>
+<td>Chrome 为主，Firefox 为辅</td>
+</tr>
+<tr>
+<td>防追踪 &#x2F; 广告</td>
+<td>Brave</td>
+</tr>
+<tr>
+<td>登录分区 &#x2F; 多账号</td>
+<td>Firefox + 容器插件</td>
+</tr>
+<tr>
+<td>匿名上网 &#x2F; 跨境</td>
+<td>Tor 或 Brave 的 Tor 窗口</td>
+</tr>
+<tr>
+<td>通用隐私 + 流畅性</td>
+<td>Brave + Firefox（双核心组合）</td>
+</tr>
+</tbody></table>
+<hr>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://github.com/Cherises/">Leonardo</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://cherises.github.io/post/6116/">https://cherises.github.io/post/6116/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://github.com/Cherises/">Leonardo</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/">浏览器</a><a class="post-meta__tags" href="/tags/Chrome/">Chrome</a><a class="post-meta__tags" href="/tags/Firefox/">Firefox</a><a class="post-meta__tags" href="/tags/Brave/">Brave</a><a class="post-meta__tags" href="/tags/TorBrowser/">TorBrowser</a></div><div class="post-share"><div class="social-share" data-image="https://raw.githubusercontent.com/Cherises/Blog-Resource-2/refs/heads/main/photos/genshin/emoj/105.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/actor-1.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Leonardo</div><div class="author-info-description">Focus on thinking, imagination, reasoning, truth-seeking, and pragmatism</div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">104</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">143</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">23</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Cherises/"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E6%B5%8F%E8%A7%88%E5%99%A8%E6%AF%94%E8%BE%83%E6%8A%A5%E5%91%8A-%E2%80%94-Chrome-Brave-Firefox-Tor-Browser%EF%BC%88%E8%AF%A6%E5%B0%BD%E5%AF%B9%E6%AF%94%EF%BC%9A%E5%AE%89%E5%85%A8%E3%80%81%E9%9A%90%E7%A7%81%E3%80%81%E6%98%93%E7%94%A8%E6%80%A7%E3%80%81%E7%9B%AE%E6%A0%87%E7%94%A8%E6%88%B7%E7%AD%89%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">常见浏览器比较报告 — Chrome &#x2F; Brave &#x2F; Firefox &#x2F; Tor Browser（详尽对比：安全、隐私、易用性、目标用户等）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%90%E9%A1%B9%E8%AF%A6%E8%A7%A3%EF%BC%88%E5%B8%A6%E8%A6%81%E7%82%B9%E4%B8%8E%E4%BA%8B%E5%AE%9E%E6%94%AF%E6%92%91%EF%BC%89"><span class="toc-number">1.1.</span> <span class="toc-text">逐项详解（带要点与事实支撑）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%AE%89%E5%85%A8%E6%80%A7%EF%BC%88%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%85%E6%A0%B8%E3%80%81%E6%B2%99%E7%AE%B1%E3%80%81%E6%BC%8F%E6%B4%9E%E4%BF%AE%E8%A1%A5%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">1) 安全性（浏览器内核、沙箱、漏洞修补）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%9A%90%E7%A7%81%E4%BF%9D%E6%8A%A4%EF%BC%88%E9%BB%98%E8%AE%A4%E8%AE%BE%E7%BD%AE-vs-%E5%8F%AF%E8%B0%83%E8%8A%82%EF%BC%89"><span class="toc-number">1.1.2.</span> <span class="toc-text">2) 隐私保护（默认设置 vs 可调节）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%98%93%E7%94%A8%E6%80%A7%E3%80%81%E5%85%BC%E5%AE%B9%E6%80%A7%E3%80%81%E6%89%A9%E5%B1%95%E7%94%9F%E6%80%81"><span class="toc-number">1.1.3.</span> <span class="toc-text">3) 易用性、兼容性、扩展生态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%9B%B4%E6%96%B0%E4%B8%8E%E7%94%9F%E6%80%81%EF%BC%88%E6%88%98%E7%95%A5%E4%B8%8E%E6%9C%AA%E6%9D%A5%E6%96%B9%E5%90%91%EF%BC%89"><span class="toc-number">1.1.4.</span> <span class="toc-text">4) 更新与生态（战略与未来方向）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF%E4%B8%8E%E6%8E%A8%E8%8D%90%EF%BC%88%E5%AE%9E%E7%94%A8%E5%BB%BA%E8%AE%AE%EF%BC%89"><span class="toc-number">1.1.5.</span> <span class="toc-text">5) 适用场景与推荐（实用建议）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%93%8D%E5%BB%BA%E8%AE%AE%EF%BC%88%E4%B8%80%E6%AD%A5%E5%88%B0%E4%BD%8D%E7%9A%84%E9%9A%90%E7%A7%81-%E5%AE%89%E5%85%A8%E8%AE%BE%E7%BD%AE%E6%B8%85%E5%8D%95%EF%BC%89"><span class="toc-number">1.2.</span> <span class="toc-text">实操建议（一步到位的隐私&#x2F;安全设置清单）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E8%AF%AF%E5%8C%BA%E4%B8%8E%E9%A3%8E%E9%99%A9%E6%8F%90%E9%86%92"><span class="toc-number">1.3.</span> <span class="toc-text">常见误区与风险提醒</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA%EF%BC%88%E4%B8%80%E5%8F%A5%E8%AF%9D%EF%BC%89"><span class="toc-number">1.4.</span> <span class="toc-text">结论（一句话）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%EF%BC%88%E9%87%8D%E8%A6%81%E6%9D%A5%E6%BA%90%EF%BC%89"><span class="toc-number">1.5.</span> <span class="toc-text">参考（重要来源）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%F0%9F%A7%AD-%E6%B5%8F%E8%A7%88%E5%99%A8%E5%A4%9A%E5%9C%BA%E6%99%AF%E4%BD%BF%E7%94%A8%E4%B8%8E%E9%85%8D%E7%BD%AE%E5%85%A8%E6%8C%87%E5%8D%97"><span class="toc-number">2.</span> <span class="toc-text">🧭 浏览器多场景使用与配置全指南</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%92%BC-%E5%9C%BA%E6%99%AF%E4%B8%80%EF%BC%9A%E5%B7%A5%E4%BD%9C-%E5%AD%A6%E4%B9%A0-%E5%BC%80%E5%8F%91%EF%BC%88%E9%AB%98%E5%85%BC%E5%AE%B9%E6%80%A7-%E5%A4%9A%E8%B4%A6%E6%88%B7%EF%BC%89"><span class="toc-number">2.1.</span> <span class="toc-text">💼 场景一：工作 &#x2F; 学习 &#x2F; 开发（高兼容性 + 多账户）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%9C%85-%E4%BD%BF%E7%94%A8%E7%9B%AE%E6%A0%87"><span class="toc-number">2.1.1.</span> <span class="toc-text">✅ 使用目标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%A7%B0-%E9%85%8D%E7%BD%AE%E5%BB%BA%E8%AE%AE"><span class="toc-number">2.1.2.</span> <span class="toc-text">🧰 配置建议</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%95%B5%EF%B8%8F%E2%80%8D%E2%99%80%EF%B8%8F-%E5%9C%BA%E6%99%AF%E4%BA%8C%EF%BC%9A%E7%A7%81%E5%AF%86%E6%B5%8F%E8%A7%88-%E7%99%BB%E5%BD%95%E5%88%86%E7%A6%BB-%E9%98%B2%E8%BF%BD%E8%B8%AA"><span class="toc-number">2.2.</span> <span class="toc-text">🕵️‍♀️ 场景二：私密浏览 &#x2F; 登录分离 &#x2F; 防追踪</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%9C%85-%E4%BD%BF%E7%94%A8%E7%9B%AE%E6%A0%87-1"><span class="toc-number">2.2.1.</span> <span class="toc-text">✅ 使用目标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%A7%B0-%E9%85%8D%E7%BD%AE%E5%BB%BA%E8%AE%AE-1"><span class="toc-number">2.2.2.</span> <span class="toc-text">🧰 配置建议</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%A7%B1-%E5%9C%BA%E6%99%AF%E4%B8%89%EF%BC%9A%E9%AB%98%E5%BA%A6%E5%8C%BF%E5%90%8D-%E8%B7%A8%E5%A2%83%E8%AE%BF%E9%97%AE-%E6%95%8F%E6%84%9F%E7%A0%94%E7%A9%B6"><span class="toc-number">2.3.</span> <span class="toc-text">🧱 场景三：高度匿名 &#x2F; 跨境访问 &#x2F; 敏感研究</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%9C%85-%E4%BD%BF%E7%94%A8%E7%9B%AE%E6%A0%87-2"><span class="toc-number">2.3.1.</span> <span class="toc-text">✅ 使用目标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%9A%99%EF%B8%8F-%E9%85%8D%E7%BD%AE%E5%BB%BA%E8%AE%AE"><span class="toc-number">2.3.2.</span> <span class="toc-text">⚙️ 配置建议</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%8E%A5-%E5%9C%BA%E6%99%AF%E5%9B%9B%EF%BC%9A%E5%A8%B1%E4%B9%90-%E8%A7%86%E9%A2%91-%E7%BD%91%E8%B4%AD-%E6%97%A5%E5%B8%B8%E6%B5%81%E7%95%85%E4%BD%93%E9%AA%8C"><span class="toc-number">2.4.</span> <span class="toc-text">🎥 场景四：娱乐 &#x2F; 视频 &#x2F; 网购 &#x2F; 日常流畅体验</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%9C%85-%E4%BD%BF%E7%94%A8%E7%9B%AE%E6%A0%87-3"><span class="toc-number">2.4.1.</span> <span class="toc-text">✅ 使用目标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%A7%B0-%E9%85%8D%E7%BD%AE%E5%BB%BA%E8%AE%AE-2"><span class="toc-number">2.4.2.</span> <span class="toc-text">🧰 配置建议</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%A7%A9-%E5%9C%BA%E6%99%AF%E4%BA%94%EF%BC%9A%E7%BB%BC%E5%90%88%E6%97%A5%E5%B8%B8-%E9%9A%90%E7%A7%81%E5%B9%B3%E8%A1%A1%EF%BC%88%E6%8E%A8%E8%8D%90%E5%A4%A7%E5%A4%9A%E6%95%B0%E4%BA%BA%EF%BC%89"><span class="toc-number">2.5.</span> <span class="toc-text">🧩 场景五：综合日常 + 隐私平衡（推荐大多数人）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%9C%85-%E4%BD%BF%E7%94%A8%E7%9B%AE%E6%A0%87-4"><span class="toc-number">2.5.1.</span> <span class="toc-text">✅ 使用目标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%A7%B0-%E5%BB%BA%E8%AE%AE%E9%85%8D%E7%BD%AE%E7%BB%84%E5%90%88"><span class="toc-number">2.5.2.</span> <span class="toc-text">🧰 建议配置组合</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%F0%9F%9B%A0%EF%B8%8F-%E9%99%84%E5%BD%95%EF%BC%9A%E5%A2%9E%E5%BC%BA%E6%8F%92%E4%BB%B6%E6%8E%A8%E8%8D%90%E8%A1%A8"><span class="toc-number">3.</span> <span class="toc-text">🛠️ 附录：增强插件推荐表</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%F0%9F%A7%A0-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93"><span class="toc-number">4.</span> <span class="toc-text">🧠 最佳实践总结</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/37181/" title="获取新闻列表并调用大模型总结"><img src="https://raw.githubusercontent.com/Cherises/Blog-Resource-2/refs/heads/main/photos/genshin/emoj/195.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="获取新闻列表并调用大模型总结"/></a><div class="content"><a class="title" href="/post/37181/" title="获取新闻列表并调用大模型总结">获取新闻列表并调用大模型总结</a><time datetime="2025-11-16T17:20:17.000Z" title="Created 2025-11-16 17:20:17">2025-11-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/42087/" title="2025年11月16日网易新闻总结"><img src="https://raw.githubusercontent.com/Cherises/Blog-Resource-2/refs/heads/main/photos/genshin/emoj/596.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2025年11月16日网易新闻总结"/></a><div class="content"><a class="title" href="/post/42087/" title="2025年11月16日网易新闻总结">2025年11月16日网易新闻总结</a><time datetime="2025-11-16T12:00:35.000Z" title="Created 2025-11-16 12:00:35">2025-11-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/61362/" title="2025年11月14日"><img src="https://raw.githubusercontent.com/Cherises/Blog-Resource-2/refs/heads/main/photos/genshin/emoj/51.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2025年11月14日"/></a><div class="content"><a class="title" href="/post/61362/" title="2025年11月14日">2025年11月14日</a><time datetime="2025-11-14T17:51:59.000Z" title="Created 2025-11-14 17:51:59">2025-11-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/2522/" title="第一个微调训练模型"><img src="https://raw.githubusercontent.com/Cherises/Blog-Resource-2/refs/heads/main/photos/genshin/emoj/168.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第一个微调训练模型"/></a><div class="content"><a class="title" href="/post/2522/" title="第一个微调训练模型">第一个微调训练模型</a><time datetime="2025-11-12T20:15:08.000Z" title="Created 2025-11-12 20:15:08">2025-11-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/26464/" title="关于搭建本地知识库的可行性分析"><img src="https://raw.githubusercontent.com/Cherises/Blog-Resource-2/refs/heads/main/photos/genshin/emoj/709.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="关于搭建本地知识库的可行性分析"/></a><div class="content"><a class="title" href="/post/26464/" title="关于搭建本地知识库的可行性分析">关于搭建本地知识库的可行性分析</a><time datetime="2025-11-12T10:24:12.000Z" title="Created 2025-11-12 10:24:12">2025-11-12</time></div></div></div></div></div></div></main><footer id="footer" style="background: transparent;"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2021 - 2025 By Leonardo</span><span class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"></div><script src="/js/scroll-disable-blur.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
+      }
+    }
+  }
+
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
+
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      const usePjax = true
+      false
+        ? (usePjax ? pjax.loadUrl('/404.html') : window.location.href = '/404.html')
+        : window.location.href = e.request.responseURL
+    }
+  })
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章🔍" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
